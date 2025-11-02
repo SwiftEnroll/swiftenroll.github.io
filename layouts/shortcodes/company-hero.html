@@ -1,0 +1,29 @@
+{{/*
+        Renders the Company hero + mission section from config.
+        Reads from .Site.Params.company.hero with fields:
+        - title (string)
+        - subtitle (string)
+        - mission_title (string)
+        - mission_text (string)
+        - class (string) optional wrapper classes
+        Usage in Markdown: {{< company-hero >}}
+*/}}
+{{ $hero := .Site.Params.company.hero }}
+<section class="{{ $hero.class }}">
+    <div class="container mx-auto px-4 pt-24 pb-16 sm:pt-32 flex-1">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                {{ with $hero.title }}{{ . }}{{ else }}About Our Company{{ end }}</h1>
+            <p class="mt-6 text-lg leading-8 text-gray-600">{{ with $hero.subtitle }}</p>
+            <p class="text-xl text-gray-600 mb-16">{{ . }}</p>
+            {{ end }}
+            {{ if or $hero.mission_title $hero.mission_text }}
+            <div class="text-center mx-auto py-12 px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-900">{{ with $hero.mission_title }}{{ . }}{{ else }}Our Mission{{ end }}</h2>
+                <p class="mt-4 text-xl text-gray-600">{{ with $hero.mission_text }}{{ . }}{{ else }}We build software that
+                    helps programs run better and serve families.{{ end }}</p>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>

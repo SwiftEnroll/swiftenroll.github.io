@@ -1,0 +1,55 @@
+{{ $json := .Inner | transform.Unmarshal }}
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{ with $json.title }}
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-900">{{ . }}</h2>
+            {{ with $json.description }}
+            <p class="mt-4 text-xl text-gray-600">{{ . }}</p>
+            {{ end }}
+        </div>
+        {{ end }}
+        
+        <div class="mt-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {{ range $json.plans }}
+                <div class="w-full">
+                    <div class="h-full flex flex-col rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300 relative">
+                        <div class="p-8 flex flex-col flex-grow">
+                            <div class="mb-6">
+                                <h3 class="text-2xl font-bold text-gray-900">{{ .name }}</h3>
+                                <p class="mt-2 text-gray-500">{{ .description }}</p>
+                            </div>
+                            <div class="mb-8">
+                                <p class="flex items-baseline">
+                                    {{ if eq (lower .price) "custom" }}
+                                        <span class="text-5xl font-bold tracking-tight text-gray-900">{{ .price }}</span>
+                                    {{ else }}
+                                        <span class="text-5xl font-bold tracking-tight text-gray-900">${{ .price }}</span>
+                                        <span class="ml-2 text-gray-500">{{ site.Params.text.perMonth }}</span>
+                                    {{ end }}
+                                </p>
+                            </div>
+                            <ul class="space-y-4 text-gray-600 flex-grow">
+                                {{ range .features }}
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 flex-shrink-0 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/>
+                                    </svg>
+                                    <span class="ml-3">{{ . }}</span>
+                                </li>
+                                {{ end }}
+                            </ul>
+                            <div class="mt-8">
+                                <a href="{{ .button.url }}" class="btn btn-primary w-full">
+                                    {{ .button.text }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>

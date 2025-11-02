@@ -1,0 +1,26 @@
+{{ $title := .Get "title" }}
+{{ $color := .Get "color" | default "#2563eb" }}
+
+<div class="max-w-3xl mx-auto">
+  <h2 class="text-3xl font-bold text-center !mb-24">{{ $title }}</h2>
+  
+  <div class="space-y-12">
+    {{ range $index := (seq 1 10) }}
+      {{ $feature := printf "feature%d" $index }}
+      {{ with $.Get $feature }}
+        {{ $parts := split . "|" }}
+        {{ if ge (len $parts) 2 }}
+          <div class="flex gap-6">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background-color: {{ $color }}15;">
+              {{ partial "icons" (dict "name" "check" "color" $color "size" "6") }}
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold mb-3 !mt-0">{{ index $parts 0 }}</h3>
+              <p class="text-gray-600 text-lg leading-relaxed">{{ index $parts 1 }}</p>
+            </div>
+          </div>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </div>
+</div>

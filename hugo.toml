@@ -1,0 +1,234 @@
+baseURL = "https://www.swiftenroll.com/"
+title = "SwiftEnroll"
+
+# Theme Config
+theme = "hugo-saasify-theme"
+
+# Enable emoji support
+enableEmoji = true
+
+# Enable Git info for lastmod
+enableGitInfo = true
+
+# Enable taxonomies
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+
+# Pagination
+paginate = 6
+paginatePath = "page"
+
+[params]
+  description = "SwiftEnroll simplifies enrollment, waitlists, approvals, and payments for camps, after-school programs, and youth organizations."
+  author = "SwiftEnroll"
+  logo = "/images/logo.png"
+  # Google Analytics ID (GA4)
+  googleAnalytics = "G-LBWHMP8FYR"
+  
+  # Company (About) Page Content
+  [params.company]
+    [params.company.hero]
+      title = "About SwiftEnroll"
+      subtitle = "We help camps, after‑school programs, and youth organizations run enrollment, waitlists, and payments - simply."
+      mission_title = "Our Mission"
+      mission_text = "SwiftEnroll removes the friction from program sign‑ups. We give families a fast, transparent experience while programs get reliable waitlists, approvals, rosters, and Stripe payments - all in one place."
+    team_title = "Leadership"
+    values_title = "What We Stand For"
+    # Team members (finalized)
+    [[params.company.team]]
+      name = "Joe Cronyn"
+      title = "Founder & Chief Executive Officer"
+      image = "/images/company/headshot.png"
+      linkedin = "https://www.linkedin.com/in/joecronyn/"
+    # Values
+    [[params.company.values]]
+      title = "Customer-first design"
+      icon = "users"
+      description = "We design for customers first - clear flows, fewer steps, and accessible choices."
+    [[params.company.values]]
+      title = "Simplicity over complexity"
+      icon = "lightbulb"
+      description = "Operational tools should feel effortless. We cut clutter so admins move faster."
+    [[params.company.values]]
+      title = "Transparency & trust"
+      icon = "eye"
+      description = "Fair lotteries, honest waitlists, and clear communication build confidence."
+    # Stats (conservative, non‑marketing claims; safe placeholders)
+    [[params.company.stats]]
+      number = "2025"
+      label = "Founded"
+    [[params.company.stats]]
+      number = "$0"
+      label = "Funding"
+    [[params.company.stats]]
+      number = "6"
+      label = "Focus industries"
+    [[params.company.stats]]
+      number = "150+"
+      label = "Users served"
+  
+  # Global CTA Configuration
+  [params.cta]
+    enable = true
+    title = "Simplify Enrollment Management"
+    description = "SwiftEnroll helps programs manage classes, waitlists, approvals, and payments with ease."
+    gradient_from = "#1F1C4E"  # SwiftEnroll Primary
+    gradient_to = "#2E3058"    # SwiftEnroll Secondary
+    gradient_angle = 30
+    [params.cta.primary_button]
+      text = "Book a Demo"
+      url = "/demo"
+    [params.cta.secondary_button]
+      text = "Contact Us"
+      url = "/contact"
+  
+  # Social Media Links
+  [params.social]
+    linkedin = "https://linkedin.com/company/swiftenroll/"
+    twitter = "https://x.com/SwiftEnroll"
+
+  # Footer Configuration
+  [params.footer]
+    column_1_title = "Industries"
+    column_2_title = "COMPANY"
+    column_3_title = "LEGAL"
+  
+  [params.header]
+    # Header background and border styles (optional)
+    background = "bg-white/80 backdrop-blur-sm"
+    border = "border-b border-gray-100"
+    
+    # Logo configuration
+    [params.header.logo]
+      src = "/images/logo.png"
+    
+    # Menu configuration
+    [params.header.menu]
+      spacing = "space-x-8"
+      
+      # Dropdown menu configuration
+      [params.header.menu.dropdown]
+        width = "w-72"
+        container_padding = "py-6"
+        item_padding = "px-8 py-3"
+        background = "bg-white"
+        border = "border border-gray-100"
+        shadow = "shadow-xl"
+        radius = "rounded-lg"
+        text_color = "text-gray-700"
+        hover_background = "hover:bg-gray-50"
+        text_size = "text-sm"
+    
+    # Button configuration
+    [params.header.buttons]
+      # Get Started button
+      [params.header.buttons.getStarted]
+        text = "Get Started"
+        url = "/get-started"
+  
+  # Centralized copy
+  [params.text]
+    trustedByCompanies = "Proudly Supporting Community Enrichment Programs"
+    testimonialsTitle = "What Parents Are Saying"
+    testimonialsDescription = "Real feedback from families who used SwiftEnroll for program sign‑ups."
+    seeItInAction = "See it in action"
+    perMonth = "/mo"
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.80.0"
+
+[build]
+  writeStats = true
+
+[build.buildStats]
+  enable = true
+
+[security.funcs]
+  getenv = ['^HUGO_', '^CI$']
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    lineNos = true
+    codeFences = true
+    guessSyntax = true
+    lineNumbersInTable = true
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 2
+
+# Navigation Menu
+[menu]
+  [[menu.main]]
+    name = "Industries"
+    weight = 1
+    [menu.main.params]
+      has_submenu = true
+      submenu = [
+        { name = "Camps", url = "/industries/summer-school-break-camps/" },
+        { name = "After-School Programs", url = "/industries/after-school-enrichment-programs/" },
+        { name = "Sports & Fitness", url = "/industries/youth-sports-fitness/" },
+        { name = "Arts & Performance", url = "/industries/music-art-performance-programs/" },
+        { name = "STEM & Academics", url = "/industries/stem-academic-learning/" },
+        { name = "Early Childhood", url = "/industries/preschool-early-childhood-programs/" }
+      ]
+  [[menu.main]]
+    name = "Features"
+    url = "/features/"
+    weight = 2
+  [[menu.main]]
+    name = "Pricing"
+    url = "/pricing"
+    weight = 3
+  [[menu.main]]
+    name = "About Us"
+    url = "/company/"
+    weight = 4
+
+  # Footer Column 1 Menu
+  [[menu.footer_column_1]]
+    name = "Camps"
+    url = "/industries/summer-school-break-camps/"
+    weight = 1
+  [[menu.footer_column_1]]
+    name = "After-School Programs"
+    url = "/industries/after-school-enrichment-programs/"
+    weight = 2
+  [[menu.footer_column_1]]
+    name = "Sports & Fitness"
+    url = "/industries/youth-sports-fitness/"
+    weight = 3
+  [[menu.footer_column_1]]
+    name = "Arts & Performance"
+    url = "/industries/music-art-performance-programs/"
+    weight = 4
+  [[menu.footer_column_1]]
+    name = "STEM & Academics"
+    url = "/industries/stem-academic-learning/"
+    weight = 5
+  [[menu.footer_column_1]]
+    name = "Early Childhood"
+    url = "/industries/preschool-early-childhood-programs/"
+    weight = 6
+
+  # Footer Column 2 Menu
+  [[menu.footer_column_2]]
+    name = "Features"
+    url = "/features"
+    weight = 1
+  [[menu.footer_column_2]]
+    name = "About Us"
+    url = "/company"
+    weight = 2
+
+  # Footer Column 3 Menu
+  [[menu.footer_column_3]]
+    name = "Privacy Policy"
+    url = "/privacy"
+    weight = 1

@@ -1,0 +1,20 @@
+{{/*
+Company Stats section from config.
+Reads from .Site.Params.company.stats (array of {number, label}).
+Usage: {{< company-stats >}}
+*/}}
+{{ $stats := .Site.Params.company.stats }}
+{{ if $stats }}
+<section class="py-20">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+      {{ range $stats }}
+      <div class="stat-card">
+        <div class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">{{ .number }}</div>
+        <div class="text-gray-600 font-medium">{{ .label }}</div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

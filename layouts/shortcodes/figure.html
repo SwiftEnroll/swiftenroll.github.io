@@ -1,0 +1,18 @@
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" }}
+{{ $caption := .Get "caption" }}
+{{ $class := .Get "class" | default "w-full" }}
+
+<figure class="my-8">
+    <img 
+        src="{{ $src }}" 
+        alt="{{ $alt }}" 
+        class="{{ $class }} rounded-lg shadow-lg"
+        loading="lazy"
+    >
+    {{ with $caption }}
+        <figcaption class="mt-2 text-center text-sm text-gray-600">
+            {{ . | markdownify }}
+        </figcaption>
+    {{ end }}
+</figure>

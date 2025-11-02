@@ -1,0 +1,88 @@
+<div class="space-y-8">
+    <!-- Subscribe Form -->
+    {{ if .Site.Params.blog.sidebar.subscribe.enable }}
+        {{ $params := dict
+            "Site" .Site
+            "Language" .Site.Language
+            "title" .Site.Params.blog.sidebar.subscribe.title
+            "description" .Site.Params.blog.sidebar.subscribe.description
+            "action" .Site.Params.blog.sidebar.subscribe.action
+            "emailName" .Site.Params.blog.sidebar.subscribe.emailName
+            "buttonText" .Site.Params.blog.sidebar.subscribe.buttonText
+            "placeholder" .Site.Params.blog.sidebar.subscribe.placeholder
+            "disclaimer" .Site.Params.blog.sidebar.subscribe.disclaimer
+            "hidden" .Site.Params.blog.sidebar.subscribe.hidden
+        }}
+        {{ partial "components/subscribe-form" $params }}
+    {{ end }}
+
+    <!-- Recent Articles -->
+    {{ if .Site.Params.blog.sidebar.recent.enable }}
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-bold mb-4">{{ .Site.Params.blog.sidebar.recent.title | default (i18n "recentArticles" .) }}</h3>
+            <div class="space-y-4">
+                {{ $recentCount := .Site.Params.blog.sidebar.recent.count | default 5 }}
+                {{ range first $recentCount (where .Site.RegularPages "Type" "blog") }}
+                    <div class="group">
+                        <a href="{{ .RelPermalink }}" class="block">
+                            {{ with .Params.featured_image }}
+                                <div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg">
+                                    <img 
+                                        src="{{ . }}" 
+                                        alt="{{ $.Title }}" 
+                                        class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            {{ end }}
+                            <h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">
+                                {{ .Title }}
+                            </h4>
+                            <div class="flex items-center text-sm text-gray-500 mt-2">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <time datetime="{{ .Date.Format "2006-01-02" }}">
+                                    {{ .Date.Format "Jan 2, 2006" }}
+                                </time>
+                            </div>
+                        </a>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+    {{ end }}
+
+    <!-- Categories -->
+    {{ if .Site.Params.blog.sidebar.categories.enable }}
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-bold mb-4">{{ .Site.Params.blog.sidebar.categories.title | default (i18n "categories" .) }}</h3>
+            <div class="flex flex-wrap gap-2">
+                {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+                    <a href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}"
+                       class="inline-block px-3 py-1 text-sm font-medium text-primary-600 bg-primary-50 rounded-full hover:bg-primary-100">
+                        {{ $name }}
+                        <span class="text-gray-500 ml-1">({{ $taxonomy.Count }})</span>
+                    </a>
+                {{ end }}
+            </div>
+        </div>
+    {{ end }}
+
+    <!-- Tags Cloud -->
+    {{ if .Site.Params.blog.sidebar.tags.enable }}
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-bold mb-4">{{ .Site.Params.blog.sidebar.tags.title | default (i18n "popularTags" .) }}</h3>
+            <div class="flex flex-wrap gap-2">
+                {{ $tagCount := .Site.Params.blog.sidebar.tags.count | default 20 }}
+                {{ range first $tagCount .Site.Taxonomies.tags.ByCount }}
+                    <a href="{{ "/tags/" | relLangURL }}{{ .Name | urlize }}"
+                       class="text-sm text-gray-600 hover:text-primary-600">
+                        #{{ .Name }}
+                        <span class="text-gray-500">({{ .Count }})</span>
+                    </a>
+                {{ end }}
+            </div>
+        </div>
+    {{ end }}
+</div>

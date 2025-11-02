@@ -1,0 +1,46 @@
+{{ $lang := .Language.Lang }}
+<div class="bg-primary-50 p-6 rounded-lg">
+    <h3 class="text-lg font-bold text-gray-900 mb-2">
+        {{ if .title }}
+            {{ .title }}
+        {{ else }}
+            {{ if eq $lang "zh-cn" }}订阅新闻通讯{{ else }}Subscribe to Newsletter{{ end }}
+        {{ end }}
+    </h3>
+    <p class="text-sm text-gray-600 mb-4">
+        {{ if .description }}
+            {{ .description }}
+        {{ else }}
+            {{ if eq $lang "zh-cn" }}将最新文章直接发送到您的收件箱{{ else }}Get the latest posts delivered right to your inbox{{ end }}
+        {{ end }}
+    </p>
+
+    <form action="{{ .action | default "#" }}" method="POST" class="space-y-3">
+        {{ with .hidden }}
+            {{ range $name, $value := . }}
+                <input type="hidden" name="{{ $name }}" value="{{ $value }}">
+            {{ end }}
+        {{ end }}
+
+        <div>
+            <input
+                type="email"
+                name="{{ .emailName | default "email" }}"
+                placeholder="{{ if .placeholder }}{{ .placeholder }}{{ else }}{{ if eq $lang "zh-cn" }}输入您的邮箱{{ else }}Enter your email{{ end }}{{ end }}"
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            >
+        </div>
+
+        <button
+            type="submit"
+            class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-200"
+        >
+            {{ if .buttonText }}{{ .buttonText }}{{ else }}{{ if eq $lang "zh-cn" }}订阅{{ else }}Subscribe{{ end }}{{ end }}
+        </button>
+        
+        {{ with .disclaimer }}
+            <p class="text-xs text-gray-500 mt-2">{{ . }}</p>
+        {{ end }}
+    </form>
+</div>

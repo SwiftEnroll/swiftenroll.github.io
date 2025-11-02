@@ -1,0 +1,19 @@
+{{/* Features Section Wrapper Shortcode */}}
+{{ $title := .Get "title" | default "Powerful Features for Modern Teams" }}
+{{ $description := .Get "description" | default "Discover how our platform helps you understand and optimize every aspect of your user experience." }}
+{{ $columns := .Get "columns" | default "1" }}
+{{ $div_id := .Get "id" | default "" }}
+
+<section class="section" {{ if ne $div_id "" }}id="{{ $div_id }}"{{ end }}>
+    <div class="container">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">{{ $title }}</h2>
+            <p class="text-xl text-gray-600">{{ $description }}</p>
+        </div>
+
+        <!-- Feature Grid: responsive columns, defaults to 2 on md+ -->
+        <div class="grid grid-cols-1 md:grid-cols-{{ $columns }} gap-16 md:gap-20">
+            {{ .Inner }}
+        </div>
+    </div>
+</section>

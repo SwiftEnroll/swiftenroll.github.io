@@ -1,0 +1,159 @@
+{{/*
+  Industry Features partial
+  Purpose: Render a consistent 3-feature section used across all industry pages.
+  Customization: Page front matter can override just the three feature headlines.
+
+  How it determines content:
+  - Section title: .Params.industry_features.title (optional) or a sensible default
+  - Section description: .Params.industry_features.description (optional) or default
+  - Headlines (3):
+      Preferred: .Params.industry_features.headlines (array of 3 strings)
+      Fallback:  .Params.features_headlines (array of 3 strings)
+      Default:   Tailored industry defaults (distinct from homepage)
+  - You can also call this partial with a dict, e.g.:
+      {{ partial "industry-features.html" (dict "page" . "headlines" (slice "H1" "H2" "H3") "title" "Section" "description" "Desc") }}
+
+  Toggle:
+  - .Params.industry_features.enabled: if false, the section will not render.
+*/}}
+
+{{/* Collect inputs and defaults */}}
+{{ $page := . }}
+{{ if and (reflect.IsMap .) (isset . "page") }}
+  {{ $page = index . "page" }}
+{{ end }}
+
+{{/* Defaults tailored for industry pages (distinct from homepage) */}}
+{{ $defaultSectionTitle := "Built for Real-World Programs" }}
+{{ $defaultSectionDesc := "Standardize enrollment across sites and sessions, meet policy requirements, and keep families informed—without extra spreadsheets." }}
+
+{{ $defaultH1 := "Program Setup & Scheduling" }}
+{{ $defaultH2 := "Policy-Driven Registration" }}
+{{ $defaultH3 := "Operations at Scale" }}
+
+{{/* Resolve overrides from dict input */}}
+{{ $overrideTitle := "" }}
+{{ $overrideDesc := "" }}
+{{ $overrideHeadlines := slice }}
+{{ if (and (reflect.IsMap .) (not (eq (len .) 0))) }}
+  {{ with index . "title" }}{{ $overrideTitle = . }}{{ end }}
+  {{ with index . "description" }}{{ $overrideDesc = . }}{{ end }}
+  {{ with index . "headlines" }}{{ $overrideHeadlines = . }}{{ end }}
+{{ end }}
+
+{{/* Resolve front-matter driven config */}}
+{{ $enabled := true }}
+{{ with $page.Params.industry_features.enabled }}{{ $enabled = . }}{{ end }}
+{{ if not $enabled }}
+  {{/* Do not render section if disabled in front matter */}}
+  {{- /* noop */ -}}
+{{ else }}
+  {{ $sectionTitle := $defaultSectionTitle }}
+  {{ $sectionDesc := $defaultSectionDesc }}
+  {{ with $page.Params.industry_features.title }}{{ $sectionTitle = . }}{{ end }}
+  {{ with $page.Params.industry_features.description }}{{ $sectionDesc = . }}{{ end }}
+  {{ if $overrideTitle }}{{ $sectionTitle = $overrideTitle }}{{ end }}
+  {{ if $overrideDesc }}{{ $sectionDesc = $overrideDesc }}{{ end }}
+
+  {{/* Headlines priority: dict.headlines > .Params.industry_features.headlines > .Params.features_headlines > defaults */}}
+  {{ $h1 := $defaultH1 }}
+  {{ $h2 := $defaultH2 }}
+  {{ $h3 := $defaultH3 }}
+
+  {{ $fmHeadlines := $page.Params.industry_features.headlines }}
+  {{ if (eq (printf "%T" $fmHeadlines) "[]interface {}") }}
+    {{ if ge (len $fmHeadlines) 1 }}{{ with index $fmHeadlines 0 }}{{ if . }}{{ $h1 = . }}{{ end }}{{ end }}{{ end }}
+    {{ if ge (len $fmHeadlines) 2 }}{{ with index $fmHeadlines 1 }}{{ if . }}{{ $h2 = . }}{{ end }}{{ end }}{{ end }}
+    {{ if ge (len $fmHeadlines) 3 }}{{ with index $fmHeadlines 2 }}{{ if . }}{{ $h3 = . }}{{ end }}{{ end }}{{ end }}
+  {{ end }}
+
+  {{ $altFmHeadlines := $page.Params.features_headlines }}
+  {{ if (and (not (eq (printf "%T" $altFmHeadlines) "<nil>")) (eq (printf "%T" $fmHeadlines) "<nil>")) }}
+    {{ if ge (len $altFmHeadlines) 1 }}{{ with index $altFmHeadlines 0 }}{{ if . }}{{ $h1 = . }}{{ end }}{{ end }}{{ end }}
+    {{ if ge (len $altFmHeadlines) 2 }}{{ with index $altFmHeadlines 1 }}{{ if . }}{{ $h2 = . }}{{ end }}{{ end }}{{ end }}
+    {{ if ge (len $altFmHeadlines) 3 }}{{ with index $altFmHeadlines 2 }}{{ if . }}{{ $h3 = . }}{{ end }}{{ end }}{{ end }}
+  {{ end }}
+
+  {{ if (gt (len $overrideHeadlines) 0) }}
+    {{ if ge (len $overrideHeadlines) 1 }}{{ with index $overrideHeadlines 0 }}{{ if . }}{{ $h1 = . }}{{ end }}{{ end }}{{ end }}
+    {{ if ge (len $overrideHeadlines) 2 }}{{ with index $overrideHeadlines 1 }}{{ if . }}{{ $h2 = . }}{{ end }}{{ end }}{{ end }}
+    {{ if ge (len $overrideHeadlines) 3 }}{{ with index $overrideHeadlines 2 }}{{ if . }}{{ $h3 = . }}{{ end }}{{ end }}{{ end }}
+  {{ end }}
+
+  <section class="section">
+    <div class="container">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">{{ $sectionTitle }}</h2>
+        <p class="text-xl text-gray-600">{{ $sectionDesc }}</p>
+      </div>
+
+      <div class="space-y-20">
+        <!-- Feature 1 -->
+        <div class="grid lg:grid-cols-2 gap-12 items-center pb-16">
+          <div>
+            <h3 class="text-2xl md:text-3xl font-bold">{{ $h1 }}</h3>
+            <p class="text-lg text-gray-600 mt-4">Create programs and sessions once, reuse templates across sites, set capacities and age/grade rules, and publish clean schedules families understand.</p>
+            <ul class="space-y-3 mt-6">
+              <li class="flex items-center space-x-3">
+                <svg class="text-indigo-600 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span>Program templates</span>
+              </li>
+              <li class="flex items-center space-x-3">
+                <svg class="text-indigo-600 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span>Multi-site calendars</span>
+              </li>
+              <li class="flex items-center space-x-3">
+                <svg class="text-indigo-600 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span>Capacity & eligibility rules</span>
+              </li>
+              <li class="flex items-center space-x-3">
+                <svg class="text-indigo-600 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span>Public schedules</span>
+              </li>
+            </ul>
+            <a href="/features/" class="btn-primary inline-block mt-6">See Scheduling</a>
+          </div>
+          <div>
+            <img src="{{ "/images/feature-1.svg" | relURL }}" alt="Program Setup & Scheduling" class="rounded-xl shadow-elevation">
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="grid lg:grid-cols-2 gap-12 items-center pb-16">
+          <div class="order-2 lg:order-1">
+            <img src="{{ "/images/feature-2.svg" | relURL }}" alt="Policy-Driven Registration" class="rounded-xl shadow-elevation">
+          </div>
+          <div class="order-1 lg:order-2">
+            <h3 class="text-2xl md:text-3xl font-bold">{{ $h2 }}</h3>
+            <p class="text-lg text-gray-600 mt-4">Enforce eligibility, prerequisites, and documentation; configure approval workflows; and capture the data you need for audits and compliance.</p>
+            <ul class="space-y-3 mt-6">
+              <li class="flex items-center space-x-3"><svg class="text-indigo-600 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>Eligibility checks</span></li>
+              <li class="flex items-center space-x-3"><svg class="text-indigo-600 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>Approval workflows</span></li>
+              <li class="flex items-center space-x-3"><svg class="text-indigo-600 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>Forms & required docs</span></li>
+              <li class="flex items-center space-x-3"><svg class="text-indigo-600 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>Audit trail exports</span></li>
+            </ul>
+            <a href="/features/" class="btn-primary inline-block mt-6">See Registration</a>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 class="text-2xl md:text-3xl font-bold">{{ $h3 }}</h3>
+            <p class="text-lg text-gray-600 mt-4">Standardize rosters and attendance across sites, monitor capacity and compliance, and surface insights you can act on.</p>
+            <ul class="space-y-3 mt-6">
+              <li class="flex items-center space-x-3"><svg class="text-indigo-600 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>Roster management</span></li>
+              <li class="flex items-center space-x-3"><svg class="text-indigo-600 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>Attendance tracking</span></li>
+              <li class="flex items-center space-x-3"><svg class="text-indigo-600 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>Exports & reports</span></li>
+              <li class="flex items-center space-x-3"><svg class="text-indigo-600 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>Email notifications</span></li>
+            </ul>
+            <a href="/features/#admin-tools-and-reporting" class="btn-primary inline-block mt-6">Explore Operations</a>
+          </div>
+          <div>
+            <img src="{{ "/images/feature-3.svg" | relURL }}" alt="Operations at Scale" class="rounded-xl shadow-elevation">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

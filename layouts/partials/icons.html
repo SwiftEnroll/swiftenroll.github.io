@@ -1,0 +1,35 @@
+{{- $iconClass := printf "w-%s h-%s" (.size | default "6") (.size | default "6") -}}
+{{- $color := .color | default "#000000" -}}
+
+<svg class="{{ $iconClass }}" style="color: {{ $color }};" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  {{- if eq .name "chart" -}}
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+  {{- else if eq .name "attribution" -}}
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+  {{- else if eq .name "roi" -}}
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+  {{- else if eq .name "check" -}}
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"></path>
+  {{- else if eq .name "analytics" -}}
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+  {{- else if eq .name "funnel" -}}
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 4h18M5 8h14M7 12h10M9 16h6M11 20h2"></path>
+  {{- else if eq .name "target" -}}
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+  {{- else if eq .name "clock" -}}
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3"></path>
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+  {{- else if eq .name "dollar" -}}
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+  {{- else if eq .name "users" -}}
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18a6 6 0 0 1 12 0"></path>
+  {{- else if eq .name "zap" -}}
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+  {{- else if eq .name "lock" -}}
+    <rect width="14" height="10" x="5" y="11" rx="2" ry="2" stroke-width="1.5"></rect>
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 11V8a5 5 0 0110 0v3"></path>
+  {{- else if eq .name "custom" -}}
+    {{ .path | safeHTML }}
+  {{- end -}}
+</svg>

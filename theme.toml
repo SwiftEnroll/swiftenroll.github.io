@@ -1,0 +1,13 @@
+name = "Hugo Saasify"
+license = "MIT"
+licenselink = "https://github.com/chaoming/hugo-saasify-theme/blob/main/LICENSE"
+description = "A modern Hugo theme for SaaS websites built with TailwindCSS"
+homepage = "https://github.com/chaoming/hugo-saasify-theme"
+demosite = "https://saasify-demo.chaoming.li"
+tags = ["saas", "business", "tailwind", "responsive", "modern", "clean"]
+features = ["responsive", "tailwind", "modern design"]
+min_version = "0.80.0"
+
+[author]
+  name = "Chaoming Li"
+  homepage = "https://chaoming.li"

@@ -1,0 +1,61 @@
+{{/* Benefits Grid shortcode supporting two modes:
+1) Inner JSON payload (preferred):
+   {{< benefits-grid columns="3" >}}
+   {"items": [{"icon":"check","title":"T","description":"D"}, ...]}
+   {{< /benefits-grid >}}
+2) Legacy params: benefit1..benefit10 as "icon|color|title|description"
+   {{< benefits-grid title="..." subtitle="..." benefit1="check|#2563eb|Fast|Super quick" >}}
+*/}}
+
+{{ $title := .Get "title" }}
+{{ $subtitle := .Get "subtitle" }}
+{{ $columns := 3 }}
+{{ with .Get "columns" }}{{ $columns = int . }}{{ end }}
+
+{{/* Collect items from either .Inner JSON or legacy params */}}
+{{ $items := slice }}
+
+{{ with .Inner }}
+  {{ $trimmed := trim . " \n\r\t" }}
+  {{ if gt (len $trimmed) 0 }}
+    {{ $data := transform.Unmarshal $trimmed }}
+    {{ with $data.items }}
+      {{ $items = . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ if eq (len $items) 0 }}
+  {{ range $index := (seq 1 10) }}
+    {{ $benefit := printf "benefit%d" $index }}
+    {{ with $.Get $benefit }}
+      {{ $parts := split . "|" }}
+      {{ if ge (len $parts) 4 }}
+        {{ $item := dict "icon" (index $parts 0) "color" (index $parts 1) "title" (index $parts 2) "description" (index $parts 3) }}
+        {{ $items = $items | append $item }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ if or $title $subtitle }}
+<div class="text-center mb-16">
+  {{ if $title }}<h2 class="text-3xl font-bold mb-4">{{ $title }}</h2>{{ end }}
+  {{ if $subtitle }}<p class="text-xl text-gray-600">{{ $subtitle }}</p>{{ end }}
+</div>
+{{ end }}
+
+{{ $gridClasses := printf "grid grid-cols-1 md:grid-cols-%d gap-8" $columns }}
+<div class="{{ $gridClasses }}">
+  {{ range $items }}
+    {{ $icon := .icon | default "check" }}
+    {{ $color := .color | default "#1F1C4E" }}
+    <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+      <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style="background-color: {{ $color }}15;">
+        {{ partial "icons" (dict "name" $icon "color" $color "size" "6") }}
+      </div>
+      <h3 class="text-xl font-bold mb-2">{{ .title }}</h3>
+      <p class="text-gray-600">{{ .description }}</p>
+    </div>
+  {{ end }}
+</div>

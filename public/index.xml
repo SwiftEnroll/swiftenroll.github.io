@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on SwiftEnroll</title>
+    <link>https://www.swiftenroll.com/</link>
+    <description>Recent content in Home on SwiftEnroll</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="https://www.swiftenroll.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://www.swiftenroll.com/industries/after-school-enrichment-programs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.swiftenroll.com/industries/after-school-enrichment-programs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://www.swiftenroll.com/industries/music-art-performance-programs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.swiftenroll.com/industries/music-art-performance-programs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://www.swiftenroll.com/industries/preschool-early-childhood-programs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.swiftenroll.com/industries/preschool-early-childhood-programs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://www.swiftenroll.com/industries/stem-academic-learning/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.swiftenroll.com/industries/stem-academic-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://www.swiftenroll.com/industries/summer-school-break-camps/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.swiftenroll.com/industries/summer-school-break-camps/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://www.swiftenroll.com/industries/youth-sports-fitness/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.swiftenroll.com/industries/youth-sports-fitness/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>About Our Company</title>
+      <link>https://www.swiftenroll.com/company/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.swiftenroll.com/company/</guid>
+      <description>&lt;section class=&#34;&#34;&gt;&#xA;    &lt;div class=&#34;container mx-auto px-4 pt-24 pb-16 sm:pt-32 flex-1&#34;&gt;&#xA;        &lt;div class=&#34;text-center&#34;&gt;&#xA;            &lt;h1 class=&#34;text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl&#34;&gt;&#xA;                About SwiftEnroll&lt;/h1&gt;&#xA;            &lt;p class=&#34;mt-6 text-lg leading-8 text-gray-600&#34;&gt;&lt;/p&gt;&#xA;            &lt;p class=&#34;text-xl text-gray-600 mb-16&#34;&gt;We help camps, after‑school programs, and youth organizations run enrollment, waitlists, and payments - simply.&lt;/p&gt;&#xA;            &#xA;            &#xA;            &lt;div class=&#34;text-center mx-auto py-12 px-4 sm:px-6 lg:px-8&#34;&gt;&#xA;                &lt;h2 class=&#34;text-3xl font-bold text-gray-900&#34;&gt;Our Mission&lt;/h2&gt;&#xA;                &lt;p class=&#34;mt-4 text-xl text-gray-600&#34;&gt;SwiftEnroll removes the friction from program sign‑ups. We give families a fast, transparent experience while programs get reliable waitlists, approvals, rosters, and Stripe payments - all in one place.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Features</title>
+      <link>https://www.swiftenroll.com/features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.swiftenroll.com/features/</guid>
+      <description>&lt;section class=&#34;section&#34; &gt;&#xA;    &lt;div class=&#34;container&#34;&gt;&#xA;        &lt;div class=&#34;text-center max-w-3xl mx-auto mb-16&#34;&gt;&#xA;            &lt;h2 class=&#34;text-3xl md:text-4xl font-bold mb-6&#34;&gt;Enrollment Experience&lt;/h2&gt;&#xA;            &lt;p class=&#34;text-xl text-gray-600&#34;&gt;Parent‑friendly checkout with the controls programs need.&lt;/p&gt;&#xA;        &lt;/div&gt;&#xA;&#xA;        &#xA;        &lt;div class=&#34;grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20&#34;&gt;&#xA;            &#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;    &#xA;    &#xA;      &#xA;    &#xA;  &#xA;    &#xA;    &#xA;      &#xA;    &#xA;  &#xA;    &#xA;    &#xA;      &#xA;    &#xA;  &#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;div class=&#34;grid gap-12 items-start&#34; style=&#34;--badge-color: #5573df&#34;&gt;&#xA;    &#xA;&#xA;    &lt;div class=&#34;space-y-6 &#34;&gt;&#xA;        &lt;style&gt;&#xA;            .badge { background-color: color-mix(in srgb, var(--badge-color) 10%, transparent); color: var(--badge-color); }&#xA;            .badge-icon { color: var(--badge-color); }&#xA;        &lt;/style&gt;&#xA;        &#xA;&#xA;        &#xA;          &lt;div class=&#34;w-12 h-12 rounded-lg flex items-center justify-center&#34; style=&#34;background-color: color-mix(in srgb, #5573df 15%, transparent);&#34;&gt;&#xA;            &lt;svg class=&#34;w-6 h-6&#34; style=&#34;color: #5573df;&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; viewBox=&#34;0 0 24 24&#34;&gt;&lt;path stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; stroke-width=&#34;1.5&#34; d=&#34;M13 10V3L4 14h7v7l9-11h-7z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;&#xA;          &lt;/div&gt;&#xA;        &#xA;&#xA;        &lt;h3 class=&#34;text-2xl md:text-3xl font-bold&#34;&gt;Fast, Parent‑Friendly Checkout&lt;/h3&gt;&#xA;        &lt;p class=&#34;text-lg text-gray-600&#34;&gt;Delight families with a streamlined, mobile‑ready registration flow.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Pricing</title>
+      <link>https://www.swiftenroll.com/pricing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.swiftenroll.com/pricing/</guid>
+      <description>&lt;section class=&#34;py-16 bg-white&#34;&gt;&#xA;    &lt;div class=&#34;max-w-6xl mx-auto px-4 sm:px-6 lg:px-8&#34;&gt;&#xA;        &#xA;        &lt;div class=&#34;text-center&#34;&gt;&#xA;            &lt;h2 class=&#34;text-3xl font-bold text-gray-900&#34;&gt;Simple pricing for programs and schools&lt;/h2&gt;&#xA;            &#xA;            &lt;p class=&#34;mt-4 text-xl text-gray-600&#34;&gt;Whether you run a non-profit program, a for-profit business, or a district-wide initiative, SwiftEnroll has a plan that fits. All plans include secure payments, waitlists, approvals, and parent-friendly enrollment.&lt;/p&gt;&#xA;            &#xA;        &lt;/div&gt;&#xA;        &#xA;        &#xA;        &lt;div class=&#34;mt-16&#34;&gt;&#xA;            &lt;div class=&#34;grid grid-cols-1 md:grid-cols-3 gap-8&#34;&gt;&#xA;                &#xA;                &lt;div class=&#34;w-full&#34;&gt;&#xA;                    &lt;div class=&#34;h-full flex flex-col rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300 relative&#34;&gt;&#xA;                        &lt;div class=&#34;p-8 flex flex-col flex-grow&#34;&gt;&#xA;                            &lt;div class=&#34;mb-6&#34;&gt;&#xA;                                &lt;h3 class=&#34;text-2xl font-bold text-gray-900&#34;&gt;Non-Profit&lt;/h3&gt;&#xA;                                &lt;p class=&#34;mt-2 text-gray-500&#34;&gt;Discounted pricing for 501(c)(3) and public institutions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Privacy Policy</title>
+      <link>https://www.swiftenroll.com/privacy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://www.swiftenroll.com/privacy/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;SwiftEnroll LLC (&amp;ldquo;SwiftEnroll&amp;rdquo;, &amp;ldquo;we&amp;rdquo;, &amp;ldquo;us&amp;rdquo;) takes your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;information-we-collect&#34;&gt;Information We Collect&lt;/h2&gt;&#xA;&lt;h3 id=&#34;personal-information&#34;&gt;Personal Information&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Name and email address&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Billing information&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Usage data and analytics&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Communication preferences&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;automatically-collected-information&#34;&gt;Automatically Collected Information&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;IP addresses&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Browser type&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Device information&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Cookies and tracking technologies&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;how-we-use-your-information&#34;&gt;How We Use Your Information&lt;/h2&gt;&#xA;&lt;p&gt;We use the collected information for:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Service Delivery&lt;/strong&gt;&lt;br&gt;&#xA;Providing and maintaining our service&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Updates&lt;/strong&gt;&lt;br&gt;&#xA;Notifying you about changes to our service&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Support&lt;/strong&gt;&lt;br&gt;&#xA;Providing customer support&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Transactions&lt;/strong&gt;&lt;br&gt;&#xA;Processing your transactions&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Analytics&lt;/strong&gt;&lt;br&gt;&#xA;Analyzing usage patterns to improve our service&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;data-security&#34;&gt;Data Security&lt;/h2&gt;&#xA;&lt;p&gt;We implement appropriate technical and organizational security measures to protect your personal information. However, no method of transmission over the Internet is 100% secure.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

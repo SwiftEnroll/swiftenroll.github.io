@@ -1,0 +1,21 @@
+<style>
+/* Ensure the site title in the header uses brand font and color when logo + text are shown */
+header a span {
+  font-family: var(--heading-font, 'Montserrat', sans-serif) !important;
+  color: var(--primary-color, #1F1C4E) !important;
+}
+
+/* Brand color overrides without rebuilding Tailwind */
+.bg-primary-600 { background-color: #1F1C4E !important; }
+.bg-primary-700 { background-color: #18153D !important; }
+.text-primary-600 { color: #1F1C4E !important; }
+.border-primary-600 { border-color: #1F1C4E !important; }
+.hover\:text-primary-600:hover { color: #1F1C4E !important; }
+.hover\:bg-primary-700:hover { background-color: #18153D !important; }
+.focus\:ring-primary-600:focus { box-shadow: 0 0 0 2px rgba(31,28,78,0.5) !important; }
+
+/* Secondary accents (if used in templates) */
+.bg-secondary-600 { background-color: #2E3058 !important; }
+.text-secondary-600 { color: #2E3058 !important; }
+.border-secondary-600 { border-color: #2E3058 !important; }
+</style>

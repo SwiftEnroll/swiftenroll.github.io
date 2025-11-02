@@ -1,0 +1,17 @@
+{{ $params := dict 
+    "title" (.Get "title")
+    "description" (.Get "description")
+    "primary_button" (dict 
+        "text" (.Get "primary_button_text")
+        "url" (.Get "primary_button_url")
+    )
+    "secondary_button" (dict 
+        "text" (.Get "secondary_button_text")
+        "url" (.Get "secondary_button_url")
+    )
+    "gradient_from" (.Get "gradient-from")
+    "gradient_to" (.Get "gradient-to")
+    "gradient_angle" (.Get "gradient-angle")
+}}
+
+{{ partial "components/cta" (dict "Site" .Site "Params" (dict "cta" $params "enable" true)) }}

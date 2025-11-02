@@ -1,0 +1,27 @@
+{{ define "main" }}
+<article class="feature-page" style="--badge-color: {{ .Params.badgeColor }}">
+    <!-- Hero Section -->
+    <div class="relative isolate overflow-hidden">
+        <div class="absolute inset-x-0 top-0 h-96 gradient-bg opacity-75"></div>
+        <div class="relative pt-24 sm:pt-32">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mx-auto text-center">
+                    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">{{ .Title }}</h1>
+                    <p class="mt-6 mb-16 text-lg leading-8 text-gray-600">{{ .Description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <!-- Content Section -->
+        <div class="prose prose-lg mx-auto pb-24">
+            {{ .Content }}
+        </div>
+    </div>
+
+    <!-- Global CTA -->
+    {{ partial "components/cta.html" . }}
+</article>
+{{ end }}
