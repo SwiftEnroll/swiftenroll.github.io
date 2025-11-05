@@ -118,7 +118,7 @@ layout: "feature"
     icon="dollar"
     title="Stripe Native Payments"
     description="Secure, reliable payments powered by Stripe."
-    features="Stripe connected accounts integration,PCI-compliant payment processing,Support for all major payment methods"
+    features="Stripe Connect integration,PCI-compliant payment processing,Support for all major payment methods"
 />}}
 
 {{< feature

@@ -25,7 +25,7 @@ enableGitInfo = true
       title = "About SwiftEnroll"
       subtitle = "We help camps, after‑school programs, and youth organizations run enrollment, waitlists, and payments - simply."
       mission_title = "Our Mission"
-      mission_text = "SwiftEnroll removes the friction from program sign‑ups. We give families a fast, transparent experience while programs get reliable waitlists, approvals, rosters, and Stripe payments - all in one place."
+      mission_text = "SwiftEnroll removes enrollment headaches with fast, transparent sign-ups and reliable waitlists, approvals, rosters, and payments - together in one platform."
     team_title = "Leadership"
     values_title = "What We Stand For"
     # Team members (finalized)

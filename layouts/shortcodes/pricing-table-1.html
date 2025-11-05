@@ -4,12 +4,12 @@
         {{ with $json.title }}
         <div class="text-center">
             <h2 class="text-3xl font-bold text-gray-900">{{ . }}</h2>
-            {{ with $json.description }}
+            {{ with $json.description | safeHTML }}
             <p class="mt-4 text-xl text-gray-600">{{ . }}</p>
             {{ end }}
         </div>
         {{ end }}
-        
+
         <div class="mt-16">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {{ range $json.plans }}
@@ -23,17 +23,18 @@
                             <div class="mb-8">
                                 <p class="flex items-baseline">
                                     {{ if eq (lower .price) "custom" }}
-                                        <span class="text-5xl font-bold tracking-tight text-gray-900">{{ .price }}</span>
+                                    <span class="text-5xl font-bold tracking-tight text-gray-900">{{ .price }}</span>
                                     {{ else }}
-                                        <span class="text-5xl font-bold tracking-tight text-gray-900">${{ .price }}</span>
-                                        <span class="ml-2 text-gray-500">{{ site.Params.text.perMonth }}</span>
+                                    <span class="text-5xl font-bold tracking-tight text-gray-900">${{ .price }}</span>
+                                    <span class="ml-2 text-gray-500">{{ site.Params.text.perMonth }}</span>
                                     {{ end }}
                                 </p>
                             </div>
                             <ul class="space-y-4 text-gray-600 flex-grow">
                                 {{ range .features }}
                                 <li class="flex items-start">
-                                    <svg class="h-6 w-6 flex-shrink-0 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <svg class="h-6 w-6 flex-shrink-0 text-blue-500" fill="currentColor"
+                                         viewBox="0 0 24 24">
                                         <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/>
                                     </svg>
                                     <span class="ml-3">{{ . }}</span>
@@ -51,5 +52,8 @@
                 {{ end }}
             </div>
         </div>
+    </div>
+    <div class="mt-8 text-center text-gray-500 text-sm">
+        *All prices are in USD. A $3 fee per registration applies to all plans, plus standard Stripe payment processing fees.
     </div>
 </section>

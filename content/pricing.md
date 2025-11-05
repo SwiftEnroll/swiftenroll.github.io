@@ -7,7 +7,7 @@ layout: "pricing"
 {{< pricing-table-1 >}}
 {
   "title": "Simple pricing for programs and schools",
-  "description": "Whether you run a non-profit program, a for-profit business, or a district-wide initiative, SwiftEnroll has a plan that fits. All plans include secure payments, waitlists, approvals, and parent-friendly enrollment.",
+  "description": "Plans for non-profit programs, for-profit businesses, and larger enterprises.<br/>All plans include secure payments, waitlists, approvals, and parent-friendly enrollment.",
   "plans": [
     {
       "name": "Non-Profit",
@@ -71,7 +71,7 @@ layout: "pricing"
   "questions": [
     {
       "question": "How do payments work?",
-      "answer": "SwiftEnroll uses Stripe for secure payment processing. We charge a $3 fee per registration, plus standard Stripe fees."
+      "answer": "SwiftEnroll uses Stripe Connect for secure payment processing. We charge a $3 fee per registration, in addition to the standard Stripe fees."
     },    
     {
       "question": "What fees do you charge?",
