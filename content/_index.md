@@ -31,7 +31,7 @@ testimonials:
 ---
 
 {{< hero 
-    headline="Fair.<br/>Simple.<br/>Stress-Free."
+    headline="Fair.<br/>Simple.<br/>Stress-Free.<br/>Enrollment."
     sub_headline="Our automated lottery system removes the stress from enrollment season for families and administrators alike."
     primary_button_text="Book a Demo"
     primary_button_url="/demo-request/"

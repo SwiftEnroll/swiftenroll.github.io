@@ -6,8 +6,8 @@
             <p class="text-xl text-gray-600">{{ .Get "description" | default (.Site.Params.text.testimonialsDescription | default "Real feedback from families who used SwiftEnroll for school and program sign‑ups.") }}</p>
         </div>
 
-        <div class="testimonials-container overflow-hidden">
-            <div class="testimonials-track{{ if ne (.Get "animate" | default "true") "false" }} animate{{ end }}">
+        <div class="testimonials-container overflow-x-auto">
+            <div class='testimonials-track{{ if ne (.Get "animate" | default "true") "false" }} animate{{ end }}'>
                 {{ range .Page.Params.testimonials }}
                 <div class="testimonial-card">
                     <div class="flex items-center space-x-4 mb-6">
@@ -93,4 +93,96 @@
         animation: 15s testimonials-scroll infinite linear;
     }
 }
+/* Enable smooth horizontal panning on touch devices */
+.testimonials-container {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+    /* Hide scrollbars across browsers while keeping scroll enabled */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+    cursor: grab;
+}
+
+.testimonials-container::-webkit-scrollbar { /* Chrome/Safari/Edge */
+    display: none;
+}
+
+/* Scroll snap for 1-by-1 reading */
+@media (max-width: 768px) {
+    .testimonials-container {
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .testimonial-card {
+        scroll-snap-align: start;
+        width: 85vw;
+        max-width: 26rem;
+    }
+}
+
+/* Mobile-specific animation behavior: disable auto-scroll so users can pan */
+.testimonials-container:active .testimonials-track.animate {
+    animation-play-state: paused;
+}
+/* Also pause while desktop dragging */
+.testimonials-container.dragging .testimonials-track.animate {
+    animation-play-state: paused;
+}
+/* Cursor feedback while dragging */
+.testimonials-container.dragging { cursor: grabbing; }
 </style>
+<script>
+(function(){
+  try {
+    var containers = document.querySelectorAll('.testimonials-container');
+    containers.forEach(function(container){
+      if (container.dataset.dragInit === 'true') return;
+      container.dataset.dragInit = 'true';
+
+      var isDown = false;
+      var startX = 0;
+      var startScrollLeft = 0;
+
+      // Use Pointer Events so we can detect mouse specifically
+      var onPointerDown = function(e){
+        // Only enable click-drag for mouse; touch already pans natively
+        var type = e.pointerType || 'mouse';
+        if (type !== 'mouse') return;
+        isDown = true;
+        startX = e.clientX;
+        startScrollLeft = container.scrollLeft;
+        container.classList.add('dragging');
+        // Capture to keep getting events even if pointer leaves
+        if (container.setPointerCapture && e.pointerId != null) {
+          container.setPointerCapture(e.pointerId);
+        }
+        e.preventDefault();
+      };
+
+      var onPointerMove = function(e){
+        if (!isDown) return;
+        var x = e.clientX;
+        var dx = x - startX;
+        container.scrollLeft = startScrollLeft - dx;
+        e.preventDefault();
+      };
+
+      var endDrag = function(){
+        if (!isDown) return;
+        isDown = false;
+        container.classList.remove('dragging');
+      };
+
+      container.addEventListener('pointerdown', onPointerDown, { passive: false });
+      container.addEventListener('pointermove', onPointerMove, { passive: false });
+      window.addEventListener('pointerup', endDrag, { passive: true });
+      window.addEventListener('pointercancel', endDrag, { passive: true });
+    });
+  } catch (e) {
+    // fail silently to avoid impacting page
+  }
+})();
+</script>
