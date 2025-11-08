@@ -23,7 +23,7 @@ layout: "pricing"
       ],
       "button": {
         "text": "Contact Sales",
-        "url": "/demo-request/"
+        "url": "/contact/"
       }
     },
     {
@@ -40,7 +40,7 @@ layout: "pricing"
       ],
       "button": {
         "text": "Book a Demo",
-        "url": "/demo-request/"
+        "url": "/contact/"
       }
     },
     {

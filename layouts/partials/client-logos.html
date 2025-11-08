@@ -27,7 +27,7 @@
   {{ with $.Params.client_logos }}{{ $logos = . }}{{ end }}
 {{ end }}
 
-<section class="border-y bg-gray-50 overflow-hidden">
+<section class="border-y overflow-hidden" style="background-color: #1F1C4E; color:white;">
   <div class="container mx-auto">
     <div class="py-12">
       <p class="text-center text-3xl md:text-2xl font-bold mb-6">{{ $title }}</p>
@@ -35,7 +35,7 @@
         <div class="logo-scroll static">
           <div class="logos-slide">
             {{ range $logos }}
-              <img src="{{ .logo | relURL }}" class="h-20" alt="{{ .name }}" />
+              <img src="{{ .logo | relURL }}" class="h-20" alt="{{ .name }}" style="background-color: white;" />
             {{ end }}
           </div>
         </div>
@@ -43,7 +43,7 @@
         <div class="logo-scroll">
           <div class="logos-slide animate">
             {{ range $logos }}
-              <img src="{{ .logo | relURL }}" class="h-20" alt="{{ .name }}" />
+              <img src="{{ .logo | relURL }}" class="h-20" alt="{{ .name }}" style="background-color: white;" />
             {{ end }}
           </div>
         </div>

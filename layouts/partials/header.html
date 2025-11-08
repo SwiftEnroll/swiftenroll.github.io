@@ -52,7 +52,7 @@
                         {{ .text | default "Sign in" }}
                     </a>
                     {{ end }}
-                    
+
                     {{ with $headerConfig.buttons.getStarted }}
                     <a href="{{ .url | default "#" }}" class="{{ with .class }}{{ . }}{{ else }}inline-flex items-center justify-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out bg-primary-600 text-white hover:bg-primary-700 hover:scale-105{{ end }}">
                         {{ .text | default "Get Started" }}
@@ -98,7 +98,7 @@
                         {{ .text | default "Sign in" }}
                     </a>
                     {{ end }}
-                    
+
                     {{ with $headerConfig.buttons.getStarted }}
                     <a href="{{ .url | default "#" }}" class="{{ with .mobileClass }}{{ . }}{{ else }}block text-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out bg-primary-600 text-white hover:bg-primary-700 hover:scale-105{{ end }}">
                         {{ .text | default "Get Started" }}

@@ -33,10 +33,8 @@ testimonials:
 {{< hero 
     headline="Fair,<br/>Simple,<br/>Automated<br/>Enrollment."
     sub_headline="Our automated lottery system removes the stress from enrollment season for families and administrators alike."
-    primary_button_text="Book a Demo"
-    primary_button_url="/demo-request/"
-    secondary_button_text="Contact Us"
-    secondary_button_url="/contact"
+    primary_button_text="Contact Us"
+    primary_button_url="/contact/"
     hero_image="/images/kids-circle.png"
 >}}
 
