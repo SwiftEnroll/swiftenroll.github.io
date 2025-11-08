@@ -1,4 +1,4 @@
-<section class="border-y bg-gray-50 overflow-hidden">
+<section class="border-y overflow-hidden" style="background-color: #1F1C4E; color:white;">
     <div class="container mx-auto">
         <div class="py-12">
             <p class="text-center text-3xl md:text-2xl font-bold mb-6">{{ .Get "title" | default .Site.Params.text.trustedByCompanies }}</p>
@@ -6,7 +6,7 @@
             <div class="logo-scroll static">
                 <div class="logos-slide">
                     {{ range .Page.Params.client_logos }}
-                    <img src="{{ .logo | relURL }}" class="h-20" alt="{{ .name }}" />
+                    <img src="{{ .logo | relURL }}" class="h-20" alt="{{ .name }}" style="background-color: white" />
                     {{ end }}
                 </div>
             </div>
@@ -14,7 +14,7 @@
             <div class="logo-scroll">
                 <div class="logos-slide animate">
                     {{ range .Page.Params.client_logos }}
-                    <img src="{{ .logo | relURL }}" class="h-20" alt="{{ .name }}" />
+                    <img src="{{ .logo | relURL }}" class="h-20" alt="{{ .name }}" style="background-color: white" />
                     {{ end }}
                 </div>
             </div>
@@ -57,8 +57,6 @@
     margin: 0 40px;
     display: inline-block;
     vertical-align: middle;
-    filter: grayscale(100%);
-    opacity: 0.6;
 }
 
 .logo-scroll.static .logos-slide img {

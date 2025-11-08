@@ -42,10 +42,10 @@ testimonials:
 
 {{< client-logos animate="false" >}}
 
-{{< features-section title="Everything You Need to Run Enrollment" description="Open registration, manage rosters and waitlists, automate approvals and reminders, and collect payments in one place." >}}
+{{< features-section title="Everything you need to run enrollment" description="Open registration, manage rosters and waitlists, automate approvals and reminders, and collect payments in one place." >}}
 
 {{< feature
-    title="Automated Lottery Based Enrollment"
+    title="Automated lottery based enrollment"
     description="Lottery-based enrollment, transparent waitlists, and automated approvals and notifications."
     image="/images/happy-parent.png"
     buttonText="Learn More"
@@ -55,7 +55,7 @@ testimonials:
 />}}
 
 {{< feature
-    title="Secure Payments and Billing"
+    title="Secure payments and billing"
     description="Collect payments securely, manage invoices and refunds, and automate reminders - all with Stripe integration."
     image="/images/secure-payments.png"
     buttonText="See Payments"
@@ -65,7 +65,7 @@ testimonials:
 />}}
 
 {{< feature
-    title="Admin Tools & Reporting"
+    title="Admin tools & reporting"
     description="Powerful admin features to manage rosters, monitor attendance, export reports, and keep everyone informed."
     image="/images/woman-desk.png"
     buttonText="Explore Admin"

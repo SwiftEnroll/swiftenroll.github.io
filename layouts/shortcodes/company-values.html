@@ -4,7 +4,7 @@ Reads from .Site.Params.company.values (array of {title, icon, description}) and
 Usage: {{< company-values >}}
 */}}
 {{ $company := .Site.Params.company }}
-{{ $title := (or $company.values_title "Company Values") }}
+{{ $title := (or $company.values_title "Company values") }}
 <section class="py-20 bg-gray-50">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-bold text-center mb-12">{{ $title }}</h2>

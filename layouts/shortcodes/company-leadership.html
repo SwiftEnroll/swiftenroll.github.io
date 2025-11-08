@@ -4,7 +4,7 @@ Reads from .Site.Params.company.team (array) and .Site.Params.company.team_title
 Usage: {{< company-leadership >}}
 */}}
 {{ $company := .Site.Params.company }}
-{{ $title := (or $company.team_title "Leadership Team") }}
+{{ $title := (or $company.team_title "Leadership team") }}
 <section class="pb-20">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl font-bold text-center mb-12">{{ $title }}</h2>

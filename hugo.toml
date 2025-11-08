@@ -24,10 +24,10 @@ enableGitInfo = true
     [params.company.hero]
       title = "About SwiftEnroll"
       subtitle = "We help camps, after‑school programs, and youth organizations run enrollment, waitlists, and payments - simply."
-      mission_title = "Our Mission"
+      mission_title = "Our mission"
       mission_text = "SwiftEnroll removes enrollment headaches with fast, transparent sign-ups and reliable waitlists, approvals, rosters, and payments - together in one platform."
     team_title = "Leadership"
-    values_title = "What We Stand For"
+    values_title = "What we stand for"
     # Team members (finalized)
     [[params.company.team]]
       name = "Joe Cronyn"
@@ -64,7 +64,7 @@ enableGitInfo = true
   # Global CTA Configuration
   [params.cta]
     enable = true
-    title = "Simplify Enrollment Management"
+    title = "Simplify enrollment management"
     description = "SwiftEnroll helps programs manage classes, waitlists, approvals, and payments with ease."
     gradient_from = "#1F1C4E"  # SwiftEnroll Primary
     gradient_to = "#2E3058"    # SwiftEnroll Secondary
@@ -122,8 +122,8 @@ enableGitInfo = true
   
   # Centralized copy
   [params.text]
-    trustedByCompanies = "Proudly Supporting Community Enrichment Programs"
-    testimonialsTitle = "What Users Are Saying"
+    trustedByCompanies = "Proudly supporting community enrichment programs"
+    testimonialsTitle = "What they're saying"
     testimonialsDescription = "Real user feedback from parents and administrators."
     seeItInAction = "See it in action"
     perMonth = "/mo"
