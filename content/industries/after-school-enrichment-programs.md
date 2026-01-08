@@ -9,8 +9,10 @@ hero:
     gradient_from: "from-gray-100"
     gradient_to: "to-white"
 client_logos:
-  - name: "Customer 1"
+  - name: "Lawrence Special Activities"
     logo: "/images/logos/lsa.png"
+  - name: "Willard Middle School"
+    logo: "/images/logos/willard.png"
 industry_features:
   headlines:
     - "Fair, Transparent Lottery Enrollment"

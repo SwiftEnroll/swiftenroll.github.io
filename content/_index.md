@@ -1,8 +1,10 @@
 ---
 title: Home
 client_logos:
-  - name: "Customer 1"
+  - name: "Lawrence Special Activities"
     logo: "/images/logos/lsa.png"
+  - name: "Willard Middle School"
+    logo: "/images/logos/willard.png"
 testimonials:
   - name: "Sarah"
     title: "Parent"

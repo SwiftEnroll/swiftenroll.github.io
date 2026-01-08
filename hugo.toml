@@ -181,6 +181,25 @@ enableGitInfo = true
     url = "/company/"
     weight = 4
 
+  [[menu.main]]
+    name = "Admin Guide"
+    url = "/admin-guide/"
+    weight = 5
+    [menu.main.params]
+      has_submenu = true
+      submenu = [
+        { name = "Overview", url = "/admin-guide/" },
+        { name = "Configure program", url = "/admin-guide/configure-program/" },
+        { name = "Activities & schedules", url = "/admin-guide/activities-schedules/" },
+        { name = "Classes", url = "/admin-guide/classes/" },
+        { name = "Enrollment periods", url = "/admin-guide/enrollment-periods/" },
+        { name = "Approvals", url = "/admin-guide/approvals/" },
+        { name = "Payments & refunds", url = "/admin-guide/payments-refunds/" },
+        { name = "Communications & reports", url = "/admin-guide/communications-reports/" },
+        { name = "Student records", url = "/admin-guide/student-records/" },
+        { name = "Next steps", url = "/admin-guide/next-steps/" }
+      ]
+
   # Footer Column 1 Menu
   [[menu.footer_column_1]]
     name = "Camps"
