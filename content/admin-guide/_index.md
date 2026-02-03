@@ -1,7 +1,7 @@
 ---
 title: "Admin Guide"
 description: "SwiftEnroll Admin: From setup to daily operations"
-draft: false
+draft: true
 type: "docs"
 layout: "docs"
 weight: 1

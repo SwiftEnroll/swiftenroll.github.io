@@ -1,6 +1,6 @@
 ---
 title: "SwiftEnroll Admin Overview"
-draft: false
+draft: true
 aliases: ["/admin-training/"]
 type: "docs"
 layout: "docs"
