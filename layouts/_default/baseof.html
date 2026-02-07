@@ -58,13 +58,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Main CSS -->
-    {{ $css := resources.Get "css/main.css" }}
-    {{ $css = $css | css.PostCSS }}
-    {{ if hugo.IsProduction }}
-        {{ $css = $css | minify | fingerprint | resources.PostProcess }}
-    {{ end }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+    <!-- Main CSS (pre-built via: npm run build or tailwind → static/css/style.css) -->
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 
     <!-- Additional Meta Tags from Front Matter -->
     {{ with .Params.customMeta }}
@@ -76,7 +71,7 @@
     <!-- Custom Head Content -->
     {{ partial "custom-head" . }}
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col justify-start w-full">
     <!-- Google Tag Manager (noscript) -->
     {{ if and hugo.IsProduction .Site.Params.googleTagManager }}
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ .Site.Params.googleTagManager }}"
@@ -89,7 +84,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="pt-20">
+    <div class="pt-20 w-full min-w-0">
         {{ block "main" . }}{{ end }}
     </div>
 

@@ -23,6 +23,16 @@
 }
 
 @layer components {
+  /* Hero: persist width 100% for content block and mobile image */
+  .hero-section .space-y-8 {
+    width: 100%;
+  }
+  /* Hero image: full width of container (persisted from browser preview) */
+  .hero-section img.rounded-xl.shadow-elevation {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .cta-section {
     padding-top: 3rem;
     padding-bottom: 3rem;
@@ -35,12 +45,20 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 font-medium transition duration-200 ease-in-out;
+    @apply inline-flex items-center justify-center px-6 py-3 font-medium transition duration-200 ease-in-out whitespace-nowrap;
     border-radius: 2rem;
   }
 
   .btn-primary {
-    @apply btn bg-primary-600 text-white hover:bg-primary-700 hover:scale-105;
+    @apply btn bg-buttonPrimary text-gray-200 hover:bg-buttonPrimaryHover hover:scale-105;
+  }
+
+  /* Explicit primary button utilities so they appear in built CSS (Tailwind JIT may not emit custom theme classes) */
+  .bg-buttonPrimary {
+    background-color: rgba(66, 90, 214, 1);
+  }
+  .hover\:bg-buttonPrimaryHover:hover {
+    background-color: #3d4d9e;
   }
 
   .btn-secondary {
