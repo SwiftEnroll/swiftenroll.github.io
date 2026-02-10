@@ -54,7 +54,7 @@
                     {{ end }}
 
                     {{ with $headerConfig.buttons.getStarted }}
-                    <a href="{{ .url | default "#" }}" class="{{ with .class }}{{ . }}{{ else }}btn-primary rounded-lg{{ end }}">
+                    <a href="{{ .url | default "#" }}" class="{{ with .class }}{{ . }}{{ else }}btn-primary{{ end }}">
                         {{ .text | default "Get Started" }}
                     </a>
                     {{ end }}
@@ -100,7 +100,7 @@
                     {{ end }}
 
                     {{ with $headerConfig.buttons.getStarted }}
-                    <a href="{{ .url | default "#" }}" class="{{ with .mobileClass }}{{ . }}{{ else }}btn-primary block text-center rounded-lg{{ end }}">
+                    <a href="{{ .url | default "#" }}" class="{{ with .mobileClass }}{{ . }}{{ else }}btn-primary block text-center{{ end }}">
                         {{ .text | default "Get Started" }}
                     </a>
                     {{ end }}

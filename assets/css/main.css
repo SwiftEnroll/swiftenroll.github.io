@@ -55,7 +55,7 @@
 
   /* Explicit primary button utilities so they appear in built CSS (Tailwind JIT may not emit custom theme classes) */
   .bg-buttonPrimary {
-    background-color: rgba(66, 90, 214, 1);
+    background-color: #425AD6;
   }
   .hover\:bg-buttonPrimaryHover:hover {
     background-color: #3d4d9e;
