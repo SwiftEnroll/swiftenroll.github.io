@@ -5,24 +5,25 @@
 {{ $secondary_button_text := .Get "secondary_button_text" }}
 {{ $secondary_button_url := .Get "secondary_button_url" }}
 {{ $hero_image := .Get "hero_image" }}
+{{ $hero_image_alt := .Get "hero_image_alt" | default "Illustration" }}
 {{ $background_image := .Get "background_image" }}
 {{ $gradient_from := .Get "gradient-from" }}
 {{ $gradient_to := .Get "gradient-to" }}
 {{ $gradient_angle := .Get "gradient-angle" | default "180" }}
 
-<section class="relative overflow-hidden" {{ if $gradient_from }}style="background:linear-gradient({{ $gradient_angle }}deg,{{ $gradient_from }},{{ $gradient_to | default $gradient_from }})"{{ else }}class="bg-gradient-to-b from-gray-50 to-white"{{ end }}>
+<section class="hero-section relative overflow-hidden {{ if not $gradient_from }}bg-gradient-to-b from-gray-50 to-white{{ end }}" {{ if $gradient_from }}style="background:linear-gradient({{ $gradient_angle }}deg,{{ $gradient_from }},{{ $gradient_to | default $gradient_from }})"{{ end }}>
     {{ if $background_image }}
     <div class="absolute inset-0">
         <img src="{{ $background_image | relURL }}" alt="Background" class="w-full h-full object-cover">
     </div>
     {{ end }}
     <div class="container pt-16 pb-20 md:pt-24 md:pb-28">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-8">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+        <div class="grid lg:grid-cols-2 gap-6 lg:gap-[40px] items-center w-full">
+            <div class="space-y-8 max-w-[400px] w-full">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight max-w-[400px] w-full">
                     {{ $headline | safeHTML }}
                 </h1>
-                <p class="text-xl text-gray-600">
+                <p class="text-xl text-gray-600 max-w-[400px] w-full">
                     {{ $sub_headline | safeHTML }}
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
@@ -38,10 +39,10 @@
                     {{ end }}
                 </div>
             </div>
-            <div class="relative">
+            <div class="relative lg:min-h-[28rem]">
                 {{ if $hero_image }}
-                <div class="relative z-10">
-                    <img src="{{ $hero_image | relURL }}" alt="Hero Image" class="rounded-xl shadow-elevation">
+                <div class="relative z-10 w-full">
+                    <img src="{{ $hero_image | relURL }}" alt="{{ $hero_image_alt }}" class="rounded-xl shadow-elevation w-full max-w-full">
                 </div>
                 {{ end }}
                 <!-- Background decoration -->

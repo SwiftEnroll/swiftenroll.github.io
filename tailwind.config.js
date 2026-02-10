@@ -6,6 +6,13 @@ module.exports = {
     "./content/**/*.{html,md}"
   ],
   theme: {
+    screens: {
+      sm: '450px',
+      md: '600px',
+      lg: '800px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       colors: {
         primary: {
@@ -32,10 +39,13 @@ module.exports = {
           800: '#1a1d35',
           900: '#111323',
         },
+        // Button background token: rgba(66, 90, 214, 1) = #425AD6
+        buttonPrimary: '#425AD6',
+        buttonPrimaryHover: '#3d4d9e',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        heading: ['Plus Jakarta Sans', 'sans-serif'],
+        heading: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
     },
   },

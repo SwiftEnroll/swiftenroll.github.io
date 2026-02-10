@@ -255,15 +255,17 @@ CSS:
 }
 ```
 
-**Secondary Button**:
+**Secondary Button** (filled purple):
 ```html
 <a href="#" class="btn-secondary">Learn More</a>
 ```
 
-**Outline Button**:
+**Outline Button** (border only, used as secondary/alternative CTA in hero):
 ```html
 <a href="#" class="btn-outline">View Demo</a>
 ```
+
+> **Note**: The hero shortcode uses `btn-outline` for its secondary button (the alternative CTA alongside the primary). Use `btn-secondary` when you want a filled purple button; use `btn-outline` when you want a bordered/ghost style for a less prominent action.
 
 ### Cards
 

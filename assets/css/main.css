@@ -23,6 +23,16 @@
 }
 
 @layer components {
+  /* Hero: persist width 100% for content block and mobile image */
+  .hero-section .space-y-8 {
+    width: 100%;
+  }
+  /* Hero image: full width of container (persisted from browser preview) */
+  .hero-section img.rounded-xl.shadow-elevation {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .cta-section {
     padding-top: 3rem;
     padding-bottom: 3rem;
@@ -35,20 +45,28 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 font-medium transition duration-200 ease-in-out;
+    @apply inline-flex items-center justify-center px-6 py-3 font-medium transition duration-200 ease-in-out whitespace-nowrap;
     border-radius: 2rem;
   }
 
   .btn-primary {
-    @apply btn bg-primary-600 text-white hover:bg-primary-700 hover:scale-105;
+    @apply btn bg-buttonPrimary text-gray-200 hover:bg-buttonPrimaryHover hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2;
+  }
+
+  /* Explicit primary button utilities so they appear in built CSS (Tailwind JIT may not emit custom theme classes) */
+  .bg-buttonPrimary {
+    background-color: #425AD6;
+  }
+  .hover\:bg-buttonPrimaryHover:hover {
+    background-color: #3d4d9e;
   }
 
   .btn-secondary {
-    @apply btn bg-secondary-600 text-white hover:bg-secondary-700 hover:scale-105;
+    @apply btn bg-secondary-600 text-white hover:bg-secondary-700 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2;
   }
 
   .btn-outline {
-    @apply btn border-2 border-primary-600 text-primary-600 hover:scale-105;
+    @apply btn border-2 border-primary-600 text-primary-600 hover:bg-primary-50 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2;
   }
 
   .container {
