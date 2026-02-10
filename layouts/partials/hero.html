@@ -5,6 +5,7 @@
 {{ $secondary_button_text := index . "secondary_button_text" }}
 {{ $secondary_button_url := index . "secondary_button_url" }}
 {{ $hero_image := index . "hero_image" }}
+{{ $hero_image_alt := index . "hero_image_alt" | default "Illustration" }}
 {{ $bg_color := index . "background_color" | default "#FFFFFF" }}
 {{ $background_image := index . "background_image" }}
 
@@ -39,7 +40,7 @@
             <div class="relative lg:min-h-[28rem]">
                 {{ if $hero_image }}
                 <div class="relative z-10 w-full">
-                    <img src="{{ $hero_image | relURL }}" alt="Hero Image" class="rounded-xl shadow-elevation w-full max-w-full">
+                    <img src="{{ $hero_image | relURL }}" alt="{{ $hero_image_alt }}" class="rounded-xl shadow-elevation w-full max-w-full">
                 </div>
                 {{ end }}
                 <!-- Background decoration -->
