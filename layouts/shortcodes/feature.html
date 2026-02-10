@@ -48,7 +48,7 @@
 
         {{ if $icon }}
           <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: color-mix(in srgb, {{ $badgeColor }} 15%, transparent);">
-            {{ partial "icons" (dict "name" $icon "color" $badgeColor "size" "6") }}
+            {{ partial "components/icons" (dict "name" $icon "color" $badgeColor "size" "6") }}
           </div>
         {{ end }}
 

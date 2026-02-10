@@ -11,44 +11,19 @@
 {{ $gradient_to := .Get "gradient-to" }}
 {{ $gradient_angle := .Get "gradient-angle" | default "180" }}
 
-<section class="hero-section relative overflow-hidden {{ if not $gradient_from }}bg-gradient-to-b from-gray-50 to-white{{ end }}" {{ if $gradient_from }}style="background:linear-gradient({{ $gradient_angle }}deg,{{ $gradient_from }},{{ $gradient_to | default $gradient_from }})"{{ end }}>
-    {{ if $background_image }}
-    <div class="absolute inset-0">
-        <img src="{{ $background_image | relURL }}" alt="Background" class="w-full h-full object-cover">
-    </div>
-    {{ end }}
-    <div class="container pt-16 pb-20 md:pt-24 md:pb-28">
-        <div class="grid lg:grid-cols-2 gap-6 lg:gap-[40px] items-center w-full">
-            <div class="space-y-8 max-w-[400px] w-full">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight max-w-[400px] w-full">
-                    {{ $headline | safeHTML }}
-                </h1>
-                <p class="text-xl text-gray-600 max-w-[400px] w-full">
-                    {{ $sub_headline | safeHTML }}
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    {{ if and $primary_button_text $primary_button_url }}
-                    <a href="{{ $primary_button_url }}" class="btn-primary text-center">
-                        {{ $primary_button_text }}
-                    </a>
-                    {{ end }}
-                    {{ if and $secondary_button_text $secondary_button_url }}
-                    <a href="{{ $secondary_button_url }}" class="btn-outline text-center">
-                        {{ $secondary_button_text }}
-                    </a>
-                    {{ end }}
-                </div>
-            </div>
-            <div class="relative lg:min-h-[28rem]">
-                {{ if $hero_image }}
-                <div class="relative z-10 w-full">
-                    <img src="{{ $hero_image | relURL }}" alt="{{ $hero_image_alt }}" class="rounded-xl shadow-elevation w-full max-w-full">
-                </div>
-                {{ end }}
-                <!-- Background decoration -->
-                <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary-100 rounded-full filter blur-3xl opacity-50"></div>
-                <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-secondary-100 rounded-full filter blur-3xl opacity-50"></div>
-            </div>
-        </div>
-    </div>
-</section>
+{{ $params := dict
+    "headline" $headline
+    "sub_headline" $sub_headline
+    "primary_button_text" $primary_button_text
+    "primary_button_url" $primary_button_url
+    "secondary_button_text" $secondary_button_text
+    "secondary_button_url" $secondary_button_url
+    "hero_image" $hero_image
+    "hero_image_alt" $hero_image_alt
+    "background_image" $background_image
+    "gradient_from" $gradient_from
+    "gradient_to" $gradient_to
+    "gradient_angle" $gradient_angle
+}}
+
+{{ partial "components/hero" $params }}

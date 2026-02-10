@@ -2,9 +2,9 @@
   Client Logos partial
   Usage examples:
   - From a template where the page has Params.client_logos:
-      {{ with .Params.client_logos }}{{ partial "client-logos.html" . }}{{ end }}
+      {{ with .Params.client_logos }}{{ partial "components/client-logos.html" . }}{{ end }}
   - Or pass a dict to control title/animate:
-      {{ partial "client-logos.html" (dict "logos" .Params.client_logos "title" "Trusted by ..." "animate" "true") }}
+      {{ partial "components/client-logos.html" (dict "logos" .Params.client_logos "title" "Trusted by ..." "animate" "true") }}
   Notes:
   - The root context $ still points to the calling page, so we can access $.Site/$.Params even if . is a slice.
 */}}
