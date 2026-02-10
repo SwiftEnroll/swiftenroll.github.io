@@ -52,7 +52,7 @@
     {{ $color := .color | default "#1F1C4E" }}
     <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
       <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style="background-color: {{ $color }}15;">
-        {{ partial "icons" (dict "name" $icon "color" $color "size" "6") }}
+        {{ partial "components/icons" (dict "name" $icon "color" $color "size" "6") }}
       </div>
       <h3 class="text-xl font-bold mb-2">{{ .title }}</h3>
       <p class="text-gray-600">{{ .description }}</p>

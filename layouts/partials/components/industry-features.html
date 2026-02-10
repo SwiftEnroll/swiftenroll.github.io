@@ -11,7 +11,7 @@
       Fallback:  .Params.features_headlines (array of 3 strings)
       Default:   Tailored industry defaults (distinct from homepage)
   - You can also call this partial with a dict, e.g.:
-      {{ partial "industry-features.html" (dict "page" . "headlines" (slice "H1" "H2" "H3") "title" "Section" "description" "Desc") }}
+      {{ partial "components/industry-features.html" (dict "page" . "headlines" (slice "H1" "H2" "H3") "title" "Section" "description" "Desc") }}
 
   Toggle:
   - .Params.industry_features.enabled: if false, the section will not render.

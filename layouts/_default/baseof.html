@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Google Tag Manager -->
-    {{ partial "google-tag-manager" . }}
+    {{ partial "analytics/google-tag-manager" . }}
 
     <!-- Google Analytics -->
-    {{ partial "google-analytics" . }}
+    {{ partial "analytics/google-analytics" . }}
     
     <!-- Title -->
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
@@ -69,7 +69,7 @@
     {{ end }}
 
     <!-- Custom Head Content -->
-    {{ partial "custom-head" . }}
+    {{ partial "layout/custom-head" . }}
 </head>
 <body class="min-h-screen flex flex-col justify-start w-full">
     <!-- Google Tag Manager (noscript) -->
@@ -80,7 +80,7 @@
     <!-- End Google Tag Manager (noscript) -->
     <!-- Header -->
     <div class="fixed top-0 left-0 right-0 z-50">
-        {{ partial "header" . }}
+        {{ partial "layout/header" . }}
     </div>
 
     <!-- Main Content -->
@@ -89,7 +89,7 @@
     </div>
 
     <!-- Footer -->
-    {{ partial "footer" . }}
+    {{ partial "layout/footer" . }}
 
     <!-- Language Preference Script -->
     {{ if hugo.IsMultilingual }}
