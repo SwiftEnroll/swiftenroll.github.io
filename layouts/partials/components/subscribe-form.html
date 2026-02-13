@@ -1,4 +1,9 @@
 {{ $lang := .Language.Lang }}
+{{ $defaultEndpoint := .Site.Params.forms.subscribeEndpoint | default "" }}
+{{ $formEndpoint := .action | default $defaultEndpoint }}
+{{ $turnstileKey := .Site.Params.forms.turnstileSiteKey | default "" }}
+{{ $honeypotField := .Site.Params.forms.honeypotFieldName | default "_gotcha" }}
+
 <div class="bg-primary-50 p-6 rounded-lg">
     <h3 class="text-lg font-bold text-gray-900 mb-2">
         {{ if .title }}
@@ -15,7 +20,17 @@
         {{ end }}
     </p>
 
-    <form action="{{ .action | default "#" }}" method="POST" class="space-y-3">
+    {{ if not $formEndpoint }}
+    <div class="p-3 rounded-lg bg-yellow-50 border border-yellow-200 text-yellow-800 mb-4">
+        <p class="text-xs font-semibold">Development Mode</p>
+        <p class="text-xs">Subscription form disabled.</p>
+    </div>
+    {{ end }}
+
+    <form {{ if $formEndpoint }}action="{{ $formEndpoint }}"{{ end }} method="POST" class="space-y-3">
+        <!-- Honeypot field for spam prevention (hidden from users) -->
+        <input type="text" name="{{ $honeypotField }}" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        
         {{ with .hidden }}
             {{ range $name, $value := . }}
                 <input type="hidden" name="{{ $name }}" value="{{ $value }}">
@@ -29,14 +44,18 @@
                 placeholder="{{ if .placeholder }}{{ .placeholder }}{{ else }}{{ if eq $lang "zh-cn" }}输入您的邮箱{{ else }}Enter your email{{ end }}{{ end }}"
                 required
                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                {{ if not $formEndpoint }}disabled{{ end }}
             >
         </div>
 
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAAB--JQpodZqe67sc"></div>
+        {{ if $turnstileKey }}
+        <div class="cf-turnstile" data-sitekey="{{ $turnstileKey }}"></div>
+        {{ end }}
 
         <button
             type="submit"
             class="w-full px-4 py-2 bg-buttonPrimary text-gray-200 rounded-lg hover:bg-buttonPrimaryHover transition-colors duration-200"
+            {{ if not $formEndpoint }}disabled{{ end }}
         >
             {{ if .buttonText }}{{ .buttonText }}{{ else }}{{ if eq $lang "zh-cn" }}订阅{{ else }}Subscribe{{ end }}{{ end }}
         </button>

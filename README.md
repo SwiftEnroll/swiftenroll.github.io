@@ -82,8 +82,22 @@ Common tasks
 - Edit navigation, footer, CTA: adjust parameters in hugo.toml under [params.header], [params.footer], and [params.cta].
 - Update company/team info and social links: edit hugo.toml under [params.company] and [params.social].
 
-Environment variables
-No secrets are required for local development. Some forms use external services and may reference IDs or endpoints directly in templates. Update those values as needed in layouts/shortcodes or partials.
+Environment variables and forms configuration
+Form endpoints, Cloudflare Turnstile keys, and anti-spam settings are configured in hugo.toml under [params.forms]. 
+
+For local development, you can override these settings using environment variables to prevent accidental form submissions:
+- Copy .env.example to .env (not tracked in git)
+- Set form endpoints to empty strings to disable submissions locally:
+  - HUGO_PARAMS_FORMS_CONTACTENDPOINT=""
+  - HUGO_PARAMS_FORMS_DEMOENDPOINT=""
+  - HUGO_PARAMS_FORMS_SUBSCRIBEENDPOINT=""
+
+All forms include:
+- Honeypot fields for spam prevention (configured via HUGO_PARAMS_FORMS_HONEYPOTFIELDNAME)
+- Cloudflare Turnstile integration (configured via HUGO_PARAMS_FORMS_TURNSTILESITEKEY)
+- Development mode warnings when endpoints are disabled
+
+No secrets are required for local development beyond what's configured in hugo.toml.
 
 Contributing
 We welcome issues and suggestions via GitHub Issues. For small fixes, please open a PR.
