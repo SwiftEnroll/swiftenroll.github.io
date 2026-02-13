@@ -44,9 +44,15 @@
         if (typeof gtag === 'function') {
             const paramsWithCallback = Object.assign({}, eventParams);
             if (callback) {
-                paramsWithCallback.event_callback = callback;
+                let wasCalled = false;
+                const safeCallback = function() {
+                    if (wasCalled) return;
+                    wasCalled = true;
+                    callback();
+                };
+                paramsWithCallback.event_callback = safeCallback;
                 // Fallback timeout in case GA fails to load or callback hangs
-                setTimeout(callback, 1000);
+                setTimeout(safeCallback, 1000);
             }
             gtag('event', eventName, paramsWithCallback);
         } else {
@@ -283,34 +289,32 @@
             return;
         }
 
-        const links = document.querySelectorAll('a');
-        
-        links.forEach(function(link) {
+        // Use event delegation for better performance
+        document.body.addEventListener('click', function(e) {
+            const link = e.target.closest('a');
+            if (!link) return;
+
             const href = link.getAttribute('href');
             if (!href) return;
 
             // Check for Mailto
             if (href.indexOf('mailto:') === 0) {
-                link.addEventListener('click', function() {
-                    trackEvent('contact_click', {
-                        event_category: 'engagement',
-                        event_label: 'Email Click',
-                        contact_type: 'email'
-                        // Redacted PII: contact_destination
-                    });
+                trackEvent('contact_click', {
+                    event_category: 'engagement',
+                    event_label: 'Email Click',
+                    contact_type: 'email'
+                    // Redacted PII: contact_destination
                 });
                 return;
             }
 
             // Check for Tel
             if (href.indexOf('tel:') === 0) {
-                link.addEventListener('click', function() {
-                    trackEvent('contact_click', {
-                        event_category: 'engagement',
-                        event_label: 'Phone Click',
-                        contact_type: 'phone'
-                        // Redacted PII: contact_destination
-                    });
+                trackEvent('contact_click', {
+                    event_category: 'engagement',
+                    event_label: 'Phone Click',
+                    contact_type: 'phone'
+                    // Redacted PII: contact_destination
                 });
                 return;
             }
@@ -339,34 +343,30 @@
                         const isSocial = /facebook|twitter|x\.com|instagram|linkedin|youtube|github|discord|slack|medium|dribbble|behance|telegram/i.test(href);
                         
                         if (isSocial) {
-                            link.addEventListener('click', function() {
-                                // Extract network name roughly
-                                let network = 'social';
-                                if (href.includes('facebook')) network = 'Facebook';
-                                else if (href.includes('twitter') || href.includes('x.com')) network = 'Twitter';
-                                else if (href.includes('instagram')) network = 'Instagram';
-                                else if (href.includes('linkedin')) network = 'LinkedIn';
-                                else if (href.includes('youtube')) network = 'YouTube';
-                                else if (href.includes('github')) network = 'GitHub';
-                                
-                                trackEvent('social_click', {
-                                    event_category: 'engagement',
+                            // Extract network name roughly
+                            let network = 'social';
+                            if (href.includes('facebook')) network = 'Facebook';
+                            else if (href.includes('twitter') || href.includes('x.com')) network = 'Twitter';
+                            else if (href.includes('instagram')) network = 'Instagram';
+                            else if (href.includes('linkedin')) network = 'LinkedIn';
+                            else if (href.includes('youtube')) network = 'YouTube';
+                            else if (href.includes('github')) network = 'GitHub';
+                            
+                            trackEvent('social_click', {
+                                event_category: 'engagement',
                                     event_label: 'Social Click: ' + network,
                                     social_network: network,
                                     destination_url: linkOrigin // Only send origin to avoid deep PII in URLs if any
-                                });
                             });
                         } else {
                             // Generic external link
-                            link.addEventListener('click', function() {
-                                // Sanitize URL: only send origin + pathname, remove search params
-                                const sanitizedUrl = linkOrigin + linkUrlObj.pathname;
-                                
-                                trackEvent('outbound_click', {
-                                    event_category: 'engagement',
-                                    event_label: 'Outbound Link',
-                                    destination_url: sanitizedUrl
-                                });
+                            // Sanitize URL: only send origin + pathname, remove search params
+                            const sanitizedUrl = linkOrigin + linkUrlObj.pathname;
+                            
+                            trackEvent('outbound_click', {
+                                event_category: 'engagement',
+                                event_label: 'Outbound Link',
+                                destination_url: sanitizedUrl
                             });
                         }
                     }
