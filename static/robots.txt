@@ -1,0 +1,6 @@
+# robots.txt for SwiftEnroll
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://swiftenroll.github.io/sitemap.xml
