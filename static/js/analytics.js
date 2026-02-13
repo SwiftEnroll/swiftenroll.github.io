@@ -72,23 +72,29 @@
             });
         });
 
-        // Track pricing page CTAs
-        const pricingCTAs = document.querySelectorAll('.pricing-card a[href*="/contact"], .pricing-table a[href*="/contact"]');
-        pricingCTAs.forEach(function(button) {
-            button.addEventListener('click', function(e) {
-                const ctaText = this.textContent.trim();
-                const ctaUrl = this.getAttribute('href');
-                const planName = this.closest('.pricing-card, [class*="plan"]')?.querySelector('h3, .plan-name')?.textContent.trim() || 'Unknown Plan';
-                trackEvent('cta_click', {
-                    event_category: 'engagement',
-                    event_label: 'Pricing CTA: ' + ctaText,
-                    cta_location: 'pricing',
-                    cta_text: ctaText,
-                    cta_url: ctaUrl,
-                    plan_name: planName
+        // Track pricing page CTAs (any link to /contact on the pricing page)
+        if (window.location.pathname.includes('/pricing')) {
+            const pricingCTAs = document.querySelectorAll('a[href*="/contact"]');
+            pricingCTAs.forEach(function(button) {
+                // Skip header buttons (already tracked)
+                if (button.closest('header')) {
+                    return;
+                }
+                button.addEventListener('click', function(e) {
+                    const ctaText = this.textContent.trim();
+                    const ctaUrl = this.getAttribute('href');
+                    const planName = this.closest('div')?.querySelector('h3')?.textContent.trim() || 'Unknown Plan';
+                    trackEvent('cta_click', {
+                        event_category: 'engagement',
+                        event_label: 'Pricing CTA: ' + ctaText,
+                        cta_location: 'pricing',
+                        cta_text: ctaText,
+                        cta_url: ctaUrl,
+                        plan_name: planName
+                    });
                 });
             });
-        });
+        }
 
         console.log('SwiftEnroll Analytics: CTA tracking initialized');
     }
