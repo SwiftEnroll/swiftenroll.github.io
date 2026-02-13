@@ -128,7 +128,8 @@
                     if (planNameAttr) {
                         planName = planNameAttr;
                     } else {
-                        const container = this.closest('div');
+                        // Traverse up to the flex container which is a common ancestor for title and button
+                        const container = this.closest('.flex-grow');
                         if (container) {
                             const header = container.querySelector('h3');
                             if (header) {

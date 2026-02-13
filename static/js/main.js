@@ -59,9 +59,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Clean up URL (remove ?submitted=true)
             // This runs after analytics.js (if enabled) has had a chance to read the param
             // because main.js is loaded after analytics.js and both use DOMContentLoaded.
-            const url = new URL(window.location.href);
-            url.searchParams.delete('submitted');
-            window.history.replaceState({}, document.title, url.toString());
+            // Using setTimeout to ensure other scripts have time to process the parameter first.
+            setTimeout(() => {
+                const url = new URL(window.location.href);
+                url.searchParams.delete('submitted');
+                window.history.replaceState({}, document.title, url.toString());
+            }, 100);
         }
     })();
 });
