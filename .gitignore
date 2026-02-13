@@ -47,3 +47,6 @@ public/
 # Hugo generated resources
 resources/
 .hugo_build.lock
+
+# Lighthouse CI
+.lighthouseci/

@@ -48,6 +48,24 @@ To produce a production build (minified CSS and static site output in public/):
 Deployment
 This site is configured to deploy to GitHub Pages at https://swiftenroll.github.io/.
 
+Lighthouse CI
+This repository includes automated performance, accessibility, best practices, and SEO testing using Lighthouse CI:
+- Runs automatically on pull requests via GitHub Actions (see .github/workflows/lighthouse-ci.yml)
+- Tests the homepage (/) and pricing page (/pricing/)
+- Enforces minimum thresholds:
+  - Performance: 70%
+  - Accessibility: 85%
+  - Best Practices: 85%
+  - SEO: 90%
+- Results are uploaded as artifacts in the GitHub Actions run
+- PR comments show the Lighthouse scores
+- The build will fail if scores drop below the configured thresholds
+
+Configuration is in .lighthouserc.json. To run Lighthouse locally:
+   npm install -g @lhci/cli@0.14.x
+   npm run build
+   lhci autorun
+
 Configuration
 - hugo.toml: Site metadata, menus, parameters (CTA, footer, social), etc.
 - tailwind.config.js and postcss.config.js: Tailwind/PostCSS configuration.
