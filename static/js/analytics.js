@@ -81,7 +81,6 @@
                 const ctaUrl = this.getAttribute('href');
                 trackEvent('cta_click', {
                     event_category: 'engagement',
-                    event_label: 'Header CTA: ' + ctaText,
                     cta_location: 'header',
                     cta_text: ctaText,
                     cta_url: ctaUrl
@@ -100,7 +99,6 @@
                 const ctaUrl = this.getAttribute('href');
                 trackEvent('cta_click', {
                     event_category: 'engagement',
-                    event_label: 'Global CTA: ' + ctaText,
                     cta_location: 'global_cta',
                     cta_text: ctaText,
                     cta_url: ctaUrl
@@ -140,7 +138,6 @@
 
                     trackEvent('cta_click', {
                         event_category: 'engagement',
-                        event_label: 'Pricing CTA: ' + ctaText,
                         cta_location: 'pricing',
                         cta_text: ctaText,
                         cta_url: ctaUrl,
@@ -165,7 +162,6 @@
             contactForm.addEventListener('submit', function(e) {
                 trackEvent('form_submit', {
                     event_category: 'conversion',
-                    event_label: 'Contact Form Submit',
                     form_name: 'contact',
                     form_location: window.location.pathname
                 });
@@ -183,10 +179,10 @@
         if (submittedParam === 'true' || submittedParam === '1') {
             trackEvent('form_submit_success', {
                 event_category: 'conversion',
-                event_label: 'Contact Form Success',
                 form_name: 'contact',
                 form_location: window.location.pathname
             });
+            document.dispatchEvent(new CustomEvent('analytics:form_tracked'));
             formSuccessTracked = true;
         }
 
@@ -196,10 +192,10 @@
             if (successDiv && !successDiv.classList.contains('hidden')) {
                 trackEvent('form_submit_success', {
                     event_category: 'conversion',
-                    event_label: 'Contact Form Success',
                     form_name: 'contact',
                     form_location: window.location.pathname
                 });
+                document.dispatchEvent(new CustomEvent('analytics:form_tracked'));
             }
         }
     }
@@ -237,7 +233,6 @@
                         sentMilestones.push(milestone);
                         trackEvent('scroll_depth', {
                             event_category: 'engagement',
-                            event_label: milestone + '% Scroll Depth',
                             percent_scrolled: milestone,
                             page_path: window.location.pathname
                         });
@@ -263,7 +258,6 @@
                 const questionText = e.detail.question;
                 trackEvent('faq_interaction', {
                     event_category: 'engagement',
-                    event_label: 'FAQ Expanded: ' + questionText,
                     question_text: questionText,
                     interaction_type: 'expand'
                 });
@@ -291,7 +285,6 @@
             if (href.indexOf('mailto:') === 0) {
                 trackEvent('contact_click', {
                     event_category: 'engagement',
-                    event_label: 'Email Click',
                     contact_type: 'email'
                     // Redacted PII: contact_destination
                 });
@@ -302,7 +295,6 @@
             if (href.indexOf('tel:') === 0) {
                 trackEvent('contact_click', {
                     event_category: 'engagement',
-                    event_label: 'Phone Click',
                     contact_type: 'phone'
                     // Redacted PII: contact_destination
                 });
@@ -358,7 +350,6 @@
                         if (socialNetworkName) {
                             trackEvent('social_click', {
                                 event_category: 'engagement',
-                                event_label: 'Social Click: ' + socialNetworkName,
                                 social_network: socialNetworkName,
                                 destination_url: linkOrigin // Only send origin to avoid deep PII in URLs if any
                             });
@@ -369,7 +360,6 @@
                             
                             trackEvent('outbound_click', {
                                 event_category: 'engagement',
-                                event_label: 'Outbound Link',
                                 destination_url: sanitizedUrl
                             });
                         }

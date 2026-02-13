@@ -57,14 +57,24 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Clean up URL (remove ?submitted=true)
-            // This runs after analytics.js (if enabled) has had a chance to read the param
-            // because main.js is loaded after analytics.js and both use DOMContentLoaded.
-            // Using setTimeout to ensure other scripts have time to process the parameter first.
-            setTimeout(() => {
+            const cleanUrl = function() {
+                // Remove listener to ensure this only runs once
+                document.removeEventListener('analytics:form_tracked', cleanUrl);
+                
                 const url = new URL(window.location.href);
-                url.searchParams.delete('submitted');
-                window.history.replaceState({}, document.title, url.toString());
-            }, 100);
+                // Only act if the param is still there
+                if (url.searchParams.has('submitted')) {
+                    url.searchParams.delete('submitted');
+                    window.history.replaceState({}, document.title, url.toString());
+                }
+            };
+
+            // 1. Listen for analytics confirmation (robust cleanup)
+            document.addEventListener('analytics:form_tracked', cleanUrl);
+
+            // 2. Fallback safety timeout (2 seconds)
+            // Ensures URL is cleaned even if analytics is blocked/disabled/fails
+            setTimeout(cleanUrl, 2000);
         }
     })();
 });
