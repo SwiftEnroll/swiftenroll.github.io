@@ -282,13 +282,10 @@
         // Use event delegation for better performance
         document.body.addEventListener('click', function(e) {
             const link = e.target.closest('a');
-            if (!link) return;
-
-            const href = link.getAttribute('href');
-            if (!href) return;
+            if (!link || !link.href) return;
 
             // Check for Mailto
-            if (href.indexOf('mailto:') === 0) {
+            if (link.protocol === 'mailto:') {
                 trackEvent('contact_click', {
                     event_category: 'engagement',
                     contact_type: 'email'
@@ -298,7 +295,7 @@
             }
 
             // Check for Tel
-            if (href.indexOf('tel:') === 0) {
+            if (link.protocol === 'tel:') {
                 trackEvent('contact_click', {
                     event_category: 'engagement',
                     contact_type: 'phone'
@@ -307,72 +304,51 @@
                 return;
             }
 
-            // Check for External Links
-            // Use URL object for more robust domain checking
-            try {
-                // Only process absolute URLs that are http/https
-                if (href.indexOf('http') === 0) {
-                    const currentOrigin = window.location.origin;
-                    let linkOrigin;
-                    let linkUrlObj;
-                    
-                    try {
-                        linkUrlObj = new URL(href);
-                        linkOrigin = linkUrlObj.origin;
-                    } catch (e) {
-                        // Invalid URL, skip
-                        return;
-                    }
+            // Check for External Links (http/https)
+            if (link.protocol.startsWith('http') && link.hostname !== window.location.hostname) {
+                // It is external
+                const socialDomains = {
+                    'facebook.com': 'Facebook',
+                    'twitter.com': 'Twitter',
+                    'x.com': 'Twitter',
+                    'instagram.com': 'Instagram',
+                    'linkedin.com': 'LinkedIn',
+                    'youtube.com': 'YouTube',
+                    'github.com': 'GitHub',
+                    'discord.com': 'Discord',
+                    'slack.com': 'Slack',
+                    'medium.com': 'Medium',
+                    'dribbble.com': 'Dribbble',
+                    'behance.net': 'Behance',
+                    't.me': 'Telegram'
+                };
+                
+                let socialNetworkName = null;
+                const linkHostname = link.hostname.toLowerCase();
 
-                    if (linkOrigin !== currentOrigin) {
-                        // It is external
-                        
-                        const socialDomains = {
-                            'facebook.com': 'Facebook',
-                            'twitter.com': 'Twitter',
-                            'x.com': 'Twitter',
-                            'instagram.com': 'Instagram',
-                            'linkedin.com': 'LinkedIn',
-                            'youtube.com': 'YouTube',
-                            'github.com': 'GitHub',
-                            'discord.com': 'Discord',
-                            'slack.com': 'Slack',
-                            'medium.com': 'Medium',
-                            'dribbble.com': 'Dribbble',
-                            'behance.net': 'Behance',
-                            't.me': 'Telegram'
-                        };
-                        
-                        let socialNetworkName = null;
-                        const linkHostname = linkUrlObj.hostname.toLowerCase();
-
-                        for (const domain in socialDomains) {
-                            if (linkHostname === domain || linkHostname.endsWith('.' + domain)) {
-                                socialNetworkName = socialDomains[domain];
-                                break;
-                            }
-                        }
-
-                        if (socialNetworkName) {
-                            trackEvent('social_click', {
-                                event_category: 'engagement',
-                                social_network: socialNetworkName,
-                                destination_url: linkOrigin // Only send origin to avoid deep PII in URLs if any
-                            });
-                        } else {
-                            // Generic external link
-                            // Sanitize URL: only send origin + pathname, remove search params
-                            const sanitizedUrl = linkOrigin + linkUrlObj.pathname;
-                            
-                            trackEvent('outbound_click', {
-                                event_category: 'engagement',
-                                destination_url: sanitizedUrl
-                            });
-                        }
+                for (const domain in socialDomains) {
+                    if (linkHostname === domain || linkHostname.endsWith('.' + domain)) {
+                        socialNetworkName = socialDomains[domain];
+                        break;
                     }
                 }
-            } catch (e) {
-                console.error('Error processing link for analytics:', e);
+
+                if (socialNetworkName) {
+                    trackEvent('social_click', {
+                        event_category: 'engagement',
+                        social_network: socialNetworkName,
+                        destination_url: link.origin // Only send origin to avoid deep PII in URLs if any
+                    });
+                } else {
+                    // Generic external link
+                    // Sanitize URL: only send origin + pathname, remove search params
+                    const sanitizedUrl = link.origin + link.pathname;
+                    
+                    trackEvent('outbound_click', {
+                        event_category: 'engagement',
+                        destination_url: sanitizedUrl
+                    });
+                }
             }
         });
     }
