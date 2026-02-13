@@ -57,9 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Clean up URL (remove ?submitted=true)
+            let urlCleaned = false;
             const cleanUrl = function() {
-                // Remove listener to ensure this only runs once
-                document.removeEventListener('analytics:form_tracked', cleanUrl);
+                if (urlCleaned) return;
+                urlCleaned = true;
                 
                 const url = new URL(window.location.href);
                 // Only act if the param is still there
@@ -70,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             // 1. Listen for analytics confirmation (robust cleanup)
-            document.addEventListener('analytics:form_tracked', cleanUrl);
+            document.addEventListener('analytics:form_tracked', cleanUrl, { once: true });
 
             // 2. Fallback safety timeout (2 seconds)
             // Ensures URL is cleaned even if analytics is blocked/disabled/fails

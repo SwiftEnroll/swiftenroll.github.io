@@ -109,5 +109,25 @@
 
     <!-- Main UI Script -->
     <script src="{{ "js/main.js" | relURL }}"></script>
+
+    <!-- Language Preference Script -->
+    {{ if hugo.IsMultilingual }}
+    <script>
+        // Language Preference Handling
+        (function() {
+            const langKey = 'language-preference';
+            const storedLang = localStorage.getItem(langKey);
+            const currentLang = document.documentElement.lang;
+
+            if (storedLang && storedLang !== currentLang) {
+                // If stored preference differs from current page language, consider redirecting
+                // or updating preference based on current selection
+            }
+
+            // Store current language as preference
+            localStorage.setItem(langKey, currentLang);
+        })();
+    </script>
+    {{ end }}
 </body>
 </html>

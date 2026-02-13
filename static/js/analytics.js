@@ -366,7 +366,7 @@
                     }
                 }
             } catch (e) {
-                // Fallback or ignore
+                console.error('Error processing link for analytics:', e);
             }
         });
     }
