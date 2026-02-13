@@ -12,10 +12,10 @@ jobs:
   lighthouse:
     runs-on: ubuntu-latest
     env:
-      DART_SASS_VERSION: 1.93.2
-      GO_VERSION: 1.25.3
-      HUGO_VERSION: 0.152.2
-      NODE_VERSION: 22.20.0
+      DART_SASS_VERSION: 1.97.3
+      GO_VERSION: 1.25.7
+      HUGO_VERSION: 0.155.3
+      NODE_VERSION: 25.6.1
     steps:
       - name: Checkout
         uses: actions/checkout@v5
