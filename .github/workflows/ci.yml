@@ -63,6 +63,6 @@ jobs:
           args: >
             --verbose
             --no-progress
-            --base './public'
+            --base '${{ github.workspace }}/public'
             './public/**/*.html'
           fail: true
