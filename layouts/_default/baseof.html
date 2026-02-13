@@ -98,7 +98,10 @@
         window.HUGO_ANALYTICS_CONFIG = {
             enable: {{ .Site.Params.analytics.enable }},
             trackCTAClicks: {{ .Site.Params.analytics.trackCTAClicks | default true }},
-            trackFormSubmissions: {{ .Site.Params.analytics.trackFormSubmissions | default true }}
+            trackFormSubmissions: {{ .Site.Params.analytics.trackFormSubmissions | default true }},
+            trackScrollDepth: {{ .Site.Params.analytics.trackScrollDepth | default true }},
+            trackFAQInteractions: {{ .Site.Params.analytics.trackFAQInteractions | default true }},
+            trackExternalLinks: {{ .Site.Params.analytics.trackExternalLinks | default true }}
         };
     </script>
     <script src="{{ "js/analytics.js" | relURL }}"></script>

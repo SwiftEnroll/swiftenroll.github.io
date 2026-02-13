@@ -1,6 +1,6 @@
 /**
  * SwiftEnroll Analytics Tracker
- * Lightweight client-side analytics for tracking CTA clicks and form submissions
+ * Lightweight client-side analytics for tracking CTA clicks, form submissions, and user engagement
  */
 
 (function() {
@@ -10,7 +10,10 @@
     const ANALYTICS_CONFIG = window.HUGO_ANALYTICS_CONFIG || {
         enable: false,
         trackCTAClicks: false,
-        trackFormSubmissions: false
+        trackFormSubmissions: false,
+        trackScrollDepth: false,
+        trackFAQInteractions: false,
+        trackExternalLinks: false
     };
 
     // Check if analytics is enabled
@@ -26,7 +29,7 @@
     function trackEvent(eventName, eventParams) {
         if (typeof gtag === 'function') {
             gtag('event', eventName, eventParams);
-            console.log('Analytics Event:', eventName, eventParams);
+            // console.log('Analytics Event:', eventName, eventParams); // Uncomment for debugging
         } else {
             console.log('Analytics Event (gtag unavailable):', eventName, eventParams);
         }
@@ -149,6 +152,157 @@
     }
 
     /**
+     * Track Scroll Depth
+     */
+    function initScrollTracking() {
+        if (!ANALYTICS_CONFIG.trackScrollDepth) {
+            return;
+        }
+
+        let maxScroll = 0;
+        let scrollMilestones = [25, 50, 75, 90];
+        let sentMilestones = [];
+
+        window.addEventListener('scroll', function() {
+            // Throttled scroll handling could be added here for performance if needed
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+
+            if (scrollPercent > maxScroll) {
+                maxScroll = scrollPercent;
+            }
+
+            scrollMilestones.forEach(milestone => {
+                if (scrollPercent >= milestone && !sentMilestones.includes(milestone)) {
+                    sentMilestones.push(milestone);
+                    trackEvent('scroll_depth', {
+                        event_category: 'engagement',
+                        event_label: milestone + '% Scroll Depth',
+                        percent_scrolled: milestone,
+                        page_path: window.location.pathname
+                    });
+                }
+            });
+        });
+        
+        console.log('SwiftEnroll Analytics: Scroll tracking initialized');
+    }
+
+    /**
+     * Track FAQ Interactions
+     */
+    function initFAQTracking() {
+        if (!ANALYTICS_CONFIG.trackFAQInteractions) {
+            return;
+        }
+
+        const faqButtons = document.querySelectorAll('.faq-button');
+        faqButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Check if we are opening or closing (if the content is currently hidden, we are opening)
+                // The class toggle happens in the onclick handler in HTML, which runs *before* this event listener
+                // So if 'hidden' is NOT present, it means it is now visible (was just opened)
+                const content = this.parentElement.querySelector('.faq-content');
+                const isOpening = !content.classList.contains('hidden');
+                
+                if (isOpening) {
+                    const questionText = this.querySelector('span').textContent.trim();
+                    trackEvent('faq_interaction', {
+                        event_category: 'engagement',
+                        event_label: 'FAQ Expanded: ' + questionText,
+                        question_text: questionText,
+                        interaction_type: 'expand'
+                    });
+                }
+            });
+        });
+        
+        if (faqButtons.length > 0) {
+            console.log('SwiftEnroll Analytics: FAQ tracking initialized');
+        }
+    }
+
+    /**
+     * Track External Links, Social Media, Mailto, and Tel
+     */
+    function initExternalLinkTracking() {
+        if (!ANALYTICS_CONFIG.trackExternalLinks) {
+            return;
+        }
+
+        const links = document.querySelectorAll('a');
+        
+        links.forEach(link => {
+            const href = link.getAttribute('href');
+            if (!href) return;
+
+            // Check for Mailto
+            if (href.startsWith('mailto:')) {
+                link.addEventListener('click', function() {
+                    trackEvent('contact_click', {
+                        event_category: 'engagement',
+                        event_label: 'Email Click: ' + href.replace('mailto:', ''),
+                        contact_type: 'email',
+                        contact_destination: href.replace('mailto:', '')
+                    });
+                });
+                return;
+            }
+
+            // Check for Tel
+            if (href.startsWith('tel:')) {
+                link.addEventListener('click', function() {
+                    trackEvent('contact_click', {
+                        event_category: 'engagement',
+                        event_label: 'Phone Click: ' + href.replace('tel:', ''),
+                        contact_type: 'phone',
+                        contact_destination: href.replace('tel:', '')
+                    });
+                });
+                return;
+            }
+
+            // Check for External Links (including Social Media)
+            if (href.startsWith('http') && !href.includes(window.location.hostname)) {
+                // Check if it's a known social media link
+                const isSocial = /facebook|twitter|instagram|linkedin|youtube|github|discord|slack|medium|dribbble|behance|telegram/i.test(href);
+                
+                if (isSocial) {
+                    link.addEventListener('click', function() {
+                        // Extract network name roughly
+                        let network = 'social';
+                        if (href.includes('facebook')) network = 'Facebook';
+                        else if (href.includes('twitter') || href.includes('x.com')) network = 'Twitter';
+                        else if (href.includes('instagram')) network = 'Instagram';
+                        else if (href.includes('linkedin')) network = 'LinkedIn';
+                        else if (href.includes('youtube')) network = 'YouTube';
+                        else if (href.includes('github')) network = 'GitHub';
+                        
+                        trackEvent('social_click', {
+                            event_category: 'engagement',
+                            event_label: 'Social Click: ' + network,
+                            social_network: network,
+                            destination_url: href
+                        });
+                    });
+                } else {
+                    // Generic external link
+                    link.addEventListener('click', function() {
+                        trackEvent('outbound_click', {
+                            event_category: 'engagement',
+                            event_label: 'Outbound Link: ' + href,
+                            destination_url: href
+                        });
+                    });
+                }
+            }
+        });
+        
+        console.log('SwiftEnroll Analytics: External link tracking initialized');
+    }
+
+    /**
      * Initialize analytics tracking when DOM is ready
      */
     function init() {
@@ -156,10 +310,16 @@
             document.addEventListener('DOMContentLoaded', function() {
                 initCTATracking();
                 initFormTracking();
+                initScrollTracking();
+                initFAQTracking();
+                initExternalLinkTracking();
             });
         } else {
             initCTATracking();
             initFormTracking();
+            initScrollTracking();
+            initFAQTracking();
+            initExternalLinkTracking();
         }
     }
 
