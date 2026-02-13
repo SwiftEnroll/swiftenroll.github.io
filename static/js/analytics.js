@@ -26,7 +26,7 @@
      * Send event to Google Analytics (GA4)
      * Falls back gracefully if gtag is not available
      */
-    function trackEvent(eventName, eventParams) {
+    function trackEvent(eventName, eventParams, callback) {
         // Sanitize string parameters
         if (eventParams) {
             Object.keys(eventParams).forEach(function(key) {
@@ -42,12 +42,19 @@
         }
 
         if (typeof gtag === 'function') {
-            gtag('event', eventName, eventParams);
+            const paramsWithCallback = Object.assign({}, eventParams);
+            if (callback) {
+                paramsWithCallback.event_callback = callback;
+                // Fallback timeout in case GA fails to load or callback hangs
+                setTimeout(callback, 1000);
+            }
+            gtag('event', eventName, paramsWithCallback);
         } else {
-            // Only log in development or if explicitly debugged
-            // We can infer development if localhost or if we add a debug flag
-            // For now, we'll reduce noise by commenting out the log unless needed
-            // console.log('Analytics Event (gtag unavailable):', eventName, eventParams);
+            // Log in development/debug mode (when gtag is missing)
+            console.log('Analytics Event (gtag unavailable):', eventName, eventParams);
+            if (callback) {
+                callback();
+            }
         }
     }
 
@@ -172,6 +179,11 @@
                 event_label: 'Contact Form Success',
                 form_name: 'contact',
                 form_location: window.location.pathname
+            }, function() {
+                // Cleanup URL after successful tracking
+                const url = new URL(window.location.href);
+                url.searchParams.delete('submitted');
+                window.history.replaceState({}, document.title, url.toString());
             });
             formSuccessTracked = true;
         }
@@ -210,7 +222,9 @@
             scrollTimeout = setTimeout(function() {
                 const scrollTop = window.scrollY || document.documentElement.scrollTop;
                 const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+                
+                // Avoid divide by zero
+                const scrollPercent = docHeight <= 0 ? 100 : Math.round((scrollTop / docHeight) * 100);
 
                 if (scrollPercent > maxScroll) {
                     maxScroll = scrollPercent;
@@ -244,31 +258,24 @@
         const faqButtons = document.querySelectorAll('.faq-button');
         faqButtons.forEach(function(button) {
             button.addEventListener('click', function() {
-                // If the element has 'hidden' class REMOVED by the inline onclick handler,
-                // it means it is now visible.
-                // However, to be safe against race conditions, we can check the parent.
-                // The safest way without assuming timing is to check a short time after.
-                // Or, since we want to know if user INTENDED to open, we can assume the click
-                // on a closed item opens it.
-                // BUT, the inline script toggles it.
-                
-                // Let's rely on the fact that standard DOM events usually fire after inline handlers.
-                const content = this.parentElement.querySelector('.faq-content');
-                if (!content) return;
-                
-                // If content is NOT hidden, it means it is OPEN.
-                const isOpen = !content.classList.contains('hidden');
-                
-                if (isOpen) {
-                    const span = this.querySelector('span');
-                    const questionText = span ? span.textContent.trim() : 'Unknown Question';
-                    trackEvent('faq_interaction', {
-                        event_category: 'engagement',
-                        event_label: 'FAQ Expanded: ' + questionText,
-                        question_text: questionText,
-                        interaction_type: 'expand'
-                    });
-                }
+                // UI toggling is handled in main.js
+                // We verify state after a short delay to ensure UI has updated
+                setTimeout(() => {
+                    const content = this.parentElement.querySelector('.faq-content');
+                    if (!content) return;
+                    
+                    const isOpen = !content.classList.contains('hidden');
+                    if (isOpen) {
+                        const span = this.querySelector('span');
+                        const questionText = span ? span.textContent.trim() : 'Unknown Question';
+                        trackEvent('faq_interaction', {
+                            event_category: 'engagement',
+                            event_label: 'FAQ Expanded: ' + questionText,
+                            question_text: questionText,
+                            interaction_type: 'expand'
+                        });
+                    }
+                }, 10);
             });
         });
     }
@@ -292,9 +299,9 @@
                 link.addEventListener('click', function() {
                     trackEvent('contact_click', {
                         event_category: 'engagement',
-                        event_label: 'Email Click: ' + href.replace('mailto:', ''),
-                        contact_type: 'email',
-                        contact_destination: href.replace('mailto:', '')
+                        event_label: 'Email Click',
+                        contact_type: 'email'
+                        // Redacted PII: contact_destination
                     });
                 });
                 return;
@@ -305,9 +312,9 @@
                 link.addEventListener('click', function() {
                     trackEvent('contact_click', {
                         event_category: 'engagement',
-                        event_label: 'Phone Click: ' + href.replace('tel:', ''),
-                        contact_type: 'phone',
-                        contact_destination: href.replace('tel:', '')
+                        event_label: 'Phone Click',
+                        contact_type: 'phone'
+                        // Redacted PII: contact_destination
                     });
                 });
                 return;
@@ -320,9 +327,11 @@
                 if (href.indexOf('http') === 0) {
                     const currentOrigin = window.location.origin;
                     let linkOrigin;
+                    let linkUrlObj;
                     
                     try {
-                        linkOrigin = new URL(href).origin;
+                        linkUrlObj = new URL(href);
+                        linkOrigin = linkUrlObj.origin;
                     } catch (e) {
                         // Invalid URL, skip
                         return;
@@ -332,7 +341,7 @@
                         // It is external
                         
                         // Check if it's a known social media link
-                        const isSocial = /facebook|twitter|instagram|linkedin|youtube|github|discord|slack|medium|dribbble|behance|telegram/i.test(href);
+                        const isSocial = /facebook|twitter|x\.com|instagram|linkedin|youtube|github|discord|slack|medium|dribbble|behance|telegram/i.test(href);
                         
                         if (isSocial) {
                             link.addEventListener('click', function() {
@@ -349,16 +358,19 @@
                                     event_category: 'engagement',
                                     event_label: 'Social Click: ' + network,
                                     social_network: network,
-                                    destination_url: href
+                                    destination_url: linkOrigin // Only send origin to avoid deep PII in URLs if any
                                 });
                             });
                         } else {
                             // Generic external link
                             link.addEventListener('click', function() {
+                                // Sanitize URL: only send origin + pathname, remove search params
+                                const sanitizedUrl = linkOrigin + linkUrlObj.pathname;
+                                
                                 trackEvent('outbound_click', {
                                     event_category: 'engagement',
-                                    event_label: 'Outbound Link: ' + href,
-                                    destination_url: href
+                                    event_label: 'Outbound Link',
+                                    destination_url: sanitizedUrl
                                 });
                             });
                         }

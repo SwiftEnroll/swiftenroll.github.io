@@ -29,7 +29,7 @@
     <form id="contact-form" class="space-y-5" {{ if $formEndpoint }}action="{{ $formEndpoint }}"{{ end }} method="POST">
         <!-- Honeypot field for spam prevention (hidden from users) -->
         <input type="text" name="{{ $honeypotField }}" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true" />
-        <input type="hidden" name="_redirect" value="{{ .Site.BaseURL | strings.TrimSuffix "/" }}/contact/?submitted=true">
+        {{ if $formEndpoint }}<input type="hidden" name="_redirect" value="{{ .Site.BaseURL | strings.TrimSuffix "/" }}/contact/?submitted=true">{{ end }}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1" for="name">Name</label>
@@ -78,11 +78,7 @@
             if (form && successDiv) {
                 form.style.display = 'none';
                 successDiv.classList.remove('hidden');
-                // Delay URL cleanup to ensure analytics has time to track the event
-                // 1 second should be sufficient for the gtag event to be queued
-                setTimeout(function() {
-                    window.history.replaceState({}, document.title, window.location.pathname);
-                }, 1000);
+                // URL cleanup is handled in analytics.js after the event is tracked
             }
         }
     })();

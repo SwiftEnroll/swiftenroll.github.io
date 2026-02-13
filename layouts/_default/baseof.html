@@ -95,14 +95,7 @@
     {{ if .Site.Params.analytics.enable }}
     <script>
         // Inject analytics configuration from Hugo config
-        window.HUGO_ANALYTICS_CONFIG = {
-            enable: {{ if .Site.Params.analytics.enable }}true{{ else }}false{{ end }},
-            trackCTAClicks: {{ if .Site.Params.analytics.trackCTAClicks }}true{{ else }}false{{ end }},
-            trackFormSubmissions: {{ if .Site.Params.analytics.trackFormSubmissions }}true{{ else }}false{{ end }},
-            trackScrollDepth: {{ if .Site.Params.analytics.trackScrollDepth }}true{{ else }}false{{ end }},
-            trackFAQInteractions: {{ if .Site.Params.analytics.trackFAQInteractions }}true{{ else }}false{{ end }},
-            trackExternalLinks: {{ if .Site.Params.analytics.trackExternalLinks }}true{{ else }}false{{ end }}
-        };
+        window.HUGO_ANALYTICS_CONFIG = {{ .Site.Params.analytics | jsonify }};
     </script>
     <script src="{{ "js/analytics.js" | relURL }}"></script>
     {{ end }}
@@ -114,17 +107,7 @@
     </script>
     {{ end }}
 
-    <!-- Mobile Menu Script -->
-    <script>
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', function() {
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (mobileMenu) {
-                    mobileMenu.classList.toggle('hidden');
-                }
-            });
-        }
-    </script>
+    <!-- Main UI Script -->
+    <script src="{{ "js/main.js" | relURL }}"></script>
 </body>
 </html>
