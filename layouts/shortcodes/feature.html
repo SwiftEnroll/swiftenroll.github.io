@@ -30,7 +30,12 @@
     {{ if and $hasMedia (eq $imagePosition "left") }}
     <div class="order-2 lg:order-1">
         {{ if $hasImage }}
-          <img src="{{ $image | relURL }}" alt="{{ $title }}" class="rounded-xl shadow-elevation">
+          {{ partial "components/optimized-image.html" (dict 
+              "src" $image 
+              "alt" $title 
+              "class" "rounded-xl shadow-elevation"
+              "loading" "lazy"
+          ) }}
         {{ else }}
           {{ $inner | safeHTML }}
         {{ end }}
@@ -76,7 +81,12 @@
     {{ if and $hasMedia (ne $imagePosition "left") }}
     <div>
         {{ if $hasImage }}
-          <img src="{{ $image | relURL }}" alt="{{ $title }}" class="rounded-xl shadow-elevation">
+          {{ partial "components/optimized-image.html" (dict 
+              "src" $image 
+              "alt" $title 
+              "class" "rounded-xl shadow-elevation"
+              "loading" "lazy"
+          ) }}
         {{ else }}
           {{ $inner | safeHTML }}
         {{ end }}

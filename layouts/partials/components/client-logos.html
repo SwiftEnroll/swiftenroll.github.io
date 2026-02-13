@@ -35,7 +35,12 @@
         <div class="logo-scroll static">
           <div class="logos-slide">
             {{ range $logos }}
-              <img src="{{ .logo | relURL }}" class="h-20" alt="{{ .name }}" style="background-color: white;" />
+              {{ partial "components/optimized-image.html" (dict 
+                  "src" .logo 
+                  "alt" .name 
+                  "class" "h-20"
+                  "loading" "lazy"
+              ) }}
             {{ end }}
           </div>
         </div>
@@ -43,7 +48,12 @@
         <div class="logo-scroll">
           <div class="logos-slide animate">
             {{ range $logos }}
-              <img src="{{ .logo | relURL }}" class="h-20" alt="{{ .name }}" style="background-color: white;" />
+              {{ partial "components/optimized-image.html" (dict 
+                  "src" .logo 
+                  "alt" .name 
+                  "class" "h-20"
+                  "loading" "lazy"
+              ) }}
             {{ end }}
           </div>
         </div>

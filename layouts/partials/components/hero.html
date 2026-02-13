@@ -12,7 +12,12 @@
 <section class="hero-section relative overflow-hidden" style="background-color: {{ $bg_color }};">
     {{ if $background_image }}
     <div class="absolute inset-0">
-        <img src="{{ $background_image | relURL }}" alt="Background" class="w-full h-full object-cover">
+        {{ partial "components/optimized-image.html" (dict 
+            "src" $background_image 
+            "alt" "Background" 
+            "class" "w-full h-full object-cover"
+            "loading" "eager"
+        ) }}
     </div>
     {{ end }}
     <div class="container pt-16 pb-20 md:pt-24 md:pb-28">
@@ -40,7 +45,12 @@
             <div class="relative lg:min-h-[28rem]">
                 {{ if $hero_image }}
                 <div class="relative z-10 w-full">
-                    <img src="{{ $hero_image | relURL }}" alt="{{ $hero_image_alt }}" class="rounded-xl shadow-elevation w-full max-w-full">
+                    {{ partial "components/optimized-image.html" (dict 
+                        "src" $hero_image 
+                        "alt" $hero_image_alt 
+                        "class" "rounded-xl shadow-elevation w-full max-w-full" 
+                        "loading" "eager"
+                    ) }}
                 </div>
                 {{ end }}
                 <!-- Background decoration -->

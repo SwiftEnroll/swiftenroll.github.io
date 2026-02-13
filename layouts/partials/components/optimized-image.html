@@ -1,0 +1,125 @@
+{{/*
+  Optimized Image Partial
+  
+  Generates optimized images with modern formats (webp), proper dimensions, and lazy loading.
+  
+  Parameters:
+    - src (required): Image path (relative to assets/ or static/)
+    - alt (required): Alt text for accessibility
+    - class: CSS classes (optional)
+    - loading: "lazy" (default) or "eager" (for hero images)
+    - width: Target width for processing (optional, defaults to auto)
+    - height: Target height for processing (optional, defaults to auto)
+    - sizes: Responsive sizes attribute (optional)
+    
+  Usage:
+    {{ partial "components/optimized-image.html" (dict "src" "/images/hero.png" "alt" "Hero" "loading" "eager" "class" "rounded-xl") }}
+*/}}
+
+{{ $src := .src }}
+{{ $alt := .alt | default "" }}
+{{ $class := .class | default "" }}
+{{ $loading := .loading | default "lazy" }}
+{{ $width := .width }}
+{{ $height := .height }}
+{{ $sizes := .sizes }}
+
+{{ $image := "" }}
+{{ $isAsset := false }}
+
+{{/* Try to get image from assets first, then fall back to static */}}
+{{ with resources.Get $src }}
+  {{ $image = . }}
+  {{ $isAsset = true }}
+{{ else }}
+  {{/* Check if it's already in static (for SVGs, favicons, etc.) */}}
+  {{ $staticPath := printf "%s" $src }}
+  {{ $isAsset = false }}
+{{ end }}
+
+{{ if $isAsset }}
+  {{/* Process image with Hugo */}}
+  {{ $webp := "" }}
+  {{ $originalWidth := 0 }}
+  {{ $originalHeight := 0 }}
+  
+  {{/* Check if it's an SVG - SVGs don't have width/height and can't be processed */}}
+  {{ if eq $image.MediaType.SubType "svg" }}
+    {{/* Output SVG as-is */}}
+    <img 
+      src="{{ $image.RelPermalink }}" 
+      alt="{{ $alt }}"
+      {{ with $class }}class="{{ . }}"{{ end }}
+      loading="{{ $loading }}"
+      {{ with $sizes }}sizes="{{ . }}"{{ end }}
+    >
+  {{ else }}
+    {{/* Process raster images */}}
+    {{ $originalWidth = $image.Width }}
+    {{ $originalHeight = $image.Height }}
+    
+    {{/* If target dimensions provided, resize; otherwise use original */}}
+    {{ if and $width $height }}
+      {{ $image = $image.Fill (printf "%dx%d webp" $width $height) }}
+    {{ else if $width }}
+      {{ $image = $image.Resize (printf "%dx webp" $width) }}
+    {{ else if $height }}
+      {{ $image = $image.Resize (printf "x%d webp" $height) }}
+    {{ else }}
+      {{/* Convert to webp without resizing */}}
+      {{ $image = $image.Process "webp" }}
+    {{ end }}
+    
+    {{/* Calculate aspect ratio */}}
+    {{ $aspectRatio := div (float $image.Width) (float $image.Height) }}
+    
+    {{/* 
+      Use aspect-ratio CSS instead of explicit width/height when CSS sizing classes are present.
+      This prevents conflicts between pixel dimensions and CSS classes like h-12, w-full, etc.
+      
+      Check for Tailwind sizing classes: h-{number}, w-{number}, w-full, h-full, etc.
+    */}}
+    {{ $useCssAspectRatio := false }}
+    {{ if $class }}
+      {{/* Split class string and check each class */}}
+      {{ range (split $class " ") }}
+        {{ $cls := trim . " " }}
+        {{/* Check if class starts with sizing prefix */}}
+        {{ if or (hasPrefix $cls "h-") (hasPrefix $cls "w-") (eq $cls "object-cover") (eq $cls "object-contain") }}
+          {{ $useCssAspectRatio = true }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    
+    {{/* Output optimized image */}}
+    {{ if $useCssAspectRatio }}
+      <img 
+        src="{{ $image.RelPermalink }}" 
+        alt="{{ $alt }}"
+        {{ with $class }}class="{{ . }}"{{ end }}
+        style="aspect-ratio: {{ $aspectRatio }};"
+        loading="{{ $loading }}"
+        {{ with $sizes }}sizes="{{ . }}"{{ end }}
+      >
+    {{ else }}
+      {{/* Use explicit dimensions for images without CSS sizing constraints */}}
+      <img 
+        src="{{ $image.RelPermalink }}" 
+        alt="{{ $alt }}"
+        width="{{ $image.Width }}"
+        height="{{ $image.Height }}"
+        {{ with $class }}class="{{ . }}"{{ end }}
+        loading="{{ $loading }}"
+        {{ with $sizes }}sizes="{{ . }}"{{ end }}
+      >
+    {{ end }}
+  {{ end }}
+{{ else }}
+  {{/* Fall back to standard img tag for static files */}}
+  <img 
+    src="{{ $src | relURL }}" 
+    alt="{{ $alt }}"
+    {{ with $class }}class="{{ . }}"{{ end }}
+    loading="{{ $loading }}"
+  >
+{{ end }}

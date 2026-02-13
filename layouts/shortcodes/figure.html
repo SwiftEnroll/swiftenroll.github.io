@@ -4,12 +4,12 @@
 {{ $class := .Get "class" | default "w-full" }}
 
 <figure class="my-8">
-    <img 
-        src="{{ $src }}" 
-        alt="{{ $alt }}" 
-        class="{{ $class }} rounded-lg shadow-lg"
-        loading="lazy"
-    >
+    {{ partial "components/optimized-image.html" (dict 
+        "src" $src 
+        "alt" $alt 
+        "class" (printf "%s rounded-lg shadow-lg" $class)
+        "loading" "lazy"
+    ) }}
     {{ with $caption }}
         <figcaption class="mt-2 text-center text-sm text-gray-600">
             {{ . | markdownify }}
