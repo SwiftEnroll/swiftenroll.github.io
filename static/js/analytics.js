@@ -256,28 +256,17 @@
             return;
         }
 
-        const faqButtons = document.querySelectorAll('.faq-button');
-        faqButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                // UI toggling is handled in main.js
-                // We verify state after a short delay to ensure UI has updated
-                setTimeout(() => {
-                    const content = this.parentElement.querySelector('.faq-content');
-                    if (!content) return;
-                    
-                    const isOpen = !content.classList.contains('hidden');
-                    if (isOpen) {
-                        const span = this.querySelector('span');
-                        const questionText = span ? span.textContent.trim() : 'Unknown Question';
-                        trackEvent('faq_interaction', {
-                            event_category: 'engagement',
-                            event_label: 'FAQ Expanded: ' + questionText,
-                            question_text: questionText,
-                            interaction_type: 'expand'
-                        });
-                    }
-                }, 10);
-            });
+        // Listen for custom event dispatched from main.js
+        document.addEventListener('faq:expand', function(e) {
+            if (e.detail && e.detail.question) {
+                const questionText = e.detail.question;
+                trackEvent('faq_interaction', {
+                    event_category: 'engagement',
+                    event_label: 'FAQ Expanded: ' + questionText,
+                    question_text: questionText,
+                    interaction_type: 'expand'
+                });
+            }
         });
     }
 
@@ -339,24 +328,38 @@
                     if (linkOrigin !== currentOrigin) {
                         // It is external
                         
-                        // Check if it's a known social media link
-                        const isSocial = /facebook|twitter|x\.com|instagram|linkedin|youtube|github|discord|slack|medium|dribbble|behance|telegram/i.test(href);
+                        const socialDomains = {
+                            'facebook.com': 'Facebook',
+                            'twitter.com': 'Twitter',
+                            'x.com': 'Twitter',
+                            'instagram.com': 'Instagram',
+                            'linkedin.com': 'LinkedIn',
+                            'youtube.com': 'YouTube',
+                            'github.com': 'GitHub',
+                            'discord.com': 'Discord',
+                            'slack.com': 'Slack',
+                            'medium.com': 'Medium',
+                            'dribbble.com': 'Dribbble',
+                            'behance.net': 'Behance',
+                            't.me': 'Telegram'
+                        };
                         
-                        if (isSocial) {
-                            // Extract network name roughly
-                            let network = 'social';
-                            if (href.includes('facebook')) network = 'Facebook';
-                            else if (href.includes('twitter') || href.includes('x.com')) network = 'Twitter';
-                            else if (href.includes('instagram')) network = 'Instagram';
-                            else if (href.includes('linkedin')) network = 'LinkedIn';
-                            else if (href.includes('youtube')) network = 'YouTube';
-                            else if (href.includes('github')) network = 'GitHub';
-                            
+                        let socialNetworkName = null;
+                        const linkHostname = linkUrlObj.hostname.toLowerCase();
+
+                        for (const domain in socialDomains) {
+                            if (linkHostname === domain || linkHostname.endsWith('.' + domain)) {
+                                socialNetworkName = socialDomains[domain];
+                                break;
+                            }
+                        }
+
+                        if (socialNetworkName) {
                             trackEvent('social_click', {
                                 event_category: 'engagement',
-                                    event_label: 'Social Click: ' + network,
-                                    social_network: network,
-                                    destination_url: linkOrigin // Only send origin to avoid deep PII in URLs if any
+                                event_label: 'Social Click: ' + socialNetworkName,
+                                social_network: socialNetworkName,
+                                destination_url: linkOrigin // Only send origin to avoid deep PII in URLs if any
                             });
                         } else {
                             // Generic external link

@@ -19,11 +19,24 @@ document.addEventListener('DOMContentLoaded', function() {
             const content = this.parentElement.querySelector('.faq-content');
             const icon = this.querySelector('svg');
 
+            // Determine if opening (hidden class is about to be removed)
+            const isOpening = content && content.classList.contains('hidden');
+
             if (content) {
                 content.classList.toggle('hidden');
             }
             if (icon) {
                 icon.classList.toggle('rotate-180');
+            }
+
+            // Dispatch event for analytics if opening
+            if (isOpening) {
+                const span = this.querySelector('span');
+                const questionText = span ? span.textContent.trim() : 'Unknown Question';
+                
+                document.dispatchEvent(new CustomEvent('faq:expand', { 
+                    detail: { question: questionText } 
+                }));
             }
         });
     });
