@@ -11,7 +11,6 @@ enableGitInfo = true
 [sitemap]
   changefreq = "weekly"
   filename = "sitemap.xml"
-  priority = 0.5
 
 [caches]
     [caches.images]

@@ -843,14 +843,14 @@ canonical: "https://example.com/blog/original-post/"
 
 Social preview cards are automatically generated from page front matter. The site has a default image configured, but you can override it per-page:
 
-**Using Default Social Image** (hero-image.png):
+**Using Default Social Image** (no image field needed):
 ```yaml
 ---
 title: "Page Title"
 description: "Page description"
-# No image specified - uses site default
 ---
 ```
+*When no `image` field is specified, the site default image (hero-image.png) is used automatically.*
 
 **Custom Social Image** (per-page override):
 ```yaml
