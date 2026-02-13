@@ -119,7 +119,7 @@ canonical: "https://original-site.com/original-post/"
 ---
 ```
 
-**Note**: The template currently uses `.Permalink` for canonical URLs. To support custom canonical URLs, you would need to modify `layouts/_default/baseof.html` line 54.
+**Note**: The template currently uses `.Permalink` for canonical URLs. To support custom canonical URLs, you would need to modify the canonical URL link tag in `layouts/_default/baseof.html`.
 
 ### Hide from Search Engines
 
