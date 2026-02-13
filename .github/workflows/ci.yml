@@ -63,13 +63,6 @@ jobs:
           args: >
             --verbose
             --no-progress
-            --accept 200,204,301,302,307,308,429,999
-            --timeout 30
-            --max-redirects 10
-            --exclude-mail
-            --exclude 'linkedin.com'
-            --exclude 'x.com'
-            --exclude 'twitter.com'
             --base './public'
             './public/**/*.html'
           fail: true
