@@ -70,16 +70,49 @@
       {{ $image = $image.Process "webp" }}
     {{ end }}
     
-    {{/* Output optimized image with dimensions to prevent layout shift */}}
-    <img 
-      src="{{ $image.RelPermalink }}" 
-      alt="{{ $alt }}"
-      width="{{ $image.Width }}"
-      height="{{ $image.Height }}"
-      {{ with $class }}class="{{ . }}"{{ end }}
-      loading="{{ $loading }}"
-      {{ with $sizes }}sizes="{{ . }}"{{ end }}
-    >
+    {{/* Calculate aspect ratio */}}
+    {{ $aspectRatio := div (float $image.Width) (float $image.Height) }}
+    
+    {{/* 
+      Use aspect-ratio CSS instead of explicit width/height when CSS sizing classes are present.
+      This prevents conflicts between pixel dimensions and CSS classes like h-12, w-full, etc.
+      
+      Check for Tailwind sizing classes: h-{number}, w-{number}, w-full, h-full, etc.
+    */}}
+    {{ $useCssAspectRatio := false }}
+    {{ if $class }}
+      {{/* Split class string and check each class */}}
+      {{ range (split $class " ") }}
+        {{ $cls := trim . " " }}
+        {{/* Check if class starts with sizing prefix */}}
+        {{ if or (hasPrefix $cls "h-") (hasPrefix $cls "w-") (eq $cls "object-cover") (eq $cls "object-contain") }}
+          {{ $useCssAspectRatio = true }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    
+    {{/* Output optimized image */}}
+    {{ if $useCssAspectRatio }}
+      <img 
+        src="{{ $image.RelPermalink }}" 
+        alt="{{ $alt }}"
+        {{ with $class }}class="{{ . }}"{{ end }}
+        style="aspect-ratio: {{ $aspectRatio }};"
+        loading="{{ $loading }}"
+        {{ with $sizes }}sizes="{{ . }}"{{ end }}
+      >
+    {{ else }}
+      {{/* Use explicit dimensions for images without CSS sizing constraints */}}
+      <img 
+        src="{{ $image.RelPermalink }}" 
+        alt="{{ $alt }}"
+        width="{{ $image.Width }}"
+        height="{{ $image.Height }}"
+        {{ with $class }}class="{{ . }}"{{ end }}
+        loading="{{ $loading }}"
+        {{ with $sizes }}sizes="{{ . }}"{{ end }}
+      >
+    {{ end }}
   {{ end }}
 {{ else }}
   {{/* Fall back to standard img tag for static files */}}
