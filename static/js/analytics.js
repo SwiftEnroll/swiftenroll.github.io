@@ -182,7 +182,10 @@
                 form_name: 'contact',
                 form_location: window.location.pathname
             });
-            document.dispatchEvent(new CustomEvent('analytics:form_tracked'));
+            // Dispatch event with a 0ms delay to ensure main.js listener is ready
+            setTimeout(function() {
+                document.dispatchEvent(new CustomEvent('analytics:form_tracked'));
+            }, 0);
             formSuccessTracked = true;
         }
 
@@ -195,7 +198,10 @@
                     form_name: 'contact',
                     form_location: window.location.pathname
                 });
-                document.dispatchEvent(new CustomEvent('analytics:form_tracked'));
+                // Dispatch event with a 0ms delay to ensure main.js listener is ready
+                setTimeout(function() {
+                    document.dispatchEvent(new CustomEvent('analytics:form_tracked'));
+                }, 0);
             }
         }
     }
