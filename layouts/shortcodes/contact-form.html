@@ -68,18 +68,3 @@
     </form>
 </div>
 
-<script>
-    // Show success message if form was submitted
-    (function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('submitted') === 'true') {
-            const form = document.getElementById('contact-form');
-            const successDiv = document.getElementById('contact-form-success');
-            if (form && successDiv) {
-                form.style.display = 'none';
-                successDiv.classList.remove('hidden');
-                // URL cleanup is handled in analytics.js after the event is tracked
-            }
-        }
-    })();
-</script>

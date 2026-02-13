@@ -179,11 +179,6 @@
                 event_label: 'Contact Form Success',
                 form_name: 'contact',
                 form_location: window.location.pathname
-            }, function() {
-                // Cleanup URL after successful tracking
-                const url = new URL(window.location.href);
-                url.searchParams.delete('submitted');
-                window.history.replaceState({}, document.title, url.toString());
             });
             formSuccessTracked = true;
         }

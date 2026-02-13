@@ -27,4 +27,28 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Contact Form Success Handling & URL Cleanup
+    (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const submitted = urlParams.get('submitted');
+
+        if (submitted === 'true' || submitted === '1') {
+            const form = document.getElementById('contact-form');
+            const successDiv = document.getElementById('contact-form-success');
+            
+            // Show success message
+            if (form && successDiv) {
+                form.style.display = 'none';
+                successDiv.classList.remove('hidden');
+            }
+
+            // Clean up URL (remove ?submitted=true)
+            // This runs after analytics.js (if enabled) has had a chance to read the param
+            // because main.js is loaded after analytics.js and both use DOMContentLoaded.
+            const url = new URL(window.location.href);
+            url.searchParams.delete('submitted');
+            window.history.replaceState({}, document.title, url.toString());
+        }
+    })();
 });
