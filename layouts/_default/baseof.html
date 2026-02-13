@@ -91,6 +91,19 @@
     <!-- Footer -->
     {{ partial "layout/footer" . }}
 
+    <!-- Analytics Configuration and Tracking -->
+    {{ if .Site.Params.analytics.enable }}
+    <script>
+        // Inject analytics configuration from Hugo config
+        window.HUGO_ANALYTICS_CONFIG = {
+            enable: {{ .Site.Params.analytics.enable }},
+            trackCTAClicks: {{ .Site.Params.analytics.trackCTAClicks | default true }},
+            trackFormSubmissions: {{ .Site.Params.analytics.trackFormSubmissions | default true }}
+        };
+    </script>
+    <script src="{{ "js/analytics.js" | relURL }}"></script>
+    {{ end }}
+
     <!-- Language Preference Script -->
     {{ if hugo.IsMultilingual }}
     {{ if .Site.Params.visitorapi_pid }}

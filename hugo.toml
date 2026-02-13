@@ -41,6 +41,12 @@ enableGitInfo = true
     contactEndpoint = "https://submit-form.com/9cR1q3cWi"
     demoEndpoint = "https://submit-form.com/InyGZDbvs"
     subscribeEndpoint = "https://submit-form.com/subscribe"
+
+  # Analytics Configuration
+  [params.analytics]
+    enable = true  # Set to false to disable all analytics tracking
+    trackCTAClicks = true  # Track CTA button clicks
+    trackFormSubmissions = true  # Track form submissions
   
   # Company (About) Page Content
   [params.company]

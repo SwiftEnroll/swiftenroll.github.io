@@ -29,7 +29,7 @@
     <form id="contact-form" class="space-y-5" {{ if $formEndpoint }}action="{{ $formEndpoint }}"{{ end }} method="POST">
         <!-- Honeypot field for spam prevention (hidden from users) -->
         <input type="text" name="{{ $honeypotField }}" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true" />
-        
+        <input type="hidden" name="_redirect" value="{{ .Site.BaseURL | strings.TrimSuffix "/" }}/contact/?submitted=true">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1" for="name">Name</label>
@@ -67,3 +67,20 @@
         </button>
     </form>
 </div>
+
+<script>
+    // Show success message if form was submitted
+    (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('submitted') === 'true') {
+            const form = document.getElementById('contact-form');
+            const successDiv = document.getElementById('contact-form-success');
+            if (form && successDiv) {
+                form.style.display = 'none';
+                successDiv.classList.remove('hidden');
+                // Clean URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+    })();
+</script>

@@ -11,6 +11,7 @@ Contents
 - Build and deploy
 - Content structure
 - Customization
+- Analytics configuration
 - Contributing
 - License
 - Acknowledgments
@@ -98,6 +99,64 @@ All forms include:
 - Development mode warnings when endpoints are disabled
 
 No secrets are required for local development beyond what's configured in hugo.toml.
+
+Analytics configuration
+SwiftEnroll uses a lightweight, privacy-aware analytics system to track key conversion events including CTA clicks and form submissions. The analytics system works with Google Analytics (GA4) and can be easily enabled or disabled via configuration.
+
+Features
+- Track primary CTA clicks (demo, contact, pricing CTAs)
+- Track form submissions and success events
+- Privacy-aware with console logging for debugging
+- Single config flag to enable/disable all tracking
+- Granular controls for specific event types
+
+Local development
+By default, analytics tracking is enabled in hugo.toml. To test analytics locally:
+
+1) Ensure analytics is enabled in hugo.toml:
+   [params.analytics]
+     enable = true
+     trackCTAClicks = true
+     trackFormSubmissions = true
+
+2) Start the dev server:
+   npm run start
+
+3) Open browser console to see analytics events being logged (gtag calls will only work in production with Google Analytics configured)
+
+Production setup
+Analytics only loads Google Analytics in production builds (controlled by hugo.IsProduction). To configure for production:
+
+1) Set your Google Analytics ID in hugo.toml:
+   [params]
+     googleAnalytics = "G-XXXXXXXXXX"  # Your GA4 measurement ID
+
+2) Enable analytics tracking:
+   [params.analytics]
+     enable = true
+     trackCTAClicks = true
+     trackFormSubmissions = true
+
+3) Build and deploy:
+   npm run build
+
+Disabling analytics
+To completely disable analytics tracking, set enable to false in hugo.toml:
+
+[params.analytics]
+  enable = false
+
+You can also selectively disable specific tracking types:
+- Set trackCTAClicks = false to disable CTA tracking
+- Set trackFormSubmissions = false to disable form tracking
+
+Tracked events
+The following events are tracked when enabled:
+- cta_click: When users click on CTA buttons (header, global CTA, pricing CTAs)
+- form_submit: When users submit the contact form
+- form_submit_success: When the form submission succeeds
+
+All events are sent to Google Analytics with relevant metadata (location, text, URL, etc.) for analysis.
 
 Contributing
 We welcome issues and suggestions via GitHub Issues. For small fixes, please open a PR.
