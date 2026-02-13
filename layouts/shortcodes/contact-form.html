@@ -78,8 +78,10 @@
             if (form && successDiv) {
                 form.style.display = 'none';
                 successDiv.classList.remove('hidden');
-                // Clean URL
-                window.history.replaceState({}, document.title, window.location.pathname);
+                // Delay URL cleanup to ensure analytics has time to track the event
+                setTimeout(function() {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }, 2000);
             }
         }
     })();

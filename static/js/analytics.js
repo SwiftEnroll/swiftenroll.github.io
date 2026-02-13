@@ -83,7 +83,10 @@
                 button.addEventListener('click', function(e) {
                     const ctaText = this.textContent.trim();
                     const ctaUrl = this.getAttribute('href');
-                    const planName = this.closest('div')?.querySelector('h3')?.textContent.trim() || 'Unknown Plan';
+                    // Use data-plan-name attribute if available, otherwise try to find h3
+                    const planName = this.getAttribute('data-plan-name') || 
+                                    this.closest('div')?.querySelector('h3')?.textContent.trim() || 
+                                    'Unknown Plan';
                     trackEvent('cta_click', {
                         event_category: 'engagement',
                         event_label: 'Pricing CTA: ' + ctaText,
@@ -120,7 +123,7 @@
             });
         }
 
-        // Track form success based on URL parameter
+        // Track form success based on URL parameter (primary method)
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('submitted') === 'true') {
             trackEvent('form_submit_success', {
@@ -129,17 +132,17 @@
                 form_name: 'contact',
                 form_location: window.location.pathname
             });
-        }
-
-        // Also track when success div is shown (for other forms or delayed display)
-        const successDiv = document.getElementById('contact-form-success');
-        if (successDiv && !successDiv.classList.contains('hidden')) {
-            trackEvent('form_submit_success', {
-                event_category: 'conversion',
-                event_label: 'Contact Form Success',
-                form_name: 'contact',
-                form_location: window.location.pathname
-            });
+        } else {
+            // Fallback: Also track when success div is shown (for other scenarios)
+            const successDiv = document.getElementById('contact-form-success');
+            if (successDiv && !successDiv.classList.contains('hidden')) {
+                trackEvent('form_submit_success', {
+                    event_category: 'conversion',
+                    event_label: 'Contact Form Success',
+                    form_name: 'contact',
+                    form_location: window.location.pathname
+                });
+            }
         }
 
         console.log('SwiftEnroll Analytics: Form tracking initialized');
