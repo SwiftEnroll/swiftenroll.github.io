@@ -96,12 +96,12 @@
     <script>
         // Inject analytics configuration from Hugo config
         window.HUGO_ANALYTICS_CONFIG = {
-            enable: {{ .Site.Params.analytics.enable }},
-            trackCTAClicks: {{ .Site.Params.analytics.trackCTAClicks | default true }},
-            trackFormSubmissions: {{ .Site.Params.analytics.trackFormSubmissions | default true }},
-            trackScrollDepth: {{ .Site.Params.analytics.trackScrollDepth | default true }},
-            trackFAQInteractions: {{ .Site.Params.analytics.trackFAQInteractions | default true }},
-            trackExternalLinks: {{ .Site.Params.analytics.trackExternalLinks | default true }}
+            enable: {{ if .Site.Params.analytics.enable }}true{{ else }}false{{ end }},
+            trackCTAClicks: {{ if .Site.Params.analytics.trackCTAClicks }}true{{ else }}false{{ end }},
+            trackFormSubmissions: {{ if .Site.Params.analytics.trackFormSubmissions }}true{{ else }}false{{ end }},
+            trackScrollDepth: {{ if .Site.Params.analytics.trackScrollDepth }}true{{ else }}false{{ end }},
+            trackFAQInteractions: {{ if .Site.Params.analytics.trackFAQInteractions }}true{{ else }}false{{ end }},
+            trackExternalLinks: {{ if .Site.Params.analytics.trackExternalLinks }}true{{ else }}false{{ end }}
         };
     </script>
     <script src="{{ "js/analytics.js" | relURL }}"></script>

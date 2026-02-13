@@ -79,9 +79,10 @@
                 form.style.display = 'none';
                 successDiv.classList.remove('hidden');
                 // Delay URL cleanup to ensure analytics has time to track the event
+                // 1 second should be sufficient for the gtag event to be queued
                 setTimeout(function() {
                     window.history.replaceState({}, document.title, window.location.pathname);
-                }, 2000);
+                }, 1000);
             }
         }
     })();

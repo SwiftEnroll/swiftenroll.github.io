@@ -118,6 +118,10 @@ By default, analytics tracking is enabled in hugo.toml. To test analytics locall
      enable = true
      trackCTAClicks = true
      trackFormSubmissions = true
+     # Optional: Enable additional tracking
+     trackScrollDepth = true
+     trackFAQInteractions = true
+     trackExternalLinks = true
 
 2) Start the dev server:
    npm run start
@@ -136,6 +140,9 @@ Analytics only loads Google Analytics in production builds (controlled by hugo.I
      enable = true
      trackCTAClicks = true
      trackFormSubmissions = true
+     trackScrollDepth = true
+     trackFAQInteractions = true
+     trackExternalLinks = true
 
 3) Build and deploy:
    npm run build
@@ -149,12 +156,20 @@ To completely disable analytics tracking, set enable to false in hugo.toml:
 You can also selectively disable specific tracking types:
 - Set trackCTAClicks = false to disable CTA tracking
 - Set trackFormSubmissions = false to disable form tracking
+- Set trackScrollDepth = false to disable scroll depth tracking
+- Set trackFAQInteractions = false to disable FAQ interaction tracking
+- Set trackExternalLinks = false to disable external link tracking
 
 Tracked events
 The following events are tracked when enabled:
 - cta_click: When users click on CTA buttons (header, global CTA, pricing CTAs)
 - form_submit: When users submit the contact form
 - form_submit_success: When the form submission succeeds
+- scroll_depth: When users scroll to 25%, 50%, 75%, and 90% of the page
+- faq_interaction: When users expand FAQ items
+- outbound_click: When users click external links
+- contact_click: When users click mailto: or tel: links
+- social_click: When users click known social media links
 
 All events are sent to Google Analytics with relevant metadata (location, text, URL, etc.) for analysis.
 

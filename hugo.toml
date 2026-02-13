@@ -47,6 +47,9 @@ enableGitInfo = true
     enable = true  # Set to false to disable all analytics tracking
     trackCTAClicks = true  # Track CTA button clicks
     trackFormSubmissions = true  # Track form submissions
+    trackScrollDepth = true       # Track how far users scroll on pages
+    trackFAQInteractions = true   # Track interactions with FAQ components
+    trackExternalLinks = true     # Track clicks on outbound/external links
   
   # Company (About) Page Content
   [params.company]
