@@ -28,6 +28,20 @@ enableGitInfo = true
   # Google Analytics ID (GA4)
   googleAnalytics = "G-LBWHMP8FYR"
   
+  # Form Configuration
+  [params.forms]
+    # Cloudflare Turnstile site key for anti-spam protection
+    turnstileSiteKey = "0x4AAAAAAB--JQpodZqe67sc"
+    
+    # Honeypot field name (hidden field to catch bots)
+    honeypotFieldName = "_gotcha"
+    
+    # Form endpoints - use environment variable overrides for local dev
+    # Set HUGO_PARAMS_FORMS_CONTACTENDPOINT="" in local .env to disable real submissions
+    contactEndpoint = "https://submit-form.com/9cR1q3cWi"
+    demoEndpoint = "https://submit-form.com/InyGZDbvs"
+    subscribeEndpoint = "https://submit-form.com/subscribe"
+  
   # Company (About) Page Content
   [params.company]
     [params.company.hero]
