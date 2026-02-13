@@ -7,6 +7,12 @@ enableEmoji = true
 # Enable Git info for lastmod
 enableGitInfo = true
 
+# Sitemap configuration
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
 [caches]
     [caches.images]
         dir = ":cacheDir/images"
@@ -16,6 +22,10 @@ enableGitInfo = true
   description = "SwiftEnroll simplifies enrollment, waitlists, approvals, and payments for camps, after-school programs, and youth organizations."
   author = "SwiftEnroll"
   logo = "/images/logo.png"
+  # Default social preview image for OpenGraph and Twitter cards
+  image = "/images/hero-image.png"
+  # Twitter handle (without @)
+  twitter = "SwiftEnroll"
   # Google Analytics ID (GA4)
   googleAnalytics = "G-LBWHMP8FYR"
   
