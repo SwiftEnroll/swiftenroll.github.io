@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Tag Manager -->
+    {{ partial "analytics/google-tag-manager" . }}
+
+    <!-- Google Analytics -->
+    {{ partial "analytics/google-analytics" . }}
+    
+    <!-- Title -->
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    <meta name="author" content="{{ .Site.Params.author | default .Site.Title }}">
+    <meta name="robots" content="{{ with .Params.robots }}{{ . }}{{ else }}index, follow{{ end }}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+    <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    {{ with .Params.image }}
+    <meta property="og:image" content="{{ . | absURL }}">
+    {{ else }}
+    {{ with .Site.Params.image }}
+    <meta property="og:image" content="{{ . | absURL }}">
+    {{ end }}
+    {{ end }}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+    <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    {{ with .Site.Params.twitter }}
+    <meta name="twitter:site" content="@{{ . }}">
+    {{ end }}
+    {{ with .Params.image }}
+    <meta name="twitter:image" content="{{ . | absURL }}">
+    {{ else }}
+    {{ with .Site.Params.image }}
+    <meta property="twitter:image" content="{{ . | absURL }}">
+    {{ end }}
+    {{ end }}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ "images/favicon.ico" | relURL }}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ .Permalink }}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+
+    <!-- Custom Head Content -->
+    {{ partial "layout/custom-head" . }}
+</head>
+<body class="min-h-screen flex flex-col justify-start w-full bg-white">
+    <!-- Google Tag Manager (noscript) -->
+    {{ if and hugo.IsProduction .Site.Params.googleTagManager }}
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ .Site.Params.googleTagManager }}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    {{ end }}
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Minimal Landing Page Layout - Distraction Free -->
+    <div class="min-h-screen flex flex-col">
+        <!-- Minimal Header - Logo only, no navigation -->
+        <div class="bg-white border-b border-gray-100 py-4">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                <div class="flex justify-center">
+                    <a href="{{ "/" | relURL }}" class="flex items-center space-x-4">
+                        {{ with .Site.Params.logo }}
+                            {{ partial "components/optimized-image.html" (dict 
+                                "src" . 
+                                "alt" $.Site.Title 
+                                "class" "h-10"
+                                "loading" "eager"
+                            ) }}
+                        {{ else }}
+                            <span class="text-2xl font-bold text-gray-900">{{ .Site.Title }}</span>
+                        {{ end }}
+                        {{ if .Site.Title }}
+                            <span class="text-2xl font-semibold text-gray-800">{{ .Site.Title }}</span>
+                        {{ end }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            {{ .Content }}
+        </div>
+
+        <!-- Minimal Footer -->
+        <footer class="bg-gray-50 py-6 border-t border-gray-200">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                <div class="flex flex-col items-center space-y-2 text-center">
+                    <p class="text-gray-600 text-sm">
+                        © {{ now.Format "2006" }} {{ .Site.Title }}. All rights reserved.
+                    </p>
+                    <div class="flex space-x-4 text-sm text-gray-500">
+                        <a href="/privacy/" class="hover:text-primary-600">Privacy</a>
+                        <span>•</span>
+                        <a href="/contact/" class="hover:text-primary-600">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
