@@ -19,11 +19,13 @@ The following events are automatically tracked by `static/js/analytics.js`.
 
 | Event Name | Trigger | GA4 Conversion? |
 | :--- | :--- | :--- |
-| `demo_request_submit` | *Reserved* - Currently maps to `contact_submit` as most flows share the same form. | Yes |
+| `demo_request_submit` | Successful submission of the inline demo request form. | Yes |
 | `contact_submit` | Successful submission of the contact form (on `/contact/`). | Yes |
-| `pricing_request` | Clicks on "Book a Demo", "Contact Sales", or "Talk to Us" buttons (Pricing page & Global CTA). | Yes |
-| `email_click` | Click on any `mailto:` link. | Yes |
-| `phone_click` | Click on any `tel:` link. | Yes |
+| `cta_primary_click` | Click on primary CTA buttons (e.g. "Get Started"). | Yes |
+| `cta_secondary_click` | Click on secondary CTA buttons (e.g. "Learn More"). | No |
+| `pricing_request` | Clicks on specific pricing page CTAs. | Yes |
+| `email_click` | Click on any `mailto:` link (PII masked). | Yes |
+| `phone_click` | Click on any `tel:` link (PII masked). | Yes |
 
 ### High-Intent Micro-Events
 

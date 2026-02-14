@@ -20,7 +20,7 @@
 
   <form id="demo-inline-form" class="mt-2 grid grid-cols-1 md:grid-cols-5 gap-3 items-center" {{ if $formEndpoint }}action="{{ $formEndpoint }}"{{ end }} method="POST">
     {{ if $formEndpoint }}
-    <input type="hidden" name="_redirect" id="demo_inline_redirect" value="{{ .Permalink }}?submitted=1" />
+    <input type="hidden" name="_redirect" id="demo_inline_redirect" value="{{ .Permalink }}?submitted=true" />
     {{ end }}
     <!-- Honeypot field for spam prevention (hidden from users) -->
     <input type="text" name="{{ $honeypotField }}" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -44,10 +44,10 @@
       var success = document.getElementById('demo-inline-success');
       if (!form) return;
 
-      // After native Formspark redirect back with ?submitted=1, show success and hide the form
+      // After native Formspark redirect back with ?submitted=true, show success and hide the form
       try {
         var params = new URLSearchParams(window.location.search);
-        if (params.get('submitted') === '1' && success) {
+        if (params.get('submitted') === 'true' && success) {
           form.classList.add('hidden');
           success.classList.remove('hidden');
         }

@@ -15,6 +15,7 @@
   const DEBUG = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
   const ENGAGED_SESSION_TIME = 120000; // 2 minutes
   const ENGAGED_SESSION_PAGES = 3;
+  const REPEAT_VISIT_THRESHOLD = 30 * 60 * 1000; // 30 minutes
 
   // --- Utilities ---
   
@@ -53,6 +54,9 @@
       try {
           return JSON.parse(sessionStorage.getItem('swiftenroll_utm')) || {};
       } catch (e) {
+          if (DEBUG) {
+              console.error('[Analytics] Failed to retrieve or parse stored UTM data', e);
+          }
           return {};
       }
   }
@@ -64,11 +68,11 @@
       let pageEvent = 'page_other';
 
       if (path === '/' || path === '/index.html') pageEvent = 'page_home';
-      else if (path.includes('/pricing')) pageEvent = 'page_pricing';
-      else if (path.includes('/features')) pageEvent = 'page_features';
-      else if (path.includes('/company')) pageEvent = 'page_about';
-      else if (path.includes('/contact')) pageEvent = 'page_contact';
-      else if (path.includes('/industries')) pageEvent = 'page_industry';
+      else if (path.startsWith('/pricing')) pageEvent = 'page_pricing';
+      else if (path.startsWith('/features')) pageEvent = 'page_features';
+      else if (path.startsWith('/company')) pageEvent = 'page_about';
+      else if (path.startsWith('/contact')) pageEvent = 'page_contact';
+      else if (path.startsWith('/industries')) pageEvent = 'page_industry';
 
       trackEvent(pageEvent, {
           ...getStoredUTMs(),
@@ -109,10 +113,8 @@
 
       if (lastVisit) {
           const diff = now - parseInt(lastVisit);
-          // If visited before (but not just refreshed in same session, assume session gap > 30 mins logic handled by GA4 sessions usually, but here we explicitly look for return window if desired. 
-          // Requirement: "User returns within 30 days." implies they visited before, and it is now less than 30 days since then.
-          // We'll treat any visit where last_visit exists and is < 30 days ago as a repeat.
-          if (diff < thirtyDays && diff > 1000 * 60 * 30) { // at least 30 mins to count as new "visit" logic roughly
+          // Track as repeat visit if user returns after 30 minutes but within 30 days
+          if (diff < thirtyDays && diff > REPEAT_VISIT_THRESHOLD) {
                if (!sessionStorage.getItem('repeat_visit_fired')) {
                    trackEvent('repeat_visit_30d');
                    sessionStorage.setItem('repeat_visit_fired', 'true');
@@ -136,16 +138,18 @@
 
           // Email Click
           if (href.startsWith('mailto:')) {
-              trackEvent('email_click', { address: href.replace('mailto:', '') });
+              // Do not send raw email address (PII) to analytics
+              trackEvent('email_click', { method: 'mailto' });
           }
 
           // Phone Click
-          if (href.startsWith('tel:')) {
-              trackEvent('phone_click', { number: href.replace('tel:', '') });
+          else if (href.startsWith('tel:')) {
+              // Do not send raw phone number (PII) to analytics
+              trackEvent('phone_click', { method: 'tel' });
           }
 
           // Explicit Analytics Events (Pricing, FAQ, etc)
-          if (analyticsEvent) {
+          else if (analyticsEvent) {
               trackEvent(analyticsEvent, {
                   category: analyticsCategory,
                   text: target.innerText.trim(),
@@ -156,56 +160,48 @@
   }
 
   // --- Form Tracking ---
-  // Note: Actual form submission tracking depends on how the form works. 
-  // We will assume the "success" message div becoming visible indicates success 
-  // OR we interpret a query param if the form redirects (common for static sites).
 
   function checkFormSubmission() {
-      // 1. Check for URL params indicating success (common pattern for form providers)
+      // 1. Check for URL params indicating success
       const params = new URLSearchParams(window.location.search);
-      if (params.get('submitted') === 'true') {
-          // Identify which form based on page context
+      // Both "true" and "1" are accepted to support legacy/demo forms if needed
+      if (params.get('submitted') === 'true' || params.get('submitted') === '1') {
           const path = window.location.pathname;
-          if (path.includes('/contact')) {
-             // Differentiate Demo vs Contact?
-             // Usually "/contact" is generic contact. If there is a "Book Demo" page it might differ.
-             // Requirement says: "Book a Demo" buttons usually go to contact.
-             // We can check referrer or session intent if needed, but simple path check is safest.
-             // If the user came from a "Book Demo" CTA, maybe we can flag it? 
-             // For now, let's treat /contact/ submission as 'contact_submit' unless we can prove it's a demo.
-             // However, the AC says "demo_request_submit: Fire on successful demo booking".
-             // If we don't have a separate demo page, we might look for hidden fields or just assume /contact is contact.
-             // Let's stick to the requested names.
-             
-             // If the form has a hidden field for 'type' or we rely on the specific form endpoint used.
-             // Since we can't easily see POST data on static site success redirect, we might have to rely on where they are.
-             // If the CTA clicked previously was "Book Demo", we could store that intent.
-             
-             // For simplicity/robustness:
-             // If on /contact/, fire contact_submit.
+          
+          // Identify form based on path
+          if (path.startsWith('/contact')) {
              trackEvent('contact_submit');
+          } else {
+             // Fallback or other pages
+             trackEvent('form_submit_generic', { path: path });
           }
       }
 
-      // 2. Watch for DOM changes (AJAX forms)
+      // 2. Watch for DOM changes (Success Messages)
+      // This handles cases where form submission is handled via JS or redirects to same page with anchor/class change
       const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
               if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
                   const target = mutation.target;
-                  // Look for success message visibility
-                  if (target.id === 'contact-form-success' && !target.classList.contains('hidden')) {
-                       // Determine event type
-                       // If we can identify it's a demo request form vs contact form
-                       // The current site only seems to have one main contact form on /contact/
+                  if (target.classList.contains('hidden')) return; // Ignore if hiding
+
+                  if (target.id === 'contact-form-success') {
                        trackEvent('contact_submit');
+                  } else if (target.id === 'demo-inline-success') {
+                       trackEvent('demo_request_submit');
                   }
               }
           });
       });
 
-      const successDiv = document.getElementById('contact-form-success');
-      if (successDiv) {
-          observer.observe(successDiv, { attributes: true });
+      const contactSuccess = document.getElementById('contact-form-success');
+      if (contactSuccess) {
+          observer.observe(contactSuccess, { attributes: true });
+      }
+
+      const demoSuccess = document.getElementById('demo-inline-success');
+      if (demoSuccess) {
+          observer.observe(demoSuccess, { attributes: true });
       }
   }
 
