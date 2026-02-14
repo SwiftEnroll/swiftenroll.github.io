@@ -43,7 +43,7 @@
     <meta name="twitter:image" content="{{ . | absURL }}">
     {{ else }}
     {{ with .Site.Params.image }}
-    <meta property="twitter:image" content="{{ . | absURL }}">
+    <meta name="twitter:image" content="{{ . | absURL }}">
     {{ end }}
     {{ end }}
 
