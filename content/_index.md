@@ -1,5 +1,5 @@
 ---
-title: SwiftEnroll | Enrollment Lottery & Waitlist Software for Schools
+title: SwiftEnroll | Enrollment & Waitlist Software for Schools
 client_logos:
   - name: "Lawrence Special Activities"
     logo: "/images/logos/lsa.png"
@@ -34,7 +34,7 @@ testimonials:
 
 {{< hero 
     headline="Fair,<br/>Simple,<br/>Automated<br/>Enrollment."
-    sub_headline="Our automated lottery system removes the stress from enrollment season for families and administrators alike."
+    sub_headline="Our automated enrollment platform removes the stress from registration season for families and administrators alike."
     hero_image="/images/hero-image.png"
 >}}
 
@@ -43,12 +43,12 @@ testimonials:
 {{< features-section title="Everything you need to run enrollment" description="Open registration, manage rosters and waitlists, automate approvals and reminders, and collect payments in one place." >}}
 
 {{< feature
-    title="Automated lottery based enrollment"
-    description="Lottery-based enrollment, transparent waitlists, and automated approvals and notifications."
+    title="Fair & Automated Enrollment"
+    description="Fair placement, transparent waitlists, and automated approvals and notifications."
     image="/images/happy-parent.png"
     buttonText="Learn More"
-    buttonLink="/features/#waitlists-and-lottery"
-    features="Lottery Algorithm,Waitlist management,Auto-approvals,Customer notifications"
+    buttonLink="/features/#waitlists-and-placement"
+    features="Fair Placement Algorithms,Waitlist management,Auto-approvals,Customer notifications"
     imagePosition="right"
 />}}
 

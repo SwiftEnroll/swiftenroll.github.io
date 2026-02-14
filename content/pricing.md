@@ -15,7 +15,7 @@ layout: "pricing"
       "description": "Discounted pricing for 501(c)(3) and public institutions.",
       "features": [
         "Unlimited programs & enrollments",
-        "Waitlists & lottery",
+        "Waitlists & placement",
         "Approvals & notifications",
         "Stripe payments (standard processing fees)",
         "Basic reporting & exports",
