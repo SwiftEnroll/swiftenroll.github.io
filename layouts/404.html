@@ -1,0 +1,30 @@
+{{ define "main" }}
+<section class="relative overflow-hidden min-h-[70vh] flex items-center justify-center">
+    <div class="container">
+        <div class="max-w-2xl mx-auto text-center space-y-8 py-16">
+            <!-- 404 Heading -->
+            <div class="space-y-4">
+                <h1 class="text-6xl md:text-8xl font-bold text-primary-600">404</h1>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Oops! This page went on vacation</h2>
+                <p class="text-xl text-gray-600">
+                    Looks like this page didn't make it through enrollment. But hey, while you're here...
+                </p>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 pt-8">
+                <a href="{{ (site.GetPage "features").RelPermalink }}" class="btn-primary text-center">
+                    See how SwiftEnroll works
+                </a>
+                <a href="{{ site.Home.RelPermalink }}" class="btn-outline text-center">
+                    Go to Homepage
+                </a>
+            </div>
+
+            <!-- Optional decorative elements -->
+            <div class="absolute -top-20 -left-20 w-64 h-64 bg-primary-100 rounded-full filter blur-3xl opacity-30 pointer-events-none" aria-hidden="true"></div>
+            <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-secondary-100 rounded-full filter blur-3xl opacity-30 pointer-events-none" aria-hidden="true"></div>
+        </div>
+    </div>
+</section>
+{{ end }}
