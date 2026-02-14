@@ -63,6 +63,8 @@ jobs:
           args: >
             --verbose
             --no-progress
+            --exclude 'https://linkedin.com'
             --root-dir '${{ github.workspace }}/public'
+            --remap 'https://swiftenroll.github.io file://${{ github.workspace }}/public'
             './public/**/*.html'
           fail: true
