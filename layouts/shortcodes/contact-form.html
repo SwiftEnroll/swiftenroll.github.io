@@ -28,7 +28,7 @@
 
     <form id="contact-form" class="space-y-5" {{ if $formEndpoint }}action="{{ $formEndpoint }}"{{ end }} method="POST">
         {{ if $formEndpoint }}
-        <input type="hidden" name="_redirect" value="{{ .Permalink }}?submitted=true" />
+        <input type="hidden" name="_redirect" value="{{ .Page.Permalink }}?submitted=true" />
         {{ end }}
         <!-- Honeypot field for spam prevention (hidden from users) -->
         <input type="text" name="{{ $honeypotField }}" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true" />
