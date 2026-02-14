@@ -26,7 +26,7 @@ enableGitInfo = true
   # Twitter handle (without @)
   twitter = "SwiftEnroll"
   # Google Analytics ID (GA4)
-  googleAnalytics = "G-LBWHMP8FYR"
+  googleAnalytics = "G-412XPZYPQM"
   
   # Form Configuration
   [params.forms]
