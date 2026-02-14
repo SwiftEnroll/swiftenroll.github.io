@@ -25,11 +25,11 @@ testimonials:
   - name: "Miki Patel"
     title: "Parent, Lawrence Special Activities"
     avatar: "/images/testimonials/miki-patel.svg"
-    quote: "It was easy to see what programs were available and compare options side-by-side. The lottery system gave my kids a fair shot at getting into popular programs."
+    quote: "It was easy to see what programs were available. The lottery system gave my kids a fair shot at getting into popular programs."
   - name: "Thespina Chen"
     title: "Parent, Willard Middle School"
     avatar: "/images/testimonials/thespina-chen.svg"
-    quote: "It was much easier than last year's process! Registration took me less than 5 minutes, and I received instant confirmation emails for each step."
+    quote: "It was much easier than last year's process! Registration took me less than 5 minutes and the confirmation was immediate."
 ---
 
 {{< hero 
