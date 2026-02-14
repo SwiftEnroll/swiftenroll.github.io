@@ -1,5 +1,5 @@
 ---
-title: Home
+title: SwiftEnroll | Enrollment Lottery & Waitlist Software for Schools
 client_logos:
   - name: "Lawrence Special Activities"
     logo: "/images/logos/lsa.png"

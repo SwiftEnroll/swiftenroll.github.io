@@ -50,3 +50,7 @@ resources/
 
 # Lighthouse CI
 .lighthouseci/
+
+# Hugo binary
+hugo
+*.tar.gz

@@ -1,4 +1,5 @@
 ---
+title: "After-School Programs Registration Software | SwiftEnroll"
 layout: "industry"
 hero:
     headline: "After-School Clubs and Enrichment Programs"

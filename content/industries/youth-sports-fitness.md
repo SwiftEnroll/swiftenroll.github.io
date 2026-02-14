@@ -1,4 +1,5 @@
 ---
+title: "Youth Sports & Fitness Registration Software | SwiftEnroll"
 layout: "industry"
 hero:
     headline: "Youth Sports & Fitness Programs"

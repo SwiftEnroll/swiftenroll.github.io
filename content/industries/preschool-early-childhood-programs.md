@@ -1,4 +1,5 @@
 ---
+title: "Preschool & Early Childhood Registration Software | SwiftEnroll"
 layout: "industry"
 hero:
     headline: "Preschools & Early Childhood Programs"
