@@ -26,7 +26,7 @@
         <p>We'll reply as soon as possible.</p>
     </div>
 
-    <form id="contact-form" class="space-y-5" {{ if $formEndpoint }}action="{{ $formEndpoint }}"{{ end }} method="POST">
+    <form id="contact-form" class="space-y-5" {{ if $formEndpoint }}action="{{ $formEndpoint }}"{{ end }} method="POST" data-analytics-category="form" data-analytics-event="contact_submit">
         <!-- Honeypot field for spam prevention (hidden from users) -->
         <input type="text" name="{{ $honeypotField }}" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true" />
         

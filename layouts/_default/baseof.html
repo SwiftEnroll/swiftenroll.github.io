@@ -102,6 +102,11 @@
     <script src="{{ "js/language-preference.js" | relURL }}"></script>
     {{ end }}
 
+    <!-- Analytics Script (High-intent tracking) -->
+    {{ if and hugo.IsProduction .Site.Params.enableAnalytics }}
+    <script src="{{ "js/analytics.js" | relURL }}" defer></script>
+    {{ end }}
+
     <!-- Mobile Menu Script -->
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');

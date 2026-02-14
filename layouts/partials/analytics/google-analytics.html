@@ -1,4 +1,4 @@
-{{ if and hugo.IsProduction .Site.Params.googleAnalytics }}
+{{ if and hugo.IsProduction .Site.Params.enableAnalytics .Site.Params.googleAnalytics }}
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics }}"></script>
 <script>

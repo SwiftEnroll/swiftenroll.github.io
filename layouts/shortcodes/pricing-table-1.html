@@ -42,7 +42,10 @@
                                 {{ end }}
                             </ul>
                             <div class="mt-8">
-                                <a href="{{ .button.url }}" class="btn btn-primary w-full">
+                                <a href="{{ .button.url }}" 
+                                   class="btn btn-primary w-full"
+                                   data-analytics-category="pricing"
+                                   data-analytics-event="pricing_request">
                                     {{ .button.text }}
                                 </a>
                             </div>

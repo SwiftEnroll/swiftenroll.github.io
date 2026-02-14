@@ -12,6 +12,8 @@
             {{ range $data.questions }}
             <div class="border rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
                 <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors duration-200 focus:outline-none" 
+                        data-analytics-category="faq"
+                        data-analytics-event="faq_expand"
                         onclick="this.parentElement.querySelector('.faq-content').classList.toggle('hidden');
                                  this.querySelector('svg').classList.toggle('rotate-180')">
                     <span class="text-lg font-medium text-gray-900">{{ .question }}</span>

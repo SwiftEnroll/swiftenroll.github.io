@@ -28,6 +28,9 @@ enableGitInfo = true
   # Google Analytics ID (GA4)
   googleAnalytics = "G-LBWHMP8FYR"
   
+  # Enable Analytics (false by default for privacy/dev)
+  enableAnalytics = false
+  
   # Form Configuration
   [params.forms]
     # Cloudflare Turnstile site key for anti-spam protection
