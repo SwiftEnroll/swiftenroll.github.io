@@ -1,0 +1,32 @@
+{{/*
+Company Story section from config.
+Reads from .Site.Params.company.story with fields:
+- title (string) - section title
+- content (string) - the narrative story text
+- image (string) - optional image path for the story section
+- image_alt (string) - optional alt text for the image
+Usage: {{< company-story >}}
+*/}}
+{{ $story := .Site.Params.company.story }}
+{{ if $story }}
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">{{ $story.title | default "Our Story" }}</h2>
+    <div class="grid grid-cols-1 {{ if $story.image }}md:grid-cols-2{{ end }} gap-12 items-center">
+      <div class="prose prose-lg max-w-none">
+        {{ $story.content | markdownify }}
+      </div>
+      {{ if $story.image }}
+      <div class="rounded-lg overflow-hidden shadow-lg">
+        {{ partial "components/optimized-image.html" (dict 
+            "src" $story.image 
+            "alt" ($story.image_alt | default "Our team") 
+            "class" "w-full h-full object-cover"
+            "loading" "lazy"
+        ) }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

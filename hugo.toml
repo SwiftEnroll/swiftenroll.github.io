@@ -49,6 +49,24 @@ enableGitInfo = true
       subtitle = "We help camps, after‑school programs, and youth organizations run enrollment, waitlists, and payments - simply."
       mission_title = "Our mission"
       mission_text = "SwiftEnroll removes enrollment headaches with fast, transparent sign-ups and reliable waitlists, approvals, rosters, and payments - together in one platform."
+    # Our Story section
+    [params.company.story]
+      title = "Our Story"
+      content = """
+**Founded by parents who've been there.**
+
+Like many parents, our founder spent too many hours juggling enrollment forms, waiting for email confirmations, and wondering if their child would get off the waitlist. When his family faced the chaos of camp registration season—hitting 'refresh' on websites, calling during office hours only to reach voicemail, and navigating confusing payment processes—he knew there had to be a better way.
+
+**We actually answer the phone.**
+
+SwiftEnroll was born from real frustration with real enrollment systems. We're a small team, but that's our strength. When you call us, you talk to real people who understand your challenges because we've lived them. We're not a faceless corporation—we're parents, program directors, and tech builders who care deeply about making enrollment work for everyone.
+
+**Built for people, not just processes.**
+
+Every feature we build starts with a simple question: "Would this make life easier for a busy parent or a stressed program director?" We believe enrollment should be transparent, fair, and stress-free. That's why we created clear waitlist systems, honest lottery processes, and straightforward payment options—all designed to build trust between programs and the families they serve.
+"""
+      image = "/images/company/headshot.png"
+      image_alt = "Joe Cronyn, Founder of SwiftEnroll"
     team_title = "Leadership"
     values_title = "What we stand for"
     # Team members (finalized)

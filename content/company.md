@@ -6,6 +6,8 @@ description: "Learn about our mission, leadership team, and the investors backin
 
 {{< company-hero >}}
 
+{{< company-story >}}
+
 {{< company-leadership >}}
 
 {{< company-values >}}
