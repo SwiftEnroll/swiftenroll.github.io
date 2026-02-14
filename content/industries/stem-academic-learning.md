@@ -21,7 +21,7 @@ Running coding clubs, robotics teams, and tutoring sessions shouldn't require en
 
 ## How SwiftEnroll Helps
 
-SwiftEnroll is **enrichment enrollment system** software built for academically-focused programs.
+SwiftEnroll is **enrichment enrollment software** built for academically-focused programs.
 
 * **Prerequisite enforcement** — set grade-level requirements, prior course completion, or assessment scores
 * **Multi-session sequences** — configure learning pathways where completion of Module 1 unlocks Module 2
