@@ -162,6 +162,8 @@
   // --- Form Tracking ---
 
   function checkFormSubmission() {
+      let submissionTracked = false;
+
       // 1. Check for URL params indicating success
       const params = new URLSearchParams(window.location.search);
       // Both "true" and "1" are accepted to support legacy/demo forms if needed
@@ -171,14 +173,19 @@
           // Identify form based on path
           if (path.startsWith('/contact')) {
              trackEvent('contact_submit');
+             submissionTracked = true;
           } else {
-             // Fallback or other pages
-             trackEvent('form_submit_generic', { path: path });
+             // If not on contact page, assume it's the demo form (e.g. on industry pages)
+             trackEvent('demo_request_submit');
+             submissionTracked = true;
           }
       }
 
       // 2. Watch for DOM changes (Success Messages)
       // This handles cases where form submission is handled via JS or redirects to same page with anchor/class change
+      // We skip this if we already detected a submission via URL to prevent double-counting
+      if (submissionTracked) return;
+
       const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
               if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
