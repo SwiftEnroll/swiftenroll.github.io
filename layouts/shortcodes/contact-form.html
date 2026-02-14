@@ -69,4 +69,20 @@
             Send Message
         </button>
     </form>
+
+    <script>
+        (function() {
+            const form = document.getElementById('contact-form');
+            const success = document.getElementById('contact-form-success');
+            
+            if (form && success) {
+                const params = new URLSearchParams(window.location.search);
+                if (params.get('submitted') === 'true') {
+                    form.classList.add('hidden');
+                    success.classList.remove('hidden');
+                    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        })();
+    </script>
 </div>
