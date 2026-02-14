@@ -4,6 +4,7 @@
   "@type" "SoftwareApplication"
   "name" .Site.Title
   "url" .Site.BaseURL
+  "image" (absURL .Site.Params.image)
   "description" .Site.Params.description
   "applicationCategory" "BusinessApplication"
   "operatingSystem" "Web"
@@ -16,6 +17,7 @@
     "@type" "Organization"
     "name" .Site.Title
     "url" .Site.BaseURL
+    "logo" (absURL .Site.Params.logo)
   )
 -}}
 <script type="application/ld+json">
