@@ -1,3 +1,29 @@
+<!-- JSON-LD Schema Markup for SoftwareApplication -->
+{{- $schema := dict 
+  "@context" "https://schema.org"
+  "@type" "SoftwareApplication"
+  "name" .Site.Title
+  "url" .Site.BaseURL
+  "image" (absURL .Site.Params.image)
+  "description" .Site.Params.description
+  "applicationCategory" "BusinessApplication"
+  "operatingSystem" "Web"
+  "offers" (dict 
+    "@type" "Offer"
+    "price" "0"
+    "priceCurrency" "USD"
+  )
+  "provider" (dict
+    "@type" "Organization"
+    "name" .Site.Title
+    "url" .Site.BaseURL
+    "logo" (absURL .Site.Params.logo)
+  )
+-}}
+<script type="application/ld+json">
+{{- $schema | jsonify | safeJS -}}
+</script>
+
 <style>
 /* Ensure the site title in the header uses brand font and color when logo + text are shown */
 header a span {
