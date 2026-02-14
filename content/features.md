@@ -4,13 +4,13 @@ description: "Everything you need to run enrollment.<br/>Waitlists and approvals
 layout: "feature"
 ---
 
-{{< features-section title="Enrollment experience" description="Parent friendly lottery with the controls programs need." columns="2" >}}
+{{< features-section title="Enrollment experience" description="Parent-friendly registration with the controls programs need." columns="2" >}}
 
 {{< feature
     icon="zap"
     title="Fast, parent‑friendly enrollment"
     description="Delight families with a fully-featured registration flow."
-    features="Ranked-choice lottery preferences, Multi-student & household enrollment,Apple & Google Calendar Syncing"
+    features="Ranked-choice placement preferences, Multi-student & household enrollment,Apple & Google Calendar Syncing"
 />}}
 
 {{< feature
@@ -22,13 +22,13 @@ layout: "feature"
 
 {{< /features-section >}}
 
-{{< features-section title="Waitlists & lottery" description="Lottery algorithm with automated approvals and waitlist management." columns="2" id="waitlists-and-lottery" >}}
+{{< features-section title="Fair Enrollment & Waitlists" description="Flexible placement algorithms with automated approvals and waitlist management." columns="2" id="waitlists-and-placement" >}}
 
 {{< feature
     icon="clock"
-    title="Waitlists & lottery"
-    description="Lottery based enrollment with automated waitlist."
-    features="Fair lottery algorithm with ranked choices,Automated waitlist approvals,Status notifications and communications"
+    title="Fair placement & waitlists"
+    description="Automated enrollment with transparent waitlists."
+    features="Fair placement algorithm with ranked choices,Automated waitlist approvals,Status notifications and communications"
 />}}
 
 {{< feature

@@ -16,7 +16,7 @@ client_logos:
     logo: "/images/logos/willard.png"
 industry_features:
   headlines:
-    - "Fair, Transparent Lottery Enrollment"
+    - "Fair, Transparent Registration"
     - "Built‑in Stripe Payments"
     - "Admin Tools & Reporting"
 ---

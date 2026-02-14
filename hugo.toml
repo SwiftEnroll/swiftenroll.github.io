@@ -63,7 +63,7 @@ SwiftEnroll was born from real frustration with real enrollment systems. We're a
 
 **Built for people, not just processes.**
 
-Every feature we build starts with a simple question: "Would this make life easier for a busy parent or a stressed program director?" We believe enrollment should be transparent, fair, and stress-free. That's why we created clear waitlist systems, honest lottery processes, and straightforward payment options - all designed to build trust between programs and the families they serve.
+Every feature we build starts with a simple question: "Would this make life easier for a busy parent or a stressed program director?" We believe enrollment should be transparent, fair, and stress-free. That's why we created clear waitlist systems, fair placement processes, and straightforward payment options - all designed to build trust between programs and the families they serve.
 """
     team_title = "Leadership"
     values_title = "What we stand for"
@@ -250,8 +250,8 @@ Every feature we build starts with a simple question: "Would this make life easi
 
   # Footer Column 2 Menu - By Feature
   [[menu.footer_column_2]]
-    name = "Waitlists & Lottery"
-    url = "/features#waitlists-and-lottery"
+    name = "Waitlists & Placement"
+    url = "/features#waitlists-and-placement"
     weight = 1
   [[menu.footer_column_2]]
     name = "Payment Processing"
