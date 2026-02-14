@@ -1,24 +1,25 @@
 <!-- JSON-LD Schema Markup for SoftwareApplication -->
+{{- $schema := dict 
+  "@context" "https://schema.org"
+  "@type" "SoftwareApplication"
+  "name" .Site.Title
+  "url" .Site.BaseURL
+  "description" .Site.Params.description
+  "applicationCategory" "BusinessApplication"
+  "operatingSystem" "Web"
+  "offers" (dict 
+    "@type" "Offer"
+    "price" "0"
+    "priceCurrency" "USD"
+  )
+  "provider" (dict
+    "@type" "Organization"
+    "name" .Site.Title
+    "url" .Site.BaseURL
+  )
+-}}
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "{{ .Site.Title }}",
-  "url": "{{ .Site.BaseURL }}",
-  "description": "{{ .Site.Params.description }}",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "{{ .Site.Title }}",
-    "url": "{{ .Site.BaseURL }}"
-  }
-}
+{{- $schema | jsonify | safeJS -}}
 </script>
 
 <style>
