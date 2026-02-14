@@ -1,4 +1,5 @@
 ---
+title: "Music, Art & Performance Programs Registration Software | SwiftEnroll"
 layout: "industry"
 hero:
     headline: "Music, Art & Performance Programs"

@@ -1,5 +1,5 @@
 ---
-title: "Pricing"
+title: "Pricing | SwiftEnroll"
 description: "Clear, flexible pricing for programs of all sizes"
 layout: "pricing"
 ---

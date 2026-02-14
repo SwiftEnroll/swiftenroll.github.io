@@ -1,4 +1,5 @@
 ---
+title: "Summer Camps Registration Software | SwiftEnroll"
 layout: "industry"
 hero:
     headline: "Summer & School Break Camps"

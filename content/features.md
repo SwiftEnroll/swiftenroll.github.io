@@ -1,5 +1,5 @@
 ---
-title: "Features"
+title: "Features | SwiftEnroll"
 description: "Everything you need to run enrollment.<br/>Waitlists and approvals, payments, and admin reporting built for programs and schools."
 layout: "feature"
 ---

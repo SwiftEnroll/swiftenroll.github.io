@@ -1,4 +1,5 @@
 ---
+title: "STEM & Academic Programs Registration Software | SwiftEnroll"
 layout: "industry"
 hero:
     headline: "STEM & Academic Learning Programs"
