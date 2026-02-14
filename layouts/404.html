@@ -13,17 +13,17 @@
 
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row justify-center gap-4 pt-8">
-                <a href="/features/" class="btn-primary text-center">
+                <a href="{{ "/features/" | relURL }}" class="btn-primary text-center">
                     See how SwiftEnroll works
                 </a>
-                <a href="/" class="btn-outline text-center">
+                <a href="{{ "/" | relURL }}" class="btn-outline text-center">
                     Go to Homepage
                 </a>
             </div>
 
             <!-- Optional decorative elements -->
-            <div class="absolute -top-20 -left-20 w-64 h-64 bg-primary-100 rounded-full filter blur-3xl opacity-30 pointer-events-none"></div>
-            <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-secondary-100 rounded-full filter blur-3xl opacity-30 pointer-events-none"></div>
+            <div class="absolute -top-20 -left-20 w-64 h-64 bg-primary-100 rounded-full filter blur-3xl opacity-30 pointer-events-none" aria-hidden="true"></div>
+            <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-secondary-100 rounded-full filter blur-3xl opacity-30 pointer-events-none" aria-hidden="true"></div>
         </div>
     </div>
 </section>
