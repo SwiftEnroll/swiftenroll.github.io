@@ -1,14 +1,16 @@
 {{ $data := .Inner | transform.Unmarshal }}
+{{- if and (isset $data "questions") (gt (len $data.questions) 0) -}}
 {{- $schema := dict "@context" "https://schema.org" "@type" "FAQPage" -}}
 {{- $mainEntity := slice -}}
 {{- range $data.questions -}}
-  {{- $question := dict "@type" "Question" "name" .question "acceptedAnswer" (dict "@type" "Answer" "text" .answer) -}}
+  {{- $question := dict "@type" "Question" "name" .question "acceptedAnswer" (dict "@type" "Answer" "text" (.answer | markdownify)) -}}
   {{- $mainEntity = $mainEntity | append $question -}}
 {{- end -}}
 {{- $schema = merge $schema (dict "mainEntity" $mainEntity) -}}
 <script type="application/ld+json">
 {{- $schema | jsonify | safeJS -}}
 </script>
+{{- end -}}
 <section class="bg-white">
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
