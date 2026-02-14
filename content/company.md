@@ -8,8 +8,6 @@ description: "Learn about our mission, leadership team, and the investors backin
 
 {{< company-story >}}
 
-{{< company-leadership >}}
-
 {{< company-values >}}
 
 {{< company-stats >}}

@@ -65,8 +65,6 @@ SwiftEnroll was born from real frustration with real enrollment systems. We're a
 
 Every feature we build starts with a simple question: "Would this make life easier for a busy parent or a stressed program director?" We believe enrollment should be transparent, fair, and stress-free. That's why we created clear waitlist systems, honest lottery processes, and straightforward payment options - all designed to build trust between programs and the families they serve.
 """
-      image = "/images/company/headshot.png"
-      image_alt = "Joe Cronyn, Founder of SwiftEnroll"
     team_title = "Leadership"
     values_title = "What we stand for"
     # Team members (finalized)
