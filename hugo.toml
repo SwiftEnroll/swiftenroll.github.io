@@ -104,8 +104,9 @@ enableGitInfo = true
   # Footer Configuration
   [params.footer]
     column_1_title = "Industries"
-    column_2_title = "COMPANY"
-    column_3_title = "LEGAL"
+    column_2_title = "By Feature"
+    column_3_title = "Company"
+    column_4_title = "Legal"
   
   [params.header]
     # Header background and border styles (optional)
@@ -207,7 +208,7 @@ enableGitInfo = true
 
   # Footer Column 1 Menu
   [[menu.footer_column_1]]
-    name = "Camps"
+    name = "Camp Registration"
     url = "/industries/summer-school-break-camps/"
     weight = 1
   [[menu.footer_column_1]]
@@ -231,22 +232,40 @@ enableGitInfo = true
     url = "/industries/preschool-early-childhood-programs/"
     weight = 6
 
-  # Footer Column 2 Menu
+  # Footer Column 2 Menu - By Feature
   [[menu.footer_column_2]]
+    name = "Waitlists & Lottery"
+    url = "/features#waitlists-and-lottery"
+    weight = 1
+  [[menu.footer_column_2]]
+    name = "Payment Processing"
+    url = "/features#payments-and-billing"
+    weight = 2
+  [[menu.footer_column_2]]
+    name = "Class Scheduling"
+    url = "/features#scheduling-and-rosters"
+    weight = 3
+  [[menu.footer_column_2]]
+    name = "Admin Reporting"
+    url = "/features#admin-tools-and-reporting"
+    weight = 4
+
+  # Footer Column 3 Menu - Company
+  [[menu.footer_column_3]]
     name = "Features"
     url = "/features"
     weight = 1
-  [[menu.footer_column_2]]
+  [[menu.footer_column_3]]
     name = "Pricing"
     url = "/pricing"
     weight = 2
-  [[menu.footer_column_2]]
+  [[menu.footer_column_3]]
     name = "About Us"
     url = "/company"
     weight = 3
 
-  # Footer Column 3 Menu
-  [[menu.footer_column_3]]
+  # Footer Column 4 Menu - Legal
+  [[menu.footer_column_4]]
     name = "Privacy Policy"
     url = "/privacy"
     weight = 1
