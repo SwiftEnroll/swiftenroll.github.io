@@ -1,22 +1,13 @@
 {{ $data := .Inner | transform.Unmarshal }}
+{{- $schema := dict "@context" "https://schema.org" "@type" "FAQPage" -}}
+{{- $mainEntity := slice -}}
+{{- range $data.questions -}}
+  {{- $question := dict "@type" "Question" "name" .question "acceptedAnswer" (dict "@type" "Answer" "text" .answer) -}}
+  {{- $mainEntity = $mainEntity | append $question -}}
+{{- end -}}
+{{- $schema = merge $schema (dict "mainEntity" $mainEntity) -}}
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {{- range $index, $item := $data.questions -}}
-    {{- if $index -}},{{- end -}}
-    {
-      "@type": "Question",
-      "name": {{ $item.question | jsonify }},
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": {{ $item.answer | jsonify }}
-      }
-    }
-    {{- end -}}
-  ]
-}
+{{- $schema | jsonify | safeJS -}}
 </script>
 <section class="bg-white">
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
