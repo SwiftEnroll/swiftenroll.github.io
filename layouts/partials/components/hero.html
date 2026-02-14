@@ -8,6 +8,7 @@
 {{ $hero_image_alt := index . "hero_image_alt" | default "Illustration" }}
 {{ $bg_color := index . "background_color" | default "#FFFFFF" }}
 {{ $background_image := index . "background_image" }}
+{{ $logos := index . "logos" }}
 
 <section class="hero-section relative overflow-hidden" style="background-color: {{ $bg_color }};">
     {{ if $background_image }}
@@ -41,6 +42,24 @@
                     </a>
                     {{ end }}
                 </div>
+                {{ if $logos }}
+                <!-- Trusted by logos -->
+                <div class="mt-12">
+                    <p class="text-sm text-gray-500 mb-4">Trusted by</p>
+                    <div class="flex flex-wrap gap-8 items-center">
+                        {{ range $logos }}
+                        <div class="grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            {{ partial "components/optimized-image.html" (dict 
+                                "src" .logo 
+                                "alt" .name 
+                                "class" "h-12 w-auto"
+                                "loading" "eager"
+                            ) }}
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+                {{ end }}
             </div>
             <div class="relative lg:min-h-[28rem]">
                 {{ if $hero_image }}
