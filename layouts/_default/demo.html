@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Tag Manager -->
+    {{ partial "analytics/google-tag-manager" . }}
+
+    <!-- Google Analytics -->
+    {{ partial "analytics/google-analytics" . }}
+    
+    <!-- Title -->
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    <meta name="author" content="{{ .Site.Params.author | default .Site.Title }}">
+    <meta name="robots" content="{{ with .Params.robots }}{{ . }}{{ else }}index, follow{{ end }}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+    <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    {{ with .Params.image }}
+    <meta property="og:image" content="{{ . | absURL }}">
+    {{ else }}
+    {{ with .Site.Params.image }}
+    <meta property="og:image" content="{{ . | absURL }}">
+    {{ end }}
+    {{ end }}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+    <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    {{ with .Site.Params.twitter }}
+    <meta name="twitter:site" content="@{{ . }}">
+    {{ end }}
+    {{ with .Params.image }}
+    <meta name="twitter:image" content="{{ . | absURL }}">
+    {{ else }}
+    {{ with .Site.Params.image }}
+    <meta property="twitter:image" content="{{ . | absURL }}">
+    {{ end }}
+    {{ end }}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ "images/favicon.ico" | relURL }}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ .Permalink }}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS (pre-built via: npm run build or tailwind → static/css/style.css) -->
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+
+    <!-- Additional Meta Tags from Front Matter -->
+    {{ with .Params.customMeta }}
+        {{ range . }}
+        <meta {{ range $key, $value := . }} {{ $key }}="{{ $value }}"{{ end }}>
+        {{ end }}
+    {{ end }}
+
+    <!-- Custom Head Content -->
+    {{ partial "layout/custom-head" . }}
+</head>
+<body class="min-h-screen flex flex-col justify-start w-full bg-gray-50">
+    <!-- Google Tag Manager (noscript) -->
+    {{ if and hugo.IsProduction .Site.Params.googleTagManager }}
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ .Site.Params.googleTagManager }}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    {{ end }}
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- Minimal Header with Logo Only (no navigation) -->
+    <div class="py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <a href="/" class="inline-block">
+                <img src="{{ .Site.Params.header.logo.src | relURL }}" alt="{{ .Site.Title }}" class="h-8">
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 w-full">
+        {{ .Content }}
+    </div>
+
+    <!-- Minimal Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center text-sm text-gray-500">
+                <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+                <p class="mt-2">
+                    <a href="/privacy/" class="hover:text-gray-700 underline">Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,154 @@
+{{ $formEndpoint := .Site.Params.forms.demoEndpoint | default "" }}
+{{ $turnstileKey := .Site.Params.forms.turnstileSiteKey | default "" }}
+{{ $honeypotField := .Site.Params.forms.honeypotFieldName | default "_gotcha" }}
+
+{{ if $turnstileKey }}
+<script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        async
+        defer
+></script>
+{{ end }}
+
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl py-12">
+    <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-12">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Get a Personalized Demo</h1>
+            <p class="text-lg text-gray-600">See how SwiftEnroll can streamline your enrollment process. Tell us about your program and we'll show you exactly how we can help.</p>
+        </div>
+
+        {{ if not $formEndpoint }}
+        <div class="p-6 rounded-lg bg-yellow-50 border border-yellow-200 text-yellow-800 mb-8">
+            <p class="font-semibold">Development Mode</p>
+            <p class="text-sm">Form submission is disabled. Configure HUGO_PARAMS_FORMS_DEMOENDPOINT to enable.</p>
+        </div>
+        {{ end }}
+
+        <div id="demo-form-success" class="hidden p-6 rounded-lg bg-green-50 border border-green-200 text-green-800 mb-6">
+            <h2 class="text-xl font-semibold mb-1">Thank you! We'll be in touch soon.</h2>
+            <p>We're excited to show you what SwiftEnroll can do for your program.</p>
+        </div>
+
+        <form id="demo-form" class="space-y-6" {{ if $formEndpoint }}action="{{ $formEndpoint }}"{{ end }} method="POST">
+            <!-- Honeypot field for spam prevention (hidden from users) -->
+            <input type="text" name="{{ $honeypotField }}" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" for="demo-name">Name *</label>
+                    <input required
+                           class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+                           type="text" id="demo-name" name="name" placeholder="Your name"/>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" for="demo-email">Email *</label>
+                    <input required
+                           class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+                           type="email" id="demo-email" name="email" placeholder="you@example.com"/>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2" for="demo-organization">Organization *</label>
+                <input required
+                       class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+                       type="text" id="demo-organization" name="organization" placeholder="Your organization name"/>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" for="demo-students">Number of Students *</label>
+                    <select required
+                            class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+                            id="demo-students" name="number_of_students">
+                        <option value="">Select range...</option>
+                        <option value="1-50">1-50 students</option>
+                        <option value="51-100">51-100 students</option>
+                        <option value="101-250">101-250 students</option>
+                        <option value="251-500">251-500 students</option>
+                        <option value="500+">500+ students</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2" for="demo-program-type">Program Type *</label>
+                    <select required
+                            class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+                            id="demo-program-type" name="program_type">
+                        <option value="">Select type...</option>
+                        <option value="summer-camps">Summer Camps</option>
+                        <option value="after-school">After-School Programs</option>
+                        <option value="sports-fitness">Sports & Fitness</option>
+                        <option value="arts-performance">Arts & Performance</option>
+                        <option value="stem-academics">STEM & Academics</option>
+                        <option value="early-childhood">Early Childhood</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2" for="demo-message">What would you like to see in the demo?</label>
+                <textarea
+                          class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+                          id="demo-message" name="message" rows="4" placeholder="Tell us about your specific needs or questions..."></textarea>
+            </div>
+
+            {{ if $turnstileKey }}
+            <div class="cf-turnstile" data-sitekey="{{ $turnstileKey }}"></div>
+            {{ end }}
+
+            <button type="submit"
+                    class="w-full inline-flex items-center justify-center px-6 py-4 rounded-lg font-semibold text-lg transition duration-200 ease-in-out bg-buttonPrimary text-gray-200 hover:bg-buttonPrimaryHover shadow-lg hover:shadow-xl"
+                    {{ if not $formEndpoint }}disabled{{ end }}>
+                Request Your Demo
+            </button>
+
+            <p class="text-xs text-gray-500 text-center mt-4">
+                By submitting this form, you agree to our <a href="/privacy/" class="underline hover:text-gray-700">Privacy Policy</a>.
+            </p>
+        </form>
+    </div>
+</div>
+
+<script>
+(function() {
+    const form = document.getElementById('demo-form');
+    const successMessage = document.getElementById('demo-form-success');
+    
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            const formAction = form.getAttribute('action');
+            if (!formAction) {
+                e.preventDefault();
+                return;
+            }
+
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            
+            fetch(formAction, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    form.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting the form. Please try again or contact us directly.');
+            });
+        });
+    }
+})();
+</script>
