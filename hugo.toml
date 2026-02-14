@@ -93,8 +93,8 @@ enableGitInfo = true
     gradient_to = "#2E3058"    # SwiftEnroll Secondary
     gradient_angle = 30
     [params.cta.primary_button]
-      text = "Contact Us"
-      url = "/contact/"
+      text = "Book a Demo"
+      url = "/demo/"
   
   # Social Media Links
   [params.social]
@@ -137,8 +137,8 @@ enableGitInfo = true
     [params.header.buttons]
       # Get Started button
       [params.header.buttons.getStarted]
-        text = "Contact Us"
-        url = "/contact/"
+        text = "Book a Demo"
+        url = "/demo/"
   
   # Centralized copy
   [params.text]
