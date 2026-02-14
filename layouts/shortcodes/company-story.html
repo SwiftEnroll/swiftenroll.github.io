@@ -1,0 +1,58 @@
+{{/*
+Company Story section from config - includes narrative and founder info integrated together.
+Reads from .Site.Params.company.story with fields:
+- title (string) - section title
+- content (string) - the narrative story text
+Also reads from .Site.Params.company.team to display founder info inline with story.
+Usage: {{< company-story >}}
+*/}}
+{{ $story := .Site.Params.company.story }}
+{{ $company := .Site.Params.company }}
+{{ if $story }}
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">{{ $story.title | default "Our Story" }}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:items-center">
+      <!-- Story narrative takes 2 columns -->
+      <div class="md:col-span-2">
+        <div class="prose prose-lg max-w-none">
+          {{ $story.content | markdownify }}
+        </div>
+      </div>
+      <!-- Founder card in sidebar -->
+      <div class="md:col-span-1">
+        {{ if $company.team }}
+        {{ range first 1 $company.team }}
+        <div class="md:sticky md:top-8">
+          <div class="bg-gray-50 rounded-lg p-6 text-center">
+            <div class="relative mb-4 rounded-lg overflow-hidden aspect-square mx-auto max-w-xs">
+              {{ if .image }}
+              {{ partial "components/optimized-image.html" (dict 
+                  "src" .image 
+                  "alt" .name 
+                  "class" "w-full h-full object-cover"
+                  "loading" "lazy"
+              ) }}
+              {{ else }}
+              <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                <svg class="w-20 h-20 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 14c3.31 0 6-2.69 6-6s-2.69-6-6-6-6 2.69-6 6 2.69 6 6 6zm0 2c-4 0-12 2-12 6v2h24v-2c0-4-8-6-12-6z"/></svg>
+              </div>
+              {{ end }}
+            </div>
+            <h3 class="text-xl font-bold mb-1">{{ .name }}</h3>
+            <p class="text-gray-600 text-sm mb-3">{{ .title }}</p>
+            {{ if .linkedin }}
+            <a href="{{ .linkedin }}" target="_blank" rel="noopener" class="inline-flex items-center text-blue-600 hover:text-blue-700 text-sm font-medium" aria-label="{{ .name }} on LinkedIn (opens in new tab)">
+              <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              Connect on LinkedIn
+            </a>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
