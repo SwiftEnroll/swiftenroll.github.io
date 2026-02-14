@@ -35,8 +35,6 @@ testimonials:
 {{< hero 
     headline="Fair,<br/>Simple,<br/>Automated<br/>Enrollment."
     sub_headline="Our automated lottery system removes the stress from enrollment season for families and administrators alike."
-    primary_button_text="Contact Us"
-    primary_button_url="/contact/"
     hero_image="/images/hero-image.png"
 >}}
 
