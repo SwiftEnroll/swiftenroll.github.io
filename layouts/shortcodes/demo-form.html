@@ -11,8 +11,8 @@
 {{ end }}
 
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl py-12">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">Book a Demo</h1>
-    <p class="text-gray-600 mb-8">See SwiftEnroll in action. Schedule a personalized demo with our team.</p>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Get a Personalized Tour</h1>
+    <p class="text-gray-600 mb-8">See SwiftEnroll in action. Tell us about your program and we'll schedule a demo tailored to your needs.</p>
 
     {{ if not $formEndpoint }}
     <div class="p-6 rounded-lg bg-yellow-50 border border-yellow-200 text-yellow-800 mb-8">
@@ -50,15 +50,44 @@
                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-600"
                    type="text" id="organization" name="organization"/>
         </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="program_type">Program Type</label>
+                <select required
+                        class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-600"
+                        id="program_type" name="program_type">
+                    <option value="" disabled selected>Select program type</option>
+                    <option value="summer_camp">Summer Camp</option>
+                    <option value="after_school">After-School Program</option>
+                    <option value="youth_sports">Youth Sports</option>
+                    <option value="enrichment">Enrichment Program</option>
+                    <option value="daycare">Daycare/Preschool</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="num_students">Number of Students</label>
+                <select required
+                        class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-600"
+                        id="num_students" name="num_students">
+                    <option value="" disabled selected>Select range</option>
+                    <option value="1-50">1-50</option>
+                    <option value="51-100">51-100</option>
+                    <option value="101-250">101-250</option>
+                    <option value="251-500">251-500</option>
+                    <option value="500+">500+</option>
+                </select>
+            </div>
+        </div>
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1" for="phone">Phone (optional)</label>
             <input class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-600"
                    type="tel" id="phone" name="phone" placeholder="(555) 123-4567"/>
         </div>
         <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1" for="message">Tell us about your program (optional)</label>
+            <label class="block text-sm font-medium text-gray-700 mb-1" for="message">Additional Information (optional)</label>
             <textarea class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-600"
-                      id="message" name="message" rows="4" placeholder="e.g., Number of programs, typical enrollment size, etc."></textarea>
+                      id="message" name="message" rows="4" placeholder="Tell us about any specific needs or questions you have"></textarea>
         </div>
 
         {{ if $turnstileKey }}
