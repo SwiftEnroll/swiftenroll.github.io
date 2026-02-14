@@ -105,8 +105,8 @@ enableGitInfo = true
   [params.footer]
     column_1_title = "Industries"
     column_2_title = "By Feature"
-    column_3_title = "COMPANY"
-    column_4_title = "LEGAL"
+    column_3_title = "Company"
+    column_4_title = "Legal"
   
   [params.header]
     # Header background and border styles (optional)
@@ -234,25 +234,21 @@ enableGitInfo = true
 
   # Footer Column 2 Menu - By Feature
   [[menu.footer_column_2]]
-    name = "Lottery System"
+    name = "Waitlists & Lottery"
     url = "/features#waitlists-and-lottery"
     weight = 1
   [[menu.footer_column_2]]
-    name = "Waitlist Management"
-    url = "/features#waitlists-and-lottery"
-    weight = 2
-  [[menu.footer_column_2]]
     name = "Payment Processing"
     url = "/features#payments-and-billing"
-    weight = 3
+    weight = 2
   [[menu.footer_column_2]]
     name = "Class Scheduling"
     url = "/features#scheduling-and-rosters"
-    weight = 4
+    weight = 3
   [[menu.footer_column_2]]
     name = "Admin Reporting"
     url = "/features#admin-tools-and-reporting"
-    weight = 5
+    weight = 4
 
   # Footer Column 3 Menu - Company
   [[menu.footer_column_3]]
