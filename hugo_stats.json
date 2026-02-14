@@ -191,6 +191,7 @@
       "md:grid-cols-4",
       "md:grid-cols-5",
       "md:hidden",
+      "md:items-center",
       "md:p-8",
       "md:pb-28",
       "md:pt-24",
