@@ -1,0 +1,13 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#FFF3E0"/>
+  
+  <!-- Face -->
+  <circle cx="200" cy="160" r="70" fill="#FFB74D"/>
+  
+  <!-- Body -->
+  <path d="M 200 400 C 80 400 80 250 200 230 C 320 250 320 400 200 400" fill="#FFA726"/>
+  
+  <!-- Highlight for dimension -->
+  <circle cx="180" cy="145" r="5" fill="#FFF3E0" opacity="0.8"/>
+</svg>
