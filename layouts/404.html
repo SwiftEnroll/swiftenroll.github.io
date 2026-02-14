@@ -13,10 +13,10 @@
 
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row justify-center gap-4 pt-8">
-                <a href="{{ "/features/" | relURL }}" class="btn-primary text-center">
+                <a href="{{ (site.GetPage "features").RelPermalink }}" class="btn-primary text-center">
                     See how SwiftEnroll works
                 </a>
-                <a href="{{ "/" | relURL }}" class="btn-outline text-center">
+                <a href="{{ site.Home.RelPermalink }}" class="btn-outline text-center">
                     Go to Homepage
                 </a>
             </div>
