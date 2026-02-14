@@ -29,6 +29,11 @@
             <p>We're excited to show you what SwiftEnroll can do for your program.</p>
         </div>
 
+        <div id="demo-form-error" class="hidden p-6 rounded-lg bg-red-50 border border-red-200 text-red-800 mb-6">
+            <h2 class="text-xl font-semibold mb-1">Something went wrong</h2>
+            <p>We couldn't submit your request. Please try again or email us directly at <a href="mailto:contact@swiftenroll.com" class="underline font-medium">contact@swiftenroll.com</a>.</p>
+        </div>
+
         <form id="demo-form" class="space-y-6" {{ if $formEndpoint }}action="{{ $formEndpoint }}"{{ end }} method="POST">
             <!-- Honeypot field for spam prevention (hidden from users) -->
             <input type="text" name="{{ $honeypotField }}" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -146,7 +151,11 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('There was an error submitting the form. Please try again or contact us directly.');
+                const errorMessage = document.getElementById('demo-form-error');
+                if (errorMessage) {
+                    errorMessage.classList.remove('hidden');
+                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             });
         });
     }
