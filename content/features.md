@@ -130,6 +130,8 @@ layout: "feature"
 
 {{< /features-section >}}
 
+{{< migration-cta >}}
+
 {{< benefits-grid columns="3" >}}
 {
   "items": [

@@ -1,0 +1,46 @@
+{{/* Migration CTA Component: Emphasizes ease of switching to SwiftEnroll */}}
+{{ $title := index . "title" | default "Switching is Easy" }}
+{{ $description := index . "description" | default "We make the migration process simple and painless, so you can start benefiting from SwiftEnroll right away." }}
+{{ $bg_color := index . "background_color" | default "#f8fafc" }}
+
+<section class="section" style="background-color: {{ $bg_color }};">
+    <div class="container">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">{{ $title }}</h2>
+            <p class="text-xl text-gray-600">{{ $description }}</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- We Import Your Data -->
+            <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style="background-color: #5573df15;">
+                    {{ partial "components/icons" (dict "name" "chart" "color" "#5573df" "size" "6") }}
+                </div>
+                <h3 class="text-xl font-bold mb-3">We Import Your Data</h3>
+                <p class="text-gray-600">Our team handles all data migration, ensuring your student records, family information, and enrollment history transfer seamlessly to SwiftEnroll.</p>
+            </div>
+
+            <!-- Free Onboarding Training -->
+            <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style="background-color: #5573df15;">
+                    {{ partial "components/icons" (dict "name" "users" "color" "#5573df" "size" "6") }}
+                </div>
+                <h3 class="text-xl font-bold mb-3">Free Onboarding Training</h3>
+                <p class="text-gray-600">Get your team up to speed quickly with comprehensive training sessions. We'll make sure everyone is confident using the platform.</p>
+            </div>
+
+            <!-- Keep Your Existing Stripe Account -->
+            <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style="background-color: #5573df15;">
+                    {{ partial "components/icons" (dict "name" "dollar" "color" "#5573df" "size" "6") }}
+                </div>
+                <h3 class="text-xl font-bold mb-3">Keep Your Existing Stripe Account</h3>
+                <p class="text-gray-600">No need to change payment processors. SwiftEnroll integrates with your current Stripe account, maintaining continuity for your payments.</p>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="/contact/" class="btn-primary inline-block">Get Started Today</a>
+        </div>
+    </div>
+</section>

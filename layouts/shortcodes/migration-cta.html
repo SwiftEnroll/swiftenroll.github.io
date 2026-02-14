@@ -1,0 +1,10 @@
+{{/* Migration CTA Shortcode: Wrapper for the migration-cta component */}}
+{{ $title := .Get "title" | default "Switching is Easy" }}
+{{ $description := .Get "description" | default "We make the migration process simple and painless, so you can start benefiting from SwiftEnroll right away." }}
+{{ $bg_color := .Get "background_color" | default "#f8fafc" }}
+
+{{ partial "components/migration-cta.html" (dict 
+    "title" $title 
+    "description" $description 
+    "background_color" $bg_color
+) }}
