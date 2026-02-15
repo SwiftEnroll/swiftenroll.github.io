@@ -1,7 +1,8 @@
 {{/*
   Optimized Image Partial
   
-  Generates optimized images with modern formats (webp), proper dimensions, and lazy loading.
+  Generates optimized images with modern formats (webp), proper dimensions, lazy loading,
+  and responsive srcset for different screen sizes.
   
   Parameters:
     - src (required): Image path (relative to assets/ or static/)
@@ -10,7 +11,8 @@
     - loading: "lazy" (default) or "eager" (for hero images)
     - width: Target width for processing (optional, defaults to auto)
     - height: Target height for processing (optional, defaults to auto)
-    - sizes: Responsive sizes attribute (optional)
+    - sizes: Responsive sizes attribute (optional, defaults to smart sizing based on breakpoints)
+    - responsiveWidths: Custom widths for responsive variants (optional, defaults to [480, 768, 1024, 1440])
     
   Usage:
     {{ partial "components/optimized-image.html" (dict "src" "/images/hero.png" "alt" "Hero" "loading" "eager" "class" "rounded-xl") }}
@@ -23,6 +25,7 @@
 {{ $width := .width }}
 {{ $height := .height }}
 {{ $sizes := .sizes }}
+{{ $responsiveWidths := .responsiveWidths | default (slice 480 768 1024 1440) }}
 
 {{ $image := "" }}
 {{ $isAsset := false }}
@@ -58,20 +61,74 @@
     {{ $originalWidth = $image.Width }}
     {{ $originalHeight = $image.Height }}
     
-    {{/* If target dimensions provided, resize; otherwise use original */}}
+    {{/* Determine target dimensions */}}
+    {{ $targetWidth := 0 }}
+    {{ $targetHeight := 0 }}
+    {{ $targetImage := $image }}
+    
     {{ if and $width $height }}
-      {{ $image = $image.Fill (printf "%dx%d webp" $width $height) }}
+      {{ $targetImage = $image.Fill (printf "%dx%d webp" $width $height) }}
+      {{ $targetWidth = $targetImage.Width }}
+      {{ $targetHeight = $targetImage.Height }}
     {{ else if $width }}
-      {{ $image = $image.Resize (printf "%dx webp" $width) }}
+      {{ $targetImage = $image.Resize (printf "%dx webp" $width) }}
+      {{ $targetWidth = $targetImage.Width }}
+      {{ $targetHeight = $targetImage.Height }}
     {{ else if $height }}
-      {{ $image = $image.Resize (printf "x%d webp" $height) }}
+      {{ $targetImage = $image.Resize (printf "x%d webp" $height) }}
+      {{ $targetWidth = $targetImage.Width }}
+      {{ $targetHeight = $targetImage.Height }}
     {{ else }}
       {{/* Convert to webp without resizing */}}
-      {{ $image = $image.Process "webp" }}
+      {{ $targetImage = $image.Process "webp" }}
+      {{ $targetWidth = $originalWidth }}
+      {{ $targetHeight = $originalHeight }}
     {{ end }}
     
-    {{/* Calculate aspect ratio */}}
-    {{ $aspectRatio := div (float $image.Width) (float $image.Height) }}
+    {{/* Generate responsive variants for srcset */}}
+    {{ $srcsetParts := slice }}
+    {{ $responsiveImages := slice }}
+    
+    {{/* Only generate responsive variants if original/target is large enough */}}
+    {{ range $responsiveWidths }}
+      {{ $variantWidth := . }}
+      {{ if le $variantWidth $targetWidth }}
+        {{/* Calculate proportional height */}}
+        {{ $aspectRatio := div (float $targetWidth) (float $targetHeight) }}
+        {{ $variantHeight := int (div (float $variantWidth) $aspectRatio) }}
+        
+        {{/* Generate variant */}}
+        {{ $variant := "" }}
+        {{ if and $width $height }}
+          {{/* If explicit dimensions were requested, use Fill */}}
+          {{ $variant = $image.Fill (printf "%dx%d webp" $variantWidth $variantHeight) }}
+        {{ else }}
+          {{/* Otherwise use Resize to maintain aspect ratio */}}
+          {{ $variant = $image.Resize (printf "%dx webp" $variantWidth) }}
+        {{ end }}
+        
+        {{ $responsiveImages = $responsiveImages | append $variant }}
+        {{ $srcsetPart := printf "%s %dw" $variant.RelPermalink $variant.Width }}
+        {{ $srcsetParts = $srcsetParts | append $srcsetPart }}
+      {{ end }}
+    {{ end }}
+    
+    {{/* Add the full-size target image as the largest variant */}}
+    {{ $responsiveImages = $responsiveImages | append $targetImage }}
+    {{ $srcsetPart := printf "%s %dw" $targetImage.RelPermalink $targetImage.Width }}
+    {{ $srcsetParts = $srcsetParts | append $srcsetPart }}
+    
+    {{/* Build srcset string */}}
+    {{ $srcset := delimit $srcsetParts ", " }}
+    
+    {{/* Generate default sizes if not provided */}}
+    {{ $defaultSizes := "(min-width: 1280px) 1280px, 100vw" }}
+    {{ if not $sizes }}
+      {{ $sizes = $defaultSizes }}
+    {{ end }}
+    
+    {{/* Calculate aspect ratio for the target image */}}
+    {{ $aspectRatio := div (float $targetImage.Width) (float $targetImage.Height) }}
     
     {{/* 
       Use aspect-ratio CSS instead of explicit width/height when CSS sizing classes are present.
@@ -91,26 +148,28 @@
       {{ end }}
     {{ end }}
     
-    {{/* Output optimized image */}}
+    {{/* Output optimized image with srcset */}}
     {{ if $useCssAspectRatio }}
       <img 
-        src="{{ $image.RelPermalink }}" 
+        src="{{ $targetImage.RelPermalink }}" 
+        srcset="{{ $srcset }}"
+        sizes="{{ $sizes }}"
         alt="{{ $alt }}"
         {{ with $class }}class="{{ . }}"{{ end }}
         style="aspect-ratio: {{ $aspectRatio }};"
         loading="{{ $loading }}"
-        {{ with $sizes }}sizes="{{ . }}"{{ end }}
       >
     {{ else }}
       {{/* Use explicit dimensions for images without CSS sizing constraints */}}
       <img 
-        src="{{ $image.RelPermalink }}" 
+        src="{{ $targetImage.RelPermalink }}" 
+        srcset="{{ $srcset }}"
+        sizes="{{ $sizes }}"
         alt="{{ $alt }}"
-        width="{{ $image.Width }}"
-        height="{{ $image.Height }}"
+        width="{{ $targetImage.Width }}"
+        height="{{ $targetImage.Height }}"
         {{ with $class }}class="{{ . }}"{{ end }}
         loading="{{ $loading }}"
-        {{ with $sizes }}sizes="{{ . }}"{{ end }}
       >
     {{ end }}
   {{ end }}
