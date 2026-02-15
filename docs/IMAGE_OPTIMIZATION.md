@@ -77,7 +77,14 @@ These values represent the **rendered image width**, not viewport width:
 - **Device pixel ratio (DPR)** - Retina/HiDPI displays have 2x or 3x DPR
 - **sizes attribute** - How much of the viewport the image occupies
 
-*Example:* A 375px wide iPhone with 2x Retina display would request the 768px image variant (375 × 2 = 750, closest match is 768px).
+**Selection Formula:** `effective_width = viewport_width × (sizes_percentage / 100) × DPR`
+
+*Examples:*
+- 375px iPhone (2x DPR) with `sizes="100vw"`: 375 × 1.0 × 2 = 750px → selects 768px variant
+- 375px iPhone (2x DPR) with `sizes="50vw"`: 375 × 0.5 × 2 = 375px → selects 480px variant
+- 1920px desktop (1x DPR) with `sizes="(min-width: 1280px) 1280px, 100vw"`: 1280px → selects 1440px variant
+
+The `sizes` attribute is critical - it tells the browser what portion of the viewport the image will occupy, directly affecting which variant is selected.
 
 **How it Works:**
 1. For each image, Hugo generates variants at the specified widths
