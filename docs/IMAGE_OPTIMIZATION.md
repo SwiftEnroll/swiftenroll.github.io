@@ -66,11 +66,13 @@ This reusable partial handles all image optimization logic:
 The partial automatically generates multiple image variants at different widths for responsive delivery:
 
 **Default Responsive Widths:**
-These values represent the **rendered image width**, not viewport width:
+These are the **physical pixel widths of generated image variants**:
 - 480px (mobile devices)
 - 768px (tablets and larger mobile screens)
 - 1024px (desktop displays)
 - 1440px (large desktop displays and HiDPI screens)
+
+The browser selects the appropriate variant based on the effective width calculation shown below, not these exact values.
 
 **Important:** The browser automatically selects the appropriate image based on:
 - **Viewport width** - How wide the screen is

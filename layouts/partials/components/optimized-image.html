@@ -87,34 +87,24 @@
     
     {{/* Generate responsive variants for srcset */}}
     {{ $srcsetParts := slice }}
-    {{ $responsiveImages := slice }}
     
-    {{/* Only generate responsive variants if original/target is large enough */}}
+    {{/* Only generate responsive variants smaller than the target image */}}
     {{ range $responsiveWidths }}
       {{ $variantWidth := . }}
-      {{ if le $variantWidth $targetWidth }}
-        {{/* Calculate proportional height */}}
-        {{ $aspectRatio := div (float $targetWidth) (float $targetHeight) }}
+      {{ if lt $variantWidth $targetWidth }}
+        {{/* Calculate proportional height based on original image aspect ratio */}}
+        {{ $aspectRatio := div (float $image.Width) (float $image.Height) }}
         {{ $variantHeight := int (div (float $variantWidth) $aspectRatio) }}
         
-        {{/* Generate variant */}}
-        {{ $variant := "" }}
-        {{ if and $width $height }}
-          {{/* If explicit dimensions were requested, use Fill */}}
-          {{ $variant = $image.Fill (printf "%dx%d webp" $variantWidth $variantHeight) }}
-        {{ else }}
-          {{/* Otherwise use Resize to maintain aspect ratio */}}
-          {{ $variant = $image.Resize (printf "%dx webp" $variantWidth) }}
-        {{ end }}
+        {{/* Generate variant - always use Resize to maintain consistent aspect ratio */}}
+        {{ $variant := $image.Resize (printf "%dx webp" $variantWidth) }}
         
-        {{ $responsiveImages = $responsiveImages | append $variant }}
         {{ $srcsetPart := printf "%s %dw" $variant.RelPermalink $variant.Width }}
         {{ $srcsetParts = $srcsetParts | append $srcsetPart }}
       {{ end }}
     {{ end }}
     
     {{/* Add the full-size target image as the largest variant */}}
-    {{ $responsiveImages = $responsiveImages | append $targetImage }}
     {{ $srcsetPart := printf "%s %dw" $targetImage.RelPermalink $targetImage.Width }}
     {{ $srcsetParts = $srcsetParts | append $srcsetPart }}
     
