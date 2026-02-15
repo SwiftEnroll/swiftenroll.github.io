@@ -133,9 +133,9 @@ just lighthouse
 - **Build Success:** `npm run build` must pass without errors.
 - **Links:** No 404s. Run `just lychee`.
 - **Lighthouse:**
-  - Performance: > 70
-  - Accessibility: > 85
-  - Best Practices: > 85
+  - Performance: > 90
+  - Accessibility: > 95
+  - Best Practices: > 90
   - SEO: > 90
 - **Responsive:** UI must not break on 375px width (mobile).
 

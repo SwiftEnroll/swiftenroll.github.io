@@ -27,7 +27,8 @@ Learn about the theme's architecture and features:
 Ready to go live?
 
 7. **[Deployment Guide](DEPLOYMENT.md)** - Deploy to Netlify, Vercel, GitHub Pages, and more
-8. **[Troubleshooting Guide](TROUBLESHOOTING.md)** - Common issues and solutions
+8. **[Lighthouse CI Guide](LIGHTHOUSE.md)** - Quality assurance and performance monitoring
+9. **[Troubleshooting Guide](TROUBLESHOOTING.md)** - Common issues and solutions
 
 ## 🚀 Quick Start
 
@@ -197,6 +198,23 @@ Deploy your site to production:
 - Testing before deployment
 
 **Start here if:** You're ready to launch your site.
+
+---
+
+### [Lighthouse CI Guide](LIGHTHOUSE.md)
+
+Automated quality assurance and performance monitoring:
+
+- Overview of Lighthouse CI
+- Configuration and setup
+- Adding new pages to audit
+- Understanding thresholds
+- Interpreting test results
+- Local testing workflow
+- CI/CD integration
+- Troubleshooting common issues
+
+**Start here if:** You want to ensure consistent quality and catch regressions.
 
 ---
 

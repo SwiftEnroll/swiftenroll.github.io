@@ -51,18 +51,18 @@ This site is configured to deploy to GitHub Pages at https://swiftenroll.github.
 Lighthouse CI
 This repository includes automated performance, accessibility, best practices, and SEO testing using Lighthouse CI:
 - Runs automatically on pull requests via GitHub Actions (see .github/workflows/lighthouse-ci.yml)
-- Tests the homepage (/) and pricing page (/pricing/)
+- Tests 7 representative pages covering all major templates (homepage, features, pricing, demo, contact, industry vertical, company)
 - Enforces minimum thresholds:
-  - Performance: 70%
-  - Accessibility: 85%
-  - Best Practices: 85%
+  - Performance: 90%
+  - Accessibility: 95%
+  - Best Practices: 90%
   - SEO: 90%
 - Results are uploaded as artifacts in the GitHub Actions run
 - PR comments show the Lighthouse scores
 - The build will fail if scores drop below the configured thresholds
 
-Configuration is in .lighthouserc.json. To run Lighthouse locally:
-   npm install -g @lhci/cli@0.14.x
+Configuration is in .lighthouserc.json. For detailed information on Lighthouse CI setup, see docs/LIGHTHOUSE.md. To run Lighthouse locally:
+   npm install -g @lhci/cli@0.15.x
    npm run build
    lhci autorun
 
