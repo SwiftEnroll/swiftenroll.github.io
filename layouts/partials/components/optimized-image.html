@@ -25,7 +25,7 @@
 {{ $width := .width }}
 {{ $height := .height }}
 {{ $sizes := .sizes }}
-{{ $responsiveWidths := .responsiveWidths | default (slice 480 768 1024 1440) }}
+{{ $responsiveWidths := .responsiveWidths | default site.Params.images.responsiveWidths | default (slice 480 768 1024 1440) }}
 
 {{ $image := "" }}
 {{ $isAsset := false }}
@@ -122,7 +122,7 @@
     {{ $srcset := delimit $srcsetParts ", " }}
     
     {{/* Generate default sizes if not provided */}}
-    {{ $defaultSizes := "(min-width: 1280px) 1280px, 100vw" }}
+    {{ $defaultSizes := site.Params.images.defaultSizes | default "(min-width: 1280px) 1280px, 100vw" }}
     {{ if not $sizes }}
       {{ $sizes = $defaultSizes }}
     {{ end }}

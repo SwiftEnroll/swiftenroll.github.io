@@ -66,10 +66,18 @@ This reusable partial handles all image optimization logic:
 The partial automatically generates multiple image variants at different widths for responsive delivery:
 
 **Default Responsive Widths:**
-- 480px (mobile)
-- 768px (tablet)
-- 1024px (desktop)
-- 1440px (large desktop / HiDPI)
+These values represent the **rendered image width**, not viewport width:
+- 480px (mobile devices)
+- 768px (tablets and larger mobile screens)
+- 1024px (desktop displays)
+- 1440px (large desktop displays and HiDPI screens)
+
+**Important:** The browser automatically selects the appropriate image based on:
+- **Viewport width** - How wide the screen is
+- **Device pixel ratio (DPR)** - Retina/HiDPI displays have 2x or 3x DPR
+- **sizes attribute** - How much of the viewport the image occupies
+
+*Example:* A 375px wide iPhone with 2x Retina display would request the 768px image variant (375 × 2 = 750, closest match is 768px).
 
 **How it Works:**
 1. For each image, Hugo generates variants at the specified widths
@@ -126,6 +134,35 @@ You can override the default widths for specific images:
 - `layouts/partials/components/industry-features.html` - Industry feature images
 - `layouts/partials/layout/footer.html` - Footer logo
 - **Strategy:** Load on demand with `loading="lazy"`
+
+## Configuration
+
+### Site-wide Image Settings
+
+Configure responsive image defaults in `hugo.toml`:
+
+```toml
+[params.images]
+  # Default responsive image widths for srcset generation
+  responsiveWidths = [480, 768, 1024, 1440]
+  
+  # Default sizes attribute for responsive images
+  defaultSizes = "(min-width: 1280px) 1280px, 100vw"
+```
+
+**Why configure these?**
+- `responsiveWidths`: Adjust to match your site's actual breakpoints
+- `defaultSizes`: Should match your site's max-width container (usually 1280px or 1536px)
+
+**Per-image overrides:**
+Both can be overridden on individual images when needed:
+```hugo
+{{ partial "components/optimized-image.html" (dict 
+    "src" "/images/custom.png" 
+    "responsiveWidths" (slice 320 640 960 1280)
+    "sizes" "(min-width: 600px) 50vw, 100vw"
+) }}
+```
 
 ## Performance Results
 
