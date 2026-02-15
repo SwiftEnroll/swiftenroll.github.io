@@ -1,312 +1,235 @@
-# Hugo Saasify Theme Documentation
+# SwiftEnroll Documentation
 
-Welcome to the complete documentation for Hugo Saasify Theme - a modern, high-performance Hugo theme built specifically for SaaS websites.
+Welcome to the SwiftEnroll website documentation. This repository contains the public marketing website for SwiftEnroll, built with Hugo and Tailwind CSS.
 
-## 📚 Documentation Overview
+---
 
-This documentation is organized into focused guides to help you get started quickly and master every aspect of the theme.
+## 📍 Start Here
 
-### Getting Started
+**New contributors or AI agents:** Read `AGENTS.md` first to understand operating constraints and workflows.
 
-Start here if you're new to the theme:
+**For specific needs:**
+- **Understanding the system?** → [Architecture Documentation](#architecture)
+- **Making code changes?** → [Engineering Documentation](#engineering)
+- **Learning about the product?** → [Product Documentation](#product)
+- **Need step-by-step guides?** → [Runbooks](#runbooks)
 
-1. **[Installation Guide](INSTALLATION.md)** - Set up the theme and its dependencies
-2. **[Configuration Guide](CONFIGURATION.md)** - Configure your site settings
+---
+
+## 🏗️ Architecture
+
+Technical documentation about the system design and structure.
+
+### [Overview](architecture/OVERVIEW.md)
+System architecture, data flow, build pipeline, and integrations.
+- How Hugo processes content
+- Build pipeline diagram
+- Integration points (forms, analytics)
+- Performance characteristics
+
+### [Technology Stack](architecture/STACK.md)
+Complete reference for the technology stack.
+- Hugo, Tailwind CSS, PostCSS
+- Hosting (GitHub Pages)
+- External services (submit-form.com, Turnstile, GA4)
+- Prerequisites and build tools
+
+### [Repository Map](architecture/REPOSITORY_MAP.md)
+Navigate the repository structure.
+- Directory responsibilities
+- Configuration files
+- Critical files and hot paths
+- Build artifacts
+
+---
+
+## 🔧 Engineering
+
+Standards and practices for development.
+
+### [Coding Standards](engineering/CODING_STANDARDS.md)
+How to write code in this repository.
+- Tailwind CSS guidelines
+- HTML/Go template standards
+- Configuration management
+- Image handling
+- Code style
+
+### [Testing Requirements](engineering/TESTING.md)
+What must pass before deployment.
+- Build verification
+- Link checking
+- Lighthouse CI thresholds
+- Responsive testing
+- CI/CD automation
+
+### [Development Workflow](engineering/WORKFLOW.md)
+Step-by-step development process.
+- Analysis → Content → Layout → Style → Verify
+- Local development setup
+- Common development tasks
+- Environment variables
+- Debugging tips
+
+---
+
+## 📦 Product
+
+What we're building and why.
+
+### [Mission & Goals](product/MISSION.md)
+Product context and critical outcomes.
+- What this software is (marketing site, not SaaS app)
+- Who it serves (parents, program directors)
+- Success criteria (trust, speed, clarity)
+- Core mission
+
+---
+
+## 📖 Runbooks
+
+Practical guides for common tasks.
+
+### [Common Tasks](runbooks/COMMON_TASKS.md)
+Step-by-step playbooks for frequent operations.
+- Adding new industry pages
+- Updating pricing
+- Changing contact info
+- Adding forms
+- Navigation menu updates
+- Image optimization
+- And more...
+
+---
+
+## 🎨 Theme Documentation
+
+The site is built on the Hugo Saasify Theme. Theme-specific documentation:
+
+### Getting Started with the Theme
+
+1. **[Installation Guide](INSTALLATION.md)** - Set up theme and dependencies
+2. **[Configuration Guide](CONFIGURATION.md)** - Configure site settings
 3. **[Content Creation Guide](CONTENT-CREATION.md)** - Create pages and blog posts
 
-### Core Concepts
+### Theme Core Concepts
 
-Learn about the theme's architecture and features:
+4. **[Layouts Guide](LAYOUTS.md)** - Layout templates and structure
+5. **[Shortcodes Reference](SHORTCODES.md)** - All 21 shortcodes
+6. **[Styling Guide](STYLING.md)** - TailwindCSS customization
 
-4. **[Layouts Guide](LAYOUTS.md)** - Understanding layout templates and structure
-5. **[Shortcodes Reference](SHORTCODES.md)** - Complete guide to all 21 shortcodes
-6. **[Styling Guide](STYLING.md)** - TailwindCSS configuration and customization
+### Theme Deployment
 
-### Deployment & Production
-
-Ready to go live?
-
-7. **[Deployment Guide](DEPLOYMENT.md)** - Deploy to Netlify, Vercel, GitHub Pages, and more
+7. **[Deployment Guide](DEPLOYMENT.md)** - Deploy to various platforms
 8. **[Troubleshooting Guide](TROUBLESHOOTING.md)** - Common issues and solutions
+
+### Additional Theme Topics
+
+- **[SEO Guide](SEO.md)** - SEO optimization techniques
+- **[Image Optimization](IMAGE_OPTIMIZATION.md)** - Image best practices
+- **[Internationalization](INTERNATIONALIZATION.md)** - Multi-language support
+
+---
 
 ## 🚀 Quick Start
 
-Get your site running in 5 minutes:
+Get the site running locally:
 
 ```bash
-# 1. Create new Hugo site
-hugo new site my-saas-site
-cd my-saas-site
-
-# 2. Add theme as submodule
-git init
-git submodule add https://github.com/chaoming/hugo-saasify-theme themes/hugo-saasify-theme
-
-# 3. Copy example site
-cp -r themes/hugo-saasify-theme/exampleSite/* .
-
-# 4. Install dependencies
+# 1. Install dependencies
 npm install
 
-# 5. Start development server
-npm run start
+# 2. Start dev server
+npm start
+
+# 3. View at http://localhost:1313
 ```
 
-Visit `http://localhost:1313` to see your site!
+Build for production:
 
-## 📖 Documentation Guides
+```bash
+npm run build
+```
 
-### [Installation Guide](INSTALLATION.md)
+Run tests:
 
-Learn how to install and set up the Hugo Saasify Theme:
-
-- System requirements (Hugo Extended, Node.js)
-- Installation methods (new site vs. existing site)
-- Configuration setup
-- Troubleshooting installation issues
-- Updating the theme
-
-**Start here if:** You're installing the theme for the first time.
+```bash
+just lychee        # Link checking
+just lighthouse    # Performance testing
+```
 
 ---
 
-### [Configuration Guide](CONFIGURATION.md)
+## 📚 Documentation Principles
 
-Complete reference for all configuration options:
+This documentation follows these principles:
 
-- Basic site configuration
-- Header and footer customization
-- Call-to-action (CTA) settings
-- Blog configuration
-- Social media links
-- Google Analytics and Tag Manager
-- Menu configuration
-- Build settings
-
-**Start here if:** You need to customize site settings.
+1. **Retrieval-friendly** - Easy to search and scan
+2. **Scope-focused** - Each doc has a clear purpose
+3. **Invariant-driven** - Defines what must remain true
+4. **Linked** - Cross-references to related areas
+5. **Living** - Updated with code changes (not after)
 
 ---
 
-### [Layouts Guide](LAYOUTS.md)
+## 🔄 Documentation Maintenance
 
-Understanding the theme's layout system:
+**The Documentation Rule:** Code and docs must evolve together.
 
-- Layout architecture overview
-- Base template structure
-- Default layouts (single, list, etc.)
-- Page templates (pricing, company, careers, features)
-- Partial components
-- Creating custom layouts
-- Layout variables reference
+When making changes:
+- Behavior changes? Update relevant `/docs` files
+- New config? Update `CONFIGURATION.md`
+- New workflow? Update `engineering/WORKFLOW.md`
+- New task? Update `runbooks/COMMON_TASKS.md`
 
-**Start here if:** You want to understand or modify page templates.
+See `AGENTS.md` for the complete documentation update requirements.
 
 ---
 
-### [Shortcodes Reference](SHORTCODES.md)
+## 🗺️ Documentation Map
 
-Complete documentation for all 21 shortcodes:
-
-**Hero & Layout:**
-- `hero` - Hero sections with gradient backgrounds
-- `section-container` - Section wrappers
-- `features-section` - Feature collection containers
-
-**Features & Benefits:**
-- `feature` - Feature displays with images
-- `features-list` - Vertical feature lists
-- `benefits-grid` - Benefit card grids
-- `value-card` - Company value cards
-
-**Social Proof:**
-- `testimonials` - Customer testimonial carousels
-- `client-logos` - Animated logo carousels
-- `stat` - Statistics display
-
-**Pricing:**
-- `pricing-table-1` - Simple pricing tables
-- `pricing-table-2` - Advanced pricing tables
-
-**Team & Company:**
-- `team-member` - Team member cards
-- `investor-logo` - Investor/partner logos
-- `case-study-card` - Case study cards
-
-**Content:**
-- `cta` - Call-to-action sections
-- `faq` - FAQ accordions
-- `toc` - Table of contents
-- `figure` - Images with captions
-- `code` - Code blocks with syntax highlighting
-
-**Start here if:** You're building pages with shortcodes.
+```
+docs/
+├── README.md (this file)
+│
+├── architecture/
+│   ├── OVERVIEW.md          # System design
+│   ├── STACK.md             # Technology stack
+│   └── REPOSITORY_MAP.md    # File structure
+│
+├── engineering/
+│   ├── CODING_STANDARDS.md  # Code style guide
+│   ├── TESTING.md           # Test requirements
+│   └── WORKFLOW.md          # Development process
+│
+├── product/
+│   └── MISSION.md           # Product goals
+│
+├── runbooks/
+│   └── COMMON_TASKS.md      # Step-by-step guides
+│
+└── [theme docs]
+    ├── CONFIGURATION.md
+    ├── INSTALLATION.md
+    ├── SHORTCODES.md
+    └── ...
+```
 
 ---
 
-### [Styling Guide](STYLING.md)
+## 🆘 Getting Help
 
-Everything about the theme's styling system:
-
-- TailwindCSS integration and configuration
-- Color system (primary and secondary palettes)
-- Typography (Inter and Plus Jakarta Sans)
-- Custom components (buttons, cards, etc.)
-- Responsive design patterns
-- Syntax highlighting themes
-- Custom CSS and utilities
-- Performance optimization
-
-**Start here if:** You want to customize colors, fonts, or styles.
+1. **Read the docs** - Most questions are answered here
+2. **Check AGENTS.md** - Understand constraints and workflows
+3. **Review issue tracker** - Someone may have had the same problem
+4. **Open an issue** - Provide context, error messages, and steps to reproduce
 
 ---
 
-### [Content Creation Guide](CONTENT-CREATION.md)
+## 📄 License
 
-Learn how to create and organize content:
-
-- Content structure and organization
-- Front matter options
-- Page types (homepage, features, pricing, etc.)
-- Creating blog posts
-- Creating documentation pages
-- Using taxonomies (categories and tags)
-- Media management and image optimization
-- SEO best practices
-- Markdown formatting
-- Draft and scheduled content
-
-**Start here if:** You're ready to add content to your site.
+This repository is licensed under the MIT License. See LICENSE for details.
 
 ---
 
-### [Deployment Guide](DEPLOYMENT.md)
-
-Deploy your site to production:
-
-- Building for production
-- Platform-specific guides:
-  - Netlify
-  - Vercel
-  - GitHub Pages
-  - Cloudflare Pages
-  - AWS S3 + CloudFront
-- Custom server deployment (Nginx, Apache)
-- Environment variables
-- Performance optimization
-- Continuous deployment
-- Testing before deployment
-
-**Start here if:** You're ready to launch your site.
-
----
-
-### [Troubleshooting Guide](TROUBLESHOOTING.md)
-
-Solutions to common problems:
-
-- Installation issues
-- Build errors
-- Styling problems
-- Content issues
-- Deployment problems
-- Performance issues
-- Browser compatibility
-- Getting help and reporting issues
-
-**Start here if:** You're experiencing issues.
-
----
-
-## 🎯 Common Tasks
-
-### How do I...?
-
-**...install the theme?**
-→ See [Installation Guide](INSTALLATION.md)
-
-**...customize colors?**
-→ See [Styling Guide - Color System](STYLING.md#color-system)
-
-**...create a blog post?**
-→ See [Content Creation - Blog Posts](CONTENT-CREATION.md#blog-posts)
-
-**...add a pricing page?**
-→ See [Shortcodes - Pricing Tables](SHORTCODES.md#pricing)
-
-**...configure the header menu?**
-→ See [Configuration - Menu Configuration](CONFIGURATION.md#menu-configuration)
-
-**...deploy to Netlify?**
-→ See [Deployment - Netlify](DEPLOYMENT.md#netlify)
-
-**...add team members?**
-→ See [Shortcodes - Team Member](SHORTCODES.md#team-member)
-
-**...enable Google Analytics?**
-→ See [Configuration - Analytics](CONFIGURATION.md#analytics-configuration)
-
-**...customize fonts?**
-→ See [Styling - Typography](STYLING.md#typography)
-
-**...fix build errors?**
-→ See [Troubleshooting - Build Errors](TROUBLESHOOTING.md#build-errors)
-
-## 🌟 Key Features
-
-This theme includes:
-
-- ✅ **21 Pre-built Shortcodes** - Hero sections, features, pricing tables, testimonials, and more
-- ✅ **TailwindCSS Integration** - Modern, utility-first CSS framework
-- ✅ **Responsive Design** - Mobile-first, looks great on all devices
-- ✅ **Performance Optimized** - Fast builds, minimal JavaScript, optimized assets
-- ✅ **SEO Ready** - Meta tags, Open Graph, Twitter Cards
-- ✅ **Blog System** - Categories, tags, sidebar, table of contents
-- ✅ **Multiple Page Templates** - Pricing, features, company, careers, jobs
-- ✅ **Analytics Integration** - Google Analytics and Tag Manager support
-- ✅ **Syntax Highlighting** - Beautiful code blocks with dark theme
-- ✅ **Easy Customization** - Configurable colors, fonts, and layouts
-
-## 📋 Requirements
-
-- **Hugo Extended** v0.80.0 or higher
-- **Node.js** v14.x or higher
-- **npm** or **yarn**
-- **Git** (for submodule installation)
-
-## 🔗 Useful Links
-
-- [Demo Site](https://saasify-demo.chaoming.li)
-- [GitHub Repository](https://github.com/chaoming/hugo-saasify-theme)
-- [Report Issues](https://github.com/chaoming/hugo-saasify-theme/issues)
-- [Hugo Documentation](https://gohugo.io/documentation/)
-- [TailwindCSS Documentation](https://tailwindcss.com/docs)
-
-## 🤝 Support
-
-Need help?
-
-1. **Check the Documentation** - Start with the relevant guide above
-2. **Review Troubleshooting** - See [Troubleshooting Guide](TROUBLESHOOTING.md)
-3. **Search Issues** - Check [existing issues](https://github.com/chaoming/hugo-saasify-theme/issues)
-4. **Ask for Help** - Open a [new issue](https://github.com/chaoming/hugo-saasify-theme/issues/new) with:
-   - Hugo version (`hugo version`)
-   - Node version (`node --version`)
-   - Error messages
-   - Steps to reproduce
-   - Your configuration
-
-## 📝 License
-
-This theme is released under the [MIT License](../LICENSE).
-
-## 👨‍💻 Author
-
-Created by [Chaoming Li](https://chaoming.li)
-
-## 🎉 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
----
-
-**Ready to get started?** Begin with the [Installation Guide](INSTALLATION.md) →
+**Last Updated:** 2026-02-15
