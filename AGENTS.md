@@ -11,220 +11,87 @@ This file defines how agents and contributors must operate in this repository. I
 
 This repository contains the **public marketing website** for SwiftEnroll (swiftenroll.github.io). It is NOT the SaaS application.
 
-**Goal:** Persuade program directors that enrollment can be simple, transparent, and fair.
-
-**Audience:** Parents searching for programs, and program directors modernizing their operations.
-
-**Critical outcomes:** Trust (professional design), Speed (instant mobile loads), Clarity (explain complex features simply).
-
-See `/docs/product/MISSION.md` for full context.
+See `/docs/product/MISSION.md` for goals, audience, and critical outcomes.
 
 ---
 
 ## Source of Truth
 
-### Configuration
-**`hugo.toml`** is the single source of truth for:
-- Site metadata and URLs
-- Global parameters (company info, social links, form endpoints)
-- Menu structure
-- Analytics configuration
-
-**Never hardcode** what belongs in configuration.
-
-### Documentation
-**`/docs`** is the authoritative knowledge base:
-- `/docs/architecture/` - System design, stack, data flow
-- `/docs/engineering/` - Coding standards, testing, workflow
-- `/docs/product/` - Mission, goals, audience
-- `/docs/runbooks/` - Common tasks and playbooks
-
-**If reality is not documented, it does not exist.**
+- **Configuration:** `hugo.toml` - Never hardcode what belongs in config
+- **Documentation:** `/docs` - If not documented, it doesn't exist
+  - `/docs/architecture/` - System design, stack, data flow
+  - `/docs/engineering/` - Coding standards, testing, workflow
+  - `/docs/product/` - Mission, goals, audience
+  - `/docs/runbooks/` - Common tasks and playbooks
 
 ---
 
 ## Mandatory Workflow
 
 ### Before Any Changes
-1. **Understand the system**
-   - Read `/docs/architecture/OVERVIEW.md` for system design
-   - Read `/docs/architecture/REPOSITORY_MAP.md` for file locations
-   - Review `hugo.toml` for current configuration
-
-2. **Understand the standards**
-   - Read `/docs/engineering/CODING_STANDARDS.md`
-   - Read `/docs/engineering/TESTING.md`
-
-3. **Plan minimal changes**
-   - Surgical, precise modifications only
-   - Change as few lines as possible
-   - No unrelated fixes
+1. Read `/docs/architecture/OVERVIEW.md` for system design
+2. Read `/docs/architecture/REPOSITORY_MAP.md` for file locations
+3. Read `/docs/engineering/CODING_STANDARDS.md` and `/docs/engineering/TESTING.md`
+4. Plan minimal, surgical changes
 
 ### During Changes
 1. Follow coding standards (Tailwind utility-first, semantic HTML)
-2. Test locally (`npm start` at http://localhost:1313)
+2. Test locally: `npm start` at http://localhost:1313
 3. Verify mobile (375px) and desktop (1280px+) layouts
-4. Run build (`npm run build`)
 
 ### Before Submission
-1. **Run all tests:**
-   ```bash
-   npm run build      # Must pass
-   just lychee        # No broken links
-   just lighthouse    # Must meet thresholds
-   ```
-
-2. **Update documentation:**
-   - Changed behavior? Update `/docs`
-   - New config? Update `/docs/CONFIGURATION.md`
-   - New workflow? Update `/docs/engineering/WORKFLOW.md` or `/docs/runbooks/COMMON_TASKS.md`
-
-3. **Request code review** (use `code_review` tool)
-
-4. **Run security scan** (use `codeql_checker` tool after code review)
+1. Run: `npm run build && just lychee && just lighthouse`
+2. Update documentation (see `/docs/engineering/DOCUMENTATION.md`)
+3. Request code review (use `code_review` tool)
+4. Run security scan (use `codeql_checker` tool)
 
 **Documentation updates are NOT optional. Code and docs must evolve together.**
 
 ---
 
-## The Documentation Rule
-
-**Documentation is part of the feature.**
-
-If code behavior or public interfaces change, documentation MUST be updated in the same PR.
-
-### What Must Be Updated
-
-| Change Type | Update These Files |
-|-------------|-------------------|
-| Setup/commands change | `README.md` |
-| `hugo.toml` parameters change | `docs/CONFIGURATION.md` |
-| New shortcodes | `docs/SHORTCODES.md` |
-| Workflows change | `docs/engineering/WORKFLOW.md` |
-| Architecture change | `docs/architecture/OVERVIEW.md` |
-| New common task | `docs/runbooks/COMMON_TASKS.md` |
-
-If you cannot find documentation to update, **create it**.
-
-### Before Submitting Checklist
-- [ ] User-visible behavior documented
-- [ ] Configuration changes documented
-- [ ] Setup instructions verified
-- [ ] Integration changes reflected
-- [ ] Architecture diagrams updated (if applicable)
-
----
-
 ## Risk Boundaries
 
-### Security (Never Do)
-- ❌ Commit secrets (API keys, tokens, passwords)
-- ❌ Expose admin interfaces (there isn't one; don't create one)
-- ❌ Create custom form handlers (use configured endpoints)
-- ❌ Add third-party JS (tracking, widgets) without approval
+**Critical rules (violating these = PR rejection):**
 
-### Data & Privacy
+### Security
+- ❌ Commit secrets, API keys, tokens
+- ❌ Add third-party JS without approval
+- ❌ Create custom form handlers
+
+### Data & Integrations
 - ❌ Log or store user data in this repository
-- ❌ Add analytics beyond configured GA4
-- ❌ Track users without consent
+- ❌ Change approved integrations (forms, analytics, anti-spam)
+- ❌ Add payment processing (this is a marketing site)
 
-### Payments
-This is a marketing site. It does not handle payments. Do not add payment processing.
+### Performance
+- ❌ Add heavy images or blocking JS to `/` or `/pricing`
+- ❌ Skip Lighthouse thresholds (Performance > 70, Accessibility > 85)
 
-### External Integrations
-Current integrations (DO NOT change without approval):
-- Forms: `submit-form.com`
-- Anti-spam: Cloudflare Turnstile
-- Analytics: Google Analytics 4
-
-### Performance Critical Paths
-- **Homepage (`/`)** - No heavy images, minimal JS
-- **Pricing (`/pricing`)** - Fast loads essential
-- Never add blocking JavaScript to these pages
+**See `/docs/RISK_BOUNDARIES.md` for complete details.**
 
 ---
 
 ## Quality Standards
 
-### Testing Thresholds
-**Lighthouse CI (enforced):**
-- Performance: > 70
-- Accessibility: > 85
-- Best Practices: > 85
-- SEO: > 90
+**Minimum requirements:**
+- Build passes: `npm run build`
+- No broken links: `just lychee`
+- Lighthouse: Performance > 70, Accessibility > 85, Best Practices > 85, SEO > 90
+- Responsive: Works at 375px (mobile) and 1280px+ (desktop)
+- No console errors, broken images, or horizontal scrollbars
 
-**Responsive:**
-- Must work at 375px width (mobile)
-- Must work at 1280px+ width (desktop)
-- No horizontal scrollbars
-
-### Unacceptable
-- Broken images
-- Broken links
-- Console errors
-- Failed builds
-- Test failures
-
-### PR Requirements
-- Explain **why** change was made
-- Include screenshots for UI changes
-- Confirm local testing completed
-- Pass all CI checks
+**See `/docs/engineering/TESTING.md` for complete requirements.**
 
 ---
 
-## Navigation to Knowledge
+## Navigation
 
-### New to the Repository?
-Start here:
-1. `/docs/architecture/OVERVIEW.md` - Understand the system
-2. `/docs/architecture/REPOSITORY_MAP.md` - Find files
-3. `/docs/engineering/WORKFLOW.md` - Development process
+**Start here:** `/docs/README.md` - Complete documentation index
 
-### Making Changes?
-Consult:
-- `/docs/engineering/CODING_STANDARDS.md` - How to write code
-- `/docs/engineering/TESTING.md` - How to test
-- `/docs/runbooks/COMMON_TASKS.md` - Step-by-step guides
-
-### Understanding the Product?
-Read:
-- `/docs/product/MISSION.md` - What we're building and why
-- `hugo.toml` - Current configuration
-- `/docs/architecture/STACK.md` - Technology choices
-
-### Troubleshooting?
-See:
-- `/docs/TROUBLESHOOTING.md` - Common issues
-- `/docs/runbooks/COMMON_TASKS.md` - Task-specific guides
-
----
-
-## Development Quick Start
-
-```bash
-# First time setup
-npm install
-
-# Start dev server
-npm start
-
-# Production build
-npm run build
-
-# Run tests
-just lychee        # Link checking
-just lighthouse    # Performance testing
-```
-
----
-
-## What This Repository Is Not
-
-- ❌ Not the SaaS application (this is marketing site only)
-- ❌ Not a backend service (static site, no server)
-- ❌ Not a database (no data storage)
-- ❌ Not a payment processor (no payment handling)
+**Quick links:**
+- New? → `/docs/architecture/OVERVIEW.md` + `/docs/engineering/WORKFLOW.md`
+- Coding? → `/docs/engineering/CODING_STANDARDS.md` + `/docs/engineering/TESTING.md`
+- Common tasks? → `/docs/runbooks/COMMON_TASKS.md`
 
 ---
 
@@ -235,7 +102,6 @@ just lighthouse    # Performance testing
 3. **Test everything** - No changes without verification
 4. **Security matters** - Never compromise security for convenience
 5. **Performance matters** - Slow pages lose conversions
-6. **Mobile first** - Most users are on mobile devices
 
 ---
 

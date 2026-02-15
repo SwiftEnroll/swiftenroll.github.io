@@ -71,6 +71,13 @@ Step-by-step development process.
 - Environment variables
 - Debugging tips
 
+### [Documentation Requirements](engineering/DOCUMENTATION.md)
+How to maintain documentation.
+- The Documentation Rule (code and docs evolve together)
+- What to update for each change type
+- Documentation standards and style
+- Maintenance guidelines
+
 ---
 
 ## 📦 Product
@@ -83,6 +90,19 @@ Product context and critical outcomes.
 - Who it serves (parents, program directors)
 - Success criteria (trust, speed, clarity)
 - Core mission
+
+---
+
+## 🛡️ Risk Boundaries & Safety
+
+### [Risk Boundaries](RISK_BOUNDARIES.md)
+What must NEVER be done in this repository.
+- Security rules (secrets, external code, access control)
+- Data & privacy guidelines
+- Payment restrictions
+- External integration rules
+- Performance critical paths
+- Build & deployment safety
 
 ---
 
