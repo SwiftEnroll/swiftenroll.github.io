@@ -75,7 +75,7 @@
         {{ end }}
 
         {{ if $buttonText }}
-          <a href="{{ $buttonLink }}" class="btn-primary inline-block">{{ $buttonText }}</a>
+          <a href="{{ $buttonLink }}" class="btn-primary inline-block" aria-label="{{ $buttonText }} about {{ $title }}">{{ $buttonText }}</a>
         {{ end }}
     </div>
 

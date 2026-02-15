@@ -12,7 +12,7 @@
                         {{ with .class }}{{ $logoClass = . }}{{ end }}
                         {{ partial "components/optimized-image.html" (dict 
                             "src" .src 
-                            "alt" $.Site.Title 
+                            "alt" "" 
                             "class" $logoClass
                             "loading" "eager"
                         ) }}
