@@ -72,7 +72,7 @@ Step-by-step development process.
 - Debugging tips
 
 ### [Documentation Requirements](engineering/DOCUMENTATION.md)
-How to maintain documentation.
+Documentation standards and maintenance guidelines.
 - The Documentation Rule (code and docs evolve together)
 - What to update for each change type
 - Documentation standards and style

@@ -102,6 +102,7 @@ See `/docs/product/MISSION.md` for goals, audience, and critical outcomes.
 3. **Test everything** - No changes without verification
 4. **Security matters** - Never compromise security for convenience
 5. **Performance matters** - Slow pages lose conversions
+6. **Mobile first** - Most users are on mobile devices
 
 ---
 
