@@ -164,6 +164,16 @@ Every feature we build starts with a simple question: "Would this make life easi
     testimonialsDescription = "Real user feedback from parents and administrators."
     seeItInAction = "See it in action"
     perMonth = "/mo"
+  
+  # Image optimization configuration
+  [params.images]
+    # Default responsive image widths for srcset generation
+    # Images will be generated at these widths (if original is large enough)
+    responsiveWidths = [480, 768, 1024, 1440]
+    
+    # Default sizes attribute for responsive images
+    # Format: "(min-width: breakpoint) size, fallback"
+    defaultSizes = "(min-width: 1280px) 1280px, 100vw"
 
 [module]
   [module.hugoVersion]
