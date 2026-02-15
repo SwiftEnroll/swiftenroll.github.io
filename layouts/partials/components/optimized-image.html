@@ -93,14 +93,21 @@
       {{ $variantWidth := . }}
       {{ if lt $variantWidth $targetWidth }}
         {{/* Calculate proportional height based on original image aspect ratio */}}
-        {{ $aspectRatio := div (float $image.Width) (float $image.Height) }}
-        {{ $variantHeight := int (div (float $variantWidth) $aspectRatio) }}
-        
-        {{/* Generate variant - always use Resize to maintain consistent aspect ratio */}}
-        {{ $variant := $image.Resize (printf "%dx webp" $variantWidth) }}
-        
-        {{ $srcsetPart := printf "%s %dw" $variant.RelPermalink $variant.Width }}
-        {{ $srcsetParts = $srcsetParts | append $srcsetPart }}
+        {{/* Guard against division by zero - should never happen with valid images */}}
+        {{ if gt $image.Height 0 }}
+          {{ $aspectRatio := div (float $image.Width) (float $image.Height) }}
+          {{ $variantHeight := int (div (float $variantWidth) $aspectRatio) }}
+          
+          {{/* 
+            Generate variant - use Resize to maintain consistent aspect ratio across all variants.
+            Note: We don't use Fill here because it crops images when explicit dimensions don't 
+            match the original aspect ratio, which would cause inconsistent srcset variants.
+          */}}
+          {{ $variant := $image.Resize (printf "%dx webp" $variantWidth) }}
+          
+          {{ $srcsetPart := printf "%s %dw" $variant.RelPermalink $variant.Width }}
+          {{ $srcsetParts = $srcsetParts | append $srcsetPart }}
+        {{ end }}
       {{ end }}
     {{ end }}
     
