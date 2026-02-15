@@ -27,7 +27,8 @@ Learn about the theme's architecture and features:
 Ready to go live?
 
 7. **[Deployment Guide](DEPLOYMENT.md)** - Deploy to Netlify, Vercel, GitHub Pages, and more
-8. **[Troubleshooting Guide](TROUBLESHOOTING.md)** - Common issues and solutions
+8. **[Analytics Coverage Map](ANALYTICS.md)** - Track what's measured and identify gaps
+9. **[Troubleshooting Guide](TROUBLESHOOTING.md)** - Common issues and solutions
 
 ## 🚀 Quick Start
 
@@ -200,6 +201,22 @@ Deploy your site to production:
 
 ---
 
+### [Analytics Coverage Map](ANALYTICS.md)
+
+Comprehensive documentation of analytics tracking:
+
+- Current tracking implementation (GA4)
+- Complete page view coverage list
+- Event tracking gaps (forms, CTAs, interactions)
+- Prioritized gap analysis
+- Implementation recommendations
+- Monitoring and verification guides
+- Custom event naming conventions
+
+**Start here if:** You need to understand what's tracked or identify analytics gaps for growth decisions.
+
+---
+
 ### [Troubleshooting Guide](TROUBLESHOOTING.md)
 
 Solutions to common problems:
@@ -244,6 +261,9 @@ Solutions to common problems:
 
 **...enable Google Analytics?**
 → See [Configuration - Analytics](CONFIGURATION.md#analytics-configuration)
+
+**...see what's being tracked?**
+→ See [Analytics Coverage Map](ANALYTICS.md)
 
 **...customize fonts?**
 → See [Styling - Typography](STYLING.md#typography)
