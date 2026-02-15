@@ -60,6 +60,10 @@ jobs:
       - name: Build the site
         run: |
           hugo --gc --minify
+        env:
+          # Disable Turnstile during Lighthouse CI to avoid console errors
+          # Turnstile cannot validate in CI environment and causes best-practices score to drop
+          HUGO_PARAMS_FORMS_TURNSTILESITEKEY: ""
 
       - name: Install Lighthouse CI
         run: npm install -g @lhci/cli@0.15.x

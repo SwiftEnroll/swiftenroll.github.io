@@ -135,7 +135,7 @@ just lighthouse
 - **Lighthouse:**
   - Performance: > 90
   - Accessibility: > 95
-  - Best Practices: > 75 (form pages with Cloudflare Turnstile score 75%, non-form pages score 96%)
+  - Best Practices: > 90
   - SEO: > 90
 - **Responsive:** UI must not break on 375px width (mobile).
 

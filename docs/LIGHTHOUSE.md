@@ -44,7 +44,7 @@ Current thresholds are set based on actual baseline scores (as of Feb 2026):
 |----------|-----------|----------|-----------|
 | Performance | **90%** | 99-100% | Mobile emulation can vary; 90% protects against major regressions while allowing variance |
 | Accessibility | **95%** | 97-100% | High bar for enrollment platform; critical for trust and legal compliance |
-| Best Practices | **75%** | 75-96% | Form pages with Cloudflare Turnstile security score 75% due to third-party script evaluation; non-form pages score 96% |
+| Best Practices | **90%** | 96-100% | Consistent high scores across all pages; Turnstile disabled in CI to avoid test environment errors |
 | SEO | **90%** | 92-100% | Protects organic discoverability; critical for marketing site |
 
 **Philosophy**: Thresholds are protective, not aspirational. They're set slightly below current performance to:
@@ -52,7 +52,7 @@ Current thresholds are set based on actual baseline scores (as of Feb 2026):
 2. Avoid false positives from normal score variance
 3. Allow incremental improvement without blocking PRs
 
-**Best Practices Note**: The 75% threshold accommodates pages with Cloudflare Turnstile (demo and contact forms), which is a necessary security feature. Pages without forms score 96%. This threshold still catches major security issues while allowing essential third-party integrations.
+**Turnstile in CI**: Cloudflare Turnstile is disabled during Lighthouse CI runs by setting `HUGO_PARAMS_FORMS_TURNSTILESITEKEY=""` in the build environment. This prevents console errors from Turnstile's inability to validate in the CI environment (error 110200), while still allowing form layouts and functionality to be tested. In production, Turnstile is enabled for spam protection.
 
 ### Number of Runs
 
