@@ -124,8 +124,11 @@
       {{ $sizes = $defaultSizes }}
     {{ end }}
     
-    {{/* Calculate aspect ratio for the target image */}}
-    {{ $aspectRatio := div (float $targetImage.Width) (float $targetImage.Height) }}
+    {{/* Calculate aspect ratio for the target image, guarding against division by zero */}}
+    {{ $aspectRatio := 1.0 }}
+    {{ if gt $targetImage.Height 0 }}
+      {{ $aspectRatio = div (float $targetImage.Width) (float $targetImage.Height) }}
+    {{ end }}
     
     {{/* 
       Use aspect-ratio CSS instead of explicit width/height when CSS sizing classes are present.
