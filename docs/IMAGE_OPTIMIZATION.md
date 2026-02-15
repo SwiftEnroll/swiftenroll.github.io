@@ -90,7 +90,7 @@ The `sizes` attribute is critical - it tells the browser what portion of the vie
 
 **How it Works:**
 1. For each image, Hugo generates variants at the specified widths
-2. Only variants smaller than the original image are generated
+2. Only variants smaller than the target image's width are generated
 3. All variants are combined into a `srcset` attribute
 4. The browser selects the optimal image based on screen size and DPI
 
