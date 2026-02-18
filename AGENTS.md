@@ -65,7 +65,7 @@ See `/docs/product/MISSION.md` for goals, audience, and critical outcomes.
 
 ### Performance
 - ❌ Add heavy images or blocking JS to `/` or `/pricing`
-- ❌ Skip Lighthouse thresholds (Performance > 70, Accessibility > 85)
+- ❌ Skip Lighthouse thresholds (Performance > 90, Accessibility > 95)
 
 **See `/docs/RISK_BOUNDARIES.md` for complete details.**
 
@@ -73,12 +73,20 @@ See `/docs/product/MISSION.md` for goals, audience, and critical outcomes.
 
 ## Quality Standards
 
-**Minimum requirements:**
-- Build passes: `npm run build`
-- No broken links: `just lychee`
-- Lighthouse: Performance > 70, Accessibility > 85, Best Practices > 85, SEO > 90
-- Responsive: Works at 375px (mobile) and 1280px+ (desktop)
-- No console errors, broken images, or horizontal scrollbars
+**Mandatory Checks:**
+- **Build Success:** `npm run build` must pass without errors.
+- **Links:** No 404s. Run `just lychee`.
+- **Lighthouse:**
+  - Performance: > 90
+  - Accessibility: > 95
+  - Best Practices: > 90
+  - SEO: > 90
+- **Responsive:** UI must not break on 375px width (mobile).
+
+**Unacceptable:**
+- Broken images.
+- Horizontal scrollbars on mobile.
+- Console errors in browser DevTools.
 
 **See `/docs/engineering/TESTING.md` for complete requirements.**
 

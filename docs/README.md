@@ -138,10 +138,11 @@ The site is built on the Hugo Saasify Theme. Theme-specific documentation:
 5. **[Shortcodes Reference](SHORTCODES.md)** - All 21 shortcodes
 6. **[Styling Guide](STYLING.md)** - TailwindCSS customization
 
-### Theme Deployment
+### Deployment & Production
 
 7. **[Deployment Guide](DEPLOYMENT.md)** - Deploy to various platforms
-8. **[Troubleshooting Guide](TROUBLESHOOTING.md)** - Common issues and solutions
+8. **[Lighthouse CI Guide](LIGHTHOUSE.md)** - Quality assurance and performance monitoring
+9. **[Troubleshooting Guide](TROUBLESHOOTING.md)** - Common issues and solutions
 
 ### Additional Theme Topics
 

@@ -12,6 +12,7 @@ Complete reference for configuring the Hugo Saasify Theme. This guide covers all
 - [Blog Configuration](#blog-configuration)
 - [Social Media Links](#social-media-links)
 - [Analytics Configuration](#analytics-configuration)
+- [Image Optimization Configuration](#image-optimization-configuration)
 - [Menu Configuration](#menu-configuration)
 - [Build Settings](#build-settings)
 - [Markup Configuration](#markup-configuration)
@@ -437,6 +438,45 @@ For tracking scripts and tools not covered by Google Analytics or Google Tag Man
 - Any other code that needs to be in the `<head>` section
 
 **Note**: The `custom-head.html` partial is loaded after all other head elements, giving you full control while maintaining theme compatibility.
+
+## Image Optimization Configuration
+
+Configure responsive image generation and optimization settings.
+
+```toml
+[params.images]
+  # Default responsive image widths for srcset generation
+  # Images will be generated at these widths (if original is large enough)
+  responsiveWidths = [480, 768, 1024, 1440]
+  
+  # Default sizes attribute for responsive images
+  # Should match your site's max-width container
+  defaultSizes = "(min-width: 1280px) 1280px, 100vw"
+```
+
+### Configuration Options
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `responsiveWidths` | array | Image widths for srcset generation | `[480, 768, 1024, 1440]` |
+| `defaultSizes` | string | Default sizes attribute for images | `"(min-width: 1280px) 1280px, 100vw"` |
+
+**How It Works**:
+- **responsiveWidths**: Hugo generates image variants at each width for responsive delivery
+- **defaultSizes**: Tells the browser how large the image will be at different viewport widths
+- Both can be overridden per-image in templates
+
+**Example sizes values**:
+- Full-width images: `"(min-width: 1280px) 1280px, 100vw"`
+- Two-column layout: `"(min-width: 800px) 50vw, 100vw"`
+- Fixed-size images: `"200px"` or `"300px"`
+
+**Performance Impact**:
+- Mobile devices load smaller images (50-70% reduction)
+- Retina displays automatically get higher-resolution variants
+- Browser caches all variants for offline use
+
+See [IMAGE_OPTIMIZATION.md](IMAGE_OPTIMIZATION.md) for detailed documentation.
 
 ## Menu Configuration
 

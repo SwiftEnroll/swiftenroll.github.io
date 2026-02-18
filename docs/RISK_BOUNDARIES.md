@@ -73,7 +73,7 @@ These pages MUST remain fast:
 - ❌ **NEVER** add blocking JavaScript to homepage or pricing
 - ❌ **NEVER** load fonts from external CDNs (self-host only)
 - ❌ **NEVER** use unoptimized images
-- ✅ Lighthouse Performance score must stay > 70
+- ✅ Lighthouse Performance score must stay > 90
 - ✅ Use Hugo image processing for optimization
 
 ## Build & Deployment

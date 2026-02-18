@@ -28,9 +28,9 @@ just lighthouse
 ```
 
 **Minimum Thresholds:**
-- **Performance:** > 70
-- **Accessibility:** > 85
-- **Best Practices:** > 85
+- **Performance:** > 90
+- **Accessibility:** > 95
+- **Best Practices:** > 90
 - **SEO:** > 90
 
 **Tested Pages:**
