@@ -6,7 +6,7 @@
 **Hugo (Extended)**
 - Static site generator
 - Must support PostCSS for Tailwind compilation
-- Version: 0.111+ required
+- Version: 0.80.0+ required (Extended version)
 
 ### Styling
 **Tailwind CSS + PostCSS**
@@ -43,7 +43,7 @@
 ## Prerequisites
 
 ### Development Environment
-- **Hugo Extended:** 0.111+ (PostCSS support required)
+- **Hugo Extended:** 0.80.0+ (PostCSS support required)
 - **Node.js:** 18+
 - **npm:** 9+ (or compatible)
 - **Git:** For version control

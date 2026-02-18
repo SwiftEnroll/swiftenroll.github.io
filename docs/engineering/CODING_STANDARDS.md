@@ -23,7 +23,7 @@
 
 ### Typography
 - Use `prose` class (tailwindcss/typography) for Markdown content areas
-- Font families defined in config (Inter, Plus Jakarta Sans)
+- Font families defined in config (Inter)
 
 ## HTML / Go Templates
 

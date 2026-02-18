@@ -42,8 +42,8 @@ See `/docs/product/MISSION.md` for goals, audience, and critical outcomes.
 ### Before Submission
 1. Run: `npm run build && just lychee && just lighthouse`
 2. Update documentation (see `/docs/engineering/DOCUMENTATION.md`)
-3. Request code review (use `code_review` tool)
-4. Run security scan (use `codeql_checker` tool)
+3. Open a pull request and request code review from at least one maintainer in GitHub
+4. Ensure all required GitHub Actions / CI checks pass on the pull request (including any security scans that are configured)
 
 **Documentation updates are NOT optional. Code and docs must evolve together.**
 

@@ -189,17 +189,22 @@ parent = "Solutions"
 **Purpose:** Track custom events in Google Analytics
 
 **Steps:**
-1. Add `data-` attributes to elements:
+1. Add `data-` attributes to elements to describe the event:
    ```html
-   <button 
-     data-event="click"
-     data-category="CTA"
-     data-label="Demo Request">
+   <button
+     data-ga-event="click"
+     data-ga-category="CTA"
+     data-ga-label="Demo Request">
      Request Demo
    </button>
    ```
-2. Event tracking is handled by GA4 configuration
-3. No custom JavaScript needed for basic events
+2. Implement one of the following to send the event to GA4:
+   - **Direct GA4 integration:** Add a JavaScript handler (e.g., in `layouts/partials/analytics/google-analytics.html`) that:
+     - Listens for `click` events on elements with `data-ga-event`
+     - Reads `data-ga-event`, `data-ga-category`, and `data-ga-label` from the clicked element
+     - Calls `gtag('event', <event-name>, { event_category: <category>, event_label: <label> });`
+   - **Google Tag Manager (GTM):** Configure GTM with a Click trigger matching elements by `data-ga-` attributes and a GA4 Event tag mapping those attributes to GA4 event parameters.
+3. **Note:** The current GA snippet (`layouts/partials/analytics/google-analytics.html`) only calls `gtag('config', ...)`. Custom events will not be sent unless you implement one of the mechanisms in step 2.
 
 ---
 
@@ -240,7 +245,7 @@ parent = "Solutions"
      },
    }
    ```
-2. Rebuild CSS: `npm run build:css`
+2. Rebuild CSS: `npm run build`
 3. Restart dev server
 
 **DO NOT:**
@@ -283,7 +288,7 @@ brew install hugo  # macOS
 **Styles not applying:**
 ```bash
 # Rebuild CSS
-npm run build:css
+npm run build
 
 # Check if file exists
 ls -lh static/css/style.css

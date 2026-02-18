@@ -164,7 +164,7 @@ hugo version
 ### Styling Issues
 ```bash
 # Rebuild Tailwind CSS
-npm run build:css
+npm run build
 
 # Check generated CSS
 ls -lh static/css/style.css
