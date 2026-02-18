@@ -1,133 +1,77 @@
 # AGENTS.md
 
-> **Canonical Operating Manual for AI Agents & Contributors**
-> *Read this file before generating code or opening a PR.*
+> **Operating Contract for AI Agents & Contributors**
+> *Read this before making any changes.*
 
-This file defines the strict protocols, standards, and expectations for contributing to the SwiftEnroll public repository. Failure to adhere to these guidelines will result in rejected pull requests.
-
----
-
-## 1. Product & Mission
-
-**What this software is:**
-This is the **public marketing website** for SwiftEnroll (swiftenroll.github.io). It is NOT the SaaS application itself.
-
-**Who it serves:**
-- **Parents:** Searching for simple enrollment in youth programs.
-- **Program Directors:** Looking to modernize their camps, after-school programs, and payment systems.
-
-**Critical Outcomes:**
-- **Trust:** The design must look professional, secure, and established. Sloppy UI kills conversions.
-- **Speed:** Parents on mobile devices need instant page loads.
-- **Clarity:** Navigation and copy must clearly explain complex enrollment features (waitlists, approvals, payments).
-
-**Mission:**
-To persuade program directors that enrollment can be simple, transparent, and fair.
+This file defines how agents and contributors must operate in this repository. It establishes constraints, responsibilities, and navigation to detailed knowledge.
 
 ---
 
-## 2. Architecture Overview
+## Mission
 
-### Stack
-- **Generator:** Hugo (Extended)
-- **Styling:** Tailwind CSS + PostCSS
-- **Host:** GitHub Pages (Static file hosting)
-- **Forms:** `submit-form.com` (External handler) + Cloudflare Turnstile (Anti-spam)
-- **CI/CD:** GitHub Actions (Builds, Link Checks, Lighthouse CI)
+This repository contains the **public marketing website** for SwiftEnroll (swiftenroll.github.io). It is NOT the SaaS application.
 
-### Data Flow
-1. **Content:** Written in Markdown (`content/`) with Front Matter.
-2. **Templates:** Hugo Layouts (`layouts/`) process Markdown into HTML.
-3. **Styles:** Tailwind scans HTML/content, compiles `assets/css/main.css` → `static/css/style.css`.
-4. **Build:** `hugo --minify` generates static HTML in `public/`.
-
-### Integrations
-- **Forms:** Direct POST requests to `submit-form.com`. Configuration is in `hugo.toml` -> `[params.forms]`.
-- **Analytics:** GA4 (ID in `hugo.toml`).
-- **Search:** None (static site).
+See `/docs/product/MISSION.md` for goals, audience, and critical outcomes.
 
 ---
 
-## 3. Local Development
+## Source of Truth
 
-**Prerequisites:** Node.js 18+, Hugo Extended (must support PostCSS).
-
-### Setup & Run
-```bash
-# 1. Install dependencies
-npm install
-
-# 2. Run development server (Auto-reloads Hugo + Tailwind)
-npm start
-```
-*Server runs at `http://localhost:1313`.*
-
-### Build for Production
-```bash
-npm run build
-```
-
-### Verification
-```bash
-# Run link checker (requires build first)
-just lychee
-
-# Run Lighthouse CI locally
-just lighthouse
-```
+- **Configuration:** `hugo.toml` - Never hardcode what belongs in config
+- **Documentation:** `/docs` - If not documented, it doesn't exist
+  - `/docs/architecture/` - System design, stack, data flow
+  - `/docs/engineering/` - Coding standards, testing, workflow
+  - `/docs/product/` - Mission, goals, audience
+  - `/docs/runbooks/` - Common tasks and playbooks
 
 ---
 
-## 4. Repository Map
+## Mandatory Workflow
 
-| Directory | Responsibility |
-|-----------|----------------|
-| `content/` | **Primary workspace.** Markdown files for site pages. |
-| `layouts/` | HTML templates. `_default` for page types, `partials` for components. |
-| `assets/css/` | Tailwind source files (`main.css`). |
-| `static/` | Raw assets (images, favicon). content copied directly to `public/`. |
-| `hugo.toml` | **Single source of truth** for site config, menus, and global params. |
-| `docs/` | Internal documentation. **Must stay updated.** |
-| `.lighthouserc.json` | Performance & Accessibility thresholds. |
+### Before Any Changes
+1. Read `/docs/architecture/OVERVIEW.md` for system design
+2. Read `/docs/architecture/REPOSITORY_MAP.md` for file locations
+3. Read `/docs/engineering/CODING_STANDARDS.md` and `/docs/engineering/TESTING.md`
+4. Plan minimal, surgical changes
 
----
+### During Changes
+1. Follow coding standards (Tailwind utility-first, semantic HTML)
+2. Test locally: `npm start` at http://localhost:1313
+3. Verify mobile (375px) and desktop (1280px+) layouts
 
-## 5. Coding Standards
+### Before Submission
+1. Run: `npm run build && just lychee && just lighthouse`
+2. Update documentation (see `/docs/engineering/DOCUMENTATION.md`)
+3. Open a pull request and request code review from at least one maintainer in GitHub
+4. Ensure all required GitHub Actions / CI checks pass on the pull request (including any security scans that are configured)
 
-### Tailwind CSS
-- **Utility First:** Do NOT write custom CSS in `main.css` unless absolutely necessary (e.g., specific animations).
-- **Responsive Design:** Mobile-first. Use `sm:`, `md:`, `lg:` prefixes.
-  - Breakpoints: `sm: 450px`, `md: 600px`, `lg: 800px`, `xl: 1280px`.
-- **Colors:** Use semantic names from config (`bg-primary-600` not `#1F1C4E`).
-- **Typography:** Use `prose` (tailwindcss/typography) for Markdown content areas.
-
-### HTML / Go Templates
-- **Semantic HTML:** Use `<header>`, `<main>`, `<footer>`, `<nav>`, `<article>`.
-- **Components:** Reusable UI goes in `layouts/partials/components/`.
-- **Safe HTML:** Standard Hugo escaping is on. Use `safeHTML` only if you have verified the source.
-
-### Configuration
-- **No Hardcoding:** URLs, API keys, and business names belong in `hugo.toml` or Front Matter.
-- **Environment Variables:** Use `HUGO_PARAMS_...` for local overrides (e.g., disabling forms).
-
-### Images
-- Place raw images in `assets/images/` for processing (resizing/webp) or `static/images/` if processing isn't needed.
-- Always include `alt` text.
+**Documentation updates are NOT optional. Code and docs must evolve together.**
 
 ---
 
-## 6. How Changes Are Implemented
+## Risk Boundaries
 
-1. **Analysis:** Read `hugo.toml` and existing `layouts/` to understand current patterns.
-2. **Content First:** If adding a page, create `content/path/to/page.md`.
-3. **Layout:** Assign a `type` or `layout` in Front Matter. Create/modify layout in `layouts/` if standard ones don't fit.
-4. **Style:** Apply Tailwind classes.
-5. **Verify:** Check mobile view (`< 450px`) and desktop (`> 1280px`).
-6. **Commit:** `git commit -m "feat: description"` (Conventional Commits).
+**Critical rules (violating these = PR rejection):**
+
+### Security
+- ❌ Commit secrets, API keys, tokens
+- ❌ Add third-party JS without approval
+- ❌ Create custom form handlers
+
+### Data & Integrations
+- ❌ Log or store user data in this repository
+- ❌ Change approved integrations (forms, analytics, anti-spam)
+- ❌ Add payment processing (this is a marketing site)
+
+### Performance
+- ❌ Add heavy images or blocking JS to `/` or `/pricing`
+- ❌ Skip Lighthouse thresholds (Performance > 90, Accessibility > 95)
+
+**See `/docs/RISK_BOUNDARIES.md` for complete details.**
 
 ---
 
-## 7. Testing Requirements
+## Quality Standards
 
 **Mandatory Checks:**
 - **Build Success:** `npm run build` must pass without errors.
@@ -144,83 +88,32 @@ just lighthouse
 - Horizontal scrollbars on mobile.
 - Console errors in browser DevTools.
 
----
-
-## 8. PR Expectations
-
-**Quality Bar:**
-- Code is formatted (standard JS/HTML indentation).
-- No unused Tailwind classes.
-- No "temporary" hacks or magic numbers.
-
-**Description:**
-- Explain *why* the change was made.
-- Include a screenshot for UI changes.
-- Confirm local testing results.
+**See `/docs/engineering/TESTING.md` for complete requirements.**
 
 ---
 
-## 9. Security & Safety Rails
+## Navigation
 
-- **NEVER** commit secret keys (AWS, API tokens).
-- **NEVER** expose the admin interface (there isn't one, but don't add one).
-- **Forms:** Always use the configured endpoints. Do not create custom form handlers without approval.
-- **External Scripts:** Do not add third-party JS (tracking, widgets) without explicit instructions.
+**Start here:** `/docs/README.md` - Complete documentation index
 
----
-
-## 10. Performance & Reliability Notes
-
-- **Hot Paths:** The Landing Page (`/`) and Pricing (`/pricing`) are critical. Heavy images or blocking JS here is forbidden.
-- **Images:** Use Hugo's image processing to resize large assets. Do not serve 5MB PNGs.
-- **Fonts:** Inter is self-hosted. Do not add external Google Fonts links (performance risk).
+**Quick links:**
+- New? → `/docs/architecture/OVERVIEW.md` + `/docs/engineering/WORKFLOW.md`
+- Coding? → `/docs/engineering/CODING_STANDARDS.md` + `/docs/engineering/TESTING.md`
+- Common tasks? → `/docs/runbooks/COMMON_TASKS.md`
 
 ---
 
-## 11. Playbooks for Common Tasks
+## Operating Principles
 
-### Adding a New Industry Page
-1. Create `content/industries/new-industry.md`.
-2. Copy Front Matter structure from `content/industries/youth-sports-fitness.md`.
-3. Update `title`, `description`, and `hero_image`.
-4. Add to `hugo.toml` menu `[[menu.main]]` if it needs to be in the nav.
-
-### Updating Pricing
-1. Edit `content/pricing.md` Front Matter.
-2. If structure changes, modify `layouts/partials/components/pricing-card.html`.
-
-### Changing Global Contact Info
-1. Edit `hugo.toml` under `[params.company]` or `[params.social]`.
-2. Do NOT hunt-and-peck through HTML files.
+1. **Minimal changes** - Change as few lines as possible
+2. **Documentation first** - If not documented, it doesn't exist
+3. **Test everything** - No changes without verification
+4. **Security matters** - Never compromise security for convenience
+5. **Performance matters** - Slow pages lose conversions
+6. **Mobile first** - Most users are on mobile devices
 
 ---
 
-## 12. Glossary
+**Last Updated:** 2026-02-15
 
-- **Front Matter:** The YAML/TOML block at the top of Markdown files defining metadata.
-- **Partial:** A reusable template snippet (e.g., `footer.html`).
-- **Shortcode:** A snippet used *inside* Markdown content (e.g., `{{< cta >}}`).
-- **Turnstile:** Cloudflare's captcha replacement.
-- **Justfile:** Command runner configuration file.
-
----
-
-# 🚨 DOCUMENTATION UPDATE REQUIREMENTS
-
-**Documentation is part of the feature.**
-If code behavior or public interfaces change, documentation MUST change in the same PR.
-
-**You must update:**
-- `README.md` (if setup/commands change)
-- `docs/CONFIGURATION.md` (if `hugo.toml` params change)
-- `docs/SHORTCODES.md` (if new shortcodes are added)
-- `AGENTS.md` (if workflows change)
-
-**If you cannot find documentation to update, you must create it.**
-
-### Checklist Before Submitting
-- [ ] User-visible behavior documented
-- [ ] New `hugo.toml` parameters documented in `docs/CONFIGURATION.md`
-- [ ] Setup instructions in `README.md` verified
-- [ ] API/Form integration changes reflected in docs
-- [ ] Diagrams updated if architecture changed
+**Questions?** Read the `/docs` directory. If docs are wrong, fix them in the same PR.
