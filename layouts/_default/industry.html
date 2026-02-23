@@ -5,7 +5,13 @@
 {{ with .Params.client_logos }}
 {{ partial "components/client-logos.html" . }}
 {{ end }}
-{{ .Content }}
+{{ if .Params.seo_sections }}
+  {{ partial "components/industry-seo-sections.html" . }}
+{{ else }}
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl my-16 prose prose-lg prose-indigo">
+    {{ .Content }}
+  </div>
+{{ end }}
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl my-12">
   {{ partial "components/demo-inline.html" . }}
 </div>

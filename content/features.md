@@ -22,7 +22,7 @@ layout: "feature"
 
 {{< /features-section >}}
 
-{{< features-section title="Fair Enrollment & Waitlists" description="Flexible placement algorithms with automated approvals and waitlist management." columns="2" id="waitlists-and-placement" >}}
+{{< features-section title="Fair Enrollment & Waitlists" description="Flexible placement algorithms with automated approvals and waitlist management. Ideal for high-demand [after school enrichment programs](/industries/after-school-enrichment-programs/)." columns="2" id="waitlists-and-placement" >}}
 
 {{< feature
     icon="clock"
