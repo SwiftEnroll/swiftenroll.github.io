@@ -8,7 +8,7 @@
     <div class="container">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <h2 class="text-3xl md:text-4xl font-bold mb-6">{{ $title }}</h2>
-            <p class="text-xl text-gray-600">{{ $description }}</p>
+            <p class="text-xl text-gray-600">{{ $description | safeHTML }}</p>
         </div>
 
         <!-- Feature Grid: responsive columns, defaults to 2 on md+ -->
