@@ -1,5 +1,6 @@
 ---
 title: "After School Enrichment Software for PTOs and Schools | SwiftEnroll"
+description: "After school enrichment registration software for PTOs and schools to manage enrollment, payments, rosters, waitlists, and lotteries in one platform."
 layout: "industry"
 hero:
     headline: "After School Enrichment Software"
