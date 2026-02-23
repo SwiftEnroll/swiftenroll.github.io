@@ -65,7 +65,7 @@ Every page includes OpenGraph tags for rich social media previews on Facebook, L
 
 **Generated tags**:
 ```html
-<meta property="og:title" content="Page Title | SwiftEnroll">
+<meta property="og:title" content="Page Title">
 <meta property="og:description" content="Page description">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://swiftenroll.github.io/page/">
@@ -80,7 +80,7 @@ Twitter-specific tags ensure proper display on Twitter/X:
 **Generated tags**:
 ```html
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Page Title | SwiftEnroll">
+<meta name="twitter:title" content="Page Title">
 <meta name="twitter:description" content="Page description">
 <meta name="twitter:site" content="@SwiftEnroll">
 <meta name="twitter:image" content="https://swiftenroll.github.io/images/hero-image.png">
@@ -157,7 +157,7 @@ Use browser dev tools to inspect the `<head>` section of any page and verify all
 
 ### Title Guidelines
 - **Homepage**: Just the site name (e.g., "SwiftEnroll")
-- **Subpages**: "Page Title | SwiftEnroll"
+- **Subpages**: "Page Title"
 - **Length**: 50-60 characters optimal
 - **Keywords**: Include primary keyword near the start
 

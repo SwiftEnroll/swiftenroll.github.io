@@ -1,5 +1,5 @@
 ---
-title: "Contact Us | SwiftEnroll"
+title: "Contact Us"
 layout: "single"
 url: "/contact/"
 ---

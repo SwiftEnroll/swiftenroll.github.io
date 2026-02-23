@@ -1,5 +1,5 @@
 ---
-title: "Summer Camp Registration Software | SwiftEnroll"
+title: "Summer Camp Registration Software"
 layout: "industry"
 description: "Streamline your summer camp registration with SwiftEnroll. Manage enrollments, waitlists, approvals, and payments in one easy-to-use platform."
 hero:

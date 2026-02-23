@@ -1,5 +1,5 @@
 ---
-title: "STEM & Academic Programs Registration Software | SwiftEnroll"
+title: "STEM & Academic Programs Registration Software"
 layout: "industry"
 description: "Manage course enrollments, tutoring sessions, waitlists, approvals, and payments for STEM and academic programs with SwiftEnroll."
 hero:

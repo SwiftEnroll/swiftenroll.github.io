@@ -1,5 +1,5 @@
 ---
-title: "Privacy Policy | SwiftEnroll"
+title: "Privacy Policy"
 layout: "simple"
 ---
 

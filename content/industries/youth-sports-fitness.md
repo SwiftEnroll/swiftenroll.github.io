@@ -1,5 +1,5 @@
 ---
-title: "Youth Sports & Fitness Registration Software | SwiftEnroll"
+title: "Youth Sports & Fitness Registration Software"
 layout: "industry"
 description: "Manage team registrations, training sessions, waitlists, and payments for youth sports and fitness programs with SwiftEnroll."
 hero:

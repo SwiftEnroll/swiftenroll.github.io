@@ -1,5 +1,5 @@
 ---
-title: "Music, Art & Performance Programs Registration Software | SwiftEnroll"
+title: "Music, Art & Performance Programs Registration Software"
 layout: "industry"
 description: "Manage lesson packs, rehearsals, production enrollments, waitlists, and payments for music, art, and performance programs with SwiftEnroll."
 hero:
