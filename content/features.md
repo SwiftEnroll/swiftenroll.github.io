@@ -1,5 +1,5 @@
 ---
-title: "Features | SwiftEnroll"
+title: "Features"
 description: "Everything you need to run enrollment.<br/>Waitlists and approvals, payments, and admin reporting built for programs and schools."
 layout: "feature"
 ---
@@ -22,7 +22,7 @@ layout: "feature"
 
 {{< /features-section >}}
 
-{{< features-section title="Fair Enrollment & Waitlists" description="Flexible placement algorithms with automated approvals and waitlist management." columns="2" id="waitlists-and-placement" >}}
+{{< features-section title="Fair Enrollment & Waitlists" description="Flexible placement algorithms with automated approvals and waitlist management. Ideal for high-demand <a href=\"/industries/after-school-enrichment-programs/\">after school enrichment programs</a>." columns="2" id="waitlists-and-placement" >}}
 
 {{< feature
     icon="clock"

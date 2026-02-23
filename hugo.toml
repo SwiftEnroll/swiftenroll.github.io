@@ -97,7 +97,7 @@ Every feature we build starts with a simple question: "Would this make life easi
       number = "6"
       label = "Focus industries"
     [[params.company.stats]]
-      number = "150+"
+      number = "750+"
       label = "Users served"
   
   # Global CTA Configuration

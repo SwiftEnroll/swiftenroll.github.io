@@ -1,0 +1,69 @@
+{{ $page := . }}
+{{ range $index, $section := .Params.seo_sections }}
+  {{ if eq $section.type "intro" }}
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">{{ $section.title }}</h2>
+        <div class="prose prose-lg prose-indigo mx-auto text-gray-600">
+          {{ $section.content | markdownify }}
+        </div>
+      </div>
+    </section>
+  {{ else if eq $section.type "benefits" }}
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">{{ $section.title }}</h2>
+          {{ with $section.subtitle }}<p class="text-xl text-gray-600">{{ . }}</p>{{ end }}
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 {{ if eq $section.columns 3 }}lg:grid-cols-3{{ else }}lg:grid-cols-2{{ end }} gap-8">
+          {{ range $section.items }}
+            <div class="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+              {{ $icon := .icon }}
+              {{ $iconColor := .icon_color | default "#4F46E5" }}
+              {{ $bgColor := .bg_color | default "#EEF2FF" }}
+              {{ if $icon }}
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-6" style="background-color: {{ $bgColor }}; color: {{ $iconColor }};">
+                {{ partial "components/icons" (dict "name" $icon "size" "6") }}
+              </div>
+              {{ end }}
+              <h3 class="text-xl font-bold mb-3 text-gray-900">{{ .title }}</h3>
+              <div class="text-gray-600 prose prose-sm">{{ .description | markdownify }}</div>
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  {{ else if eq $section.type "text_block" }}
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        {{ with $section.title }}<h2 class="text-3xl font-bold mb-6 text-center text-gray-900">{{ . }}</h2>{{ end }}
+        <div class="prose prose-lg prose-indigo mx-auto text-gray-600">
+          {{ $section.content | markdownify }}
+        </div>
+      </div>
+    </section>
+  {{ else if eq $section.type "faq" }}
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">{{ $section.title | default "Frequently Asked Questions" }}</h2>
+          {{ with $section.subtitle }}<p class="text-xl text-gray-600">{{ . }}</p>{{ end }}
+        </div>
+        <div class="space-y-4">
+          {{ range $section.items }}
+            <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+              <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors focus:outline-none" aria-expanded="false" onclick="const expanded = this.getAttribute('aria-expanded') === 'true'; this.setAttribute('aria-expanded', !expanded); this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')">
+                <span class="text-lg font-semibold text-gray-900">{{ .question }}</span>
+                <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </button>
+              <div class="hidden border-t border-gray-100 px-6 py-4 text-gray-600 prose prose-indigo max-w-none">
+                {{ .answer | markdownify }}
+              </div>
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

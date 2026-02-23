@@ -1,5 +1,5 @@
 ---
-title: "About Our Company | SwiftEnroll"
+title: "About Our Company"
 layout: "company"
 description: "Learn about our mission, leadership team, and the investors backing our vision"
 ---

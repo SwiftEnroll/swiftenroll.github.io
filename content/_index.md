@@ -40,7 +40,7 @@ testimonials:
 
 {{< client-logos animate="false" >}}
 
-{{< features-section title="Everything you need to run enrollment" description="Open registration, manage rosters and waitlists, automate approvals and reminders, and collect payments in one place." >}}
+{{< features-section title="Everything you need to run enrollment" description="Open registration, manage rosters and waitlists, automate approvals and reminders, and collect payments in one place. Perfect for <a href=\"/industries/after-school-enrichment-programs/\">after school enrichment programs</a>." >}}
 
 {{< feature
     title="Fair & Automated Enrollment"
