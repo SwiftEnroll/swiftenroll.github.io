@@ -1,0 +1,3 @@
+# submit-form.com endpoints return 400 on GET requests
+# (they expect POST form submissions, not link checking)
+https://submit-form\.com
