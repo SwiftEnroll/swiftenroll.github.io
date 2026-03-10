@@ -31,7 +31,7 @@
 @layer components {
   /* Skip-to-content link — hidden until focused via keyboard */
   .skip-to-content {
-    @apply absolute -top-full left-4 z-[200] px-4 py-2 bg-white text-primary-600 font-bold rounded-lg shadow-lg ring-2 ring-primary-600;
+    @apply fixed -top-full left-4 z-[200] px-4 py-2 bg-white text-primary-600 font-bold rounded-lg shadow-lg ring-2 ring-primary-600;
     @apply focus:top-4;
     transition: top 0.1s ease;
   }
