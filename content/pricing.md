@@ -40,7 +40,7 @@ layout: "pricing"
       ],
       "button": {
         "text": "Book a Demo",
-        "url": "/contact/"
+        "url": "/demo/"
       }
     },
     {
@@ -56,8 +56,8 @@ layout: "pricing"
         "Dedicated support"
       ],
       "button": {
-        "text": "Talk to Us",
-        "url": "/contact"
+        "text": "Book a Demo",
+        "url": "/demo/"
       }
     }
   ]
