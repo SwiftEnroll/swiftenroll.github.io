@@ -78,6 +78,9 @@
     {{ partial "layout/custom-head" . }}
 </head>
 <body class="min-h-screen flex flex-col justify-start w-full">
+    <!-- Skip to main content (accessibility) -->
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+
     <!-- Google Tag Manager (noscript) -->
     {{ if and hugo.IsProduction .Site.Params.googleTagManager }}
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ .Site.Params.googleTagManager }}"
@@ -90,9 +93,9 @@
     </div>
 
     <!-- Main Content -->
-    <div class="pt-20 w-full min-w-0">
+    <main id="main-content" class="pt-20 w-full min-w-0">
         {{ block "main" . }}{{ end }}
-    </div>
+    </main>
 
     <!-- Footer -->
     {{ partial "layout/footer" . }}

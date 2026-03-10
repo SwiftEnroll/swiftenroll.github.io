@@ -4,7 +4,7 @@
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <header class="fixed w-full top-0 z-50 {{ with $headerConfig.background }}{{ . }}{{ else }}bg-white/80 backdrop-blur-sm{{ end }} {{ with $headerConfig.border }}{{ . }}{{ else }}border-b border-gray-100{{ end }}">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-            <nav class="flex items-center justify-between h-20">
+            <nav class="flex items-center justify-between h-20" aria-label="Main navigation">
                 <!-- Logo and Title -->
                 <a href="{{ "/" | relURL }}" class="flex items-center space-x-4">
                     {{ with $headerConfig.logo }}
@@ -70,7 +70,7 @@
 
                 <!-- Mobile Menu Toggle -->
                 <div class="md:hidden">
-                    <label for="nav-toggle" class="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 transition-colors cursor-pointer">
+                    <label for="nav-toggle" aria-label="Open navigation menu" class="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 transition-colors cursor-pointer">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
