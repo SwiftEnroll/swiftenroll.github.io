@@ -22,7 +22,7 @@ layout: "pricing"
         "Email support"
       ],
       "button": {
-        "text": "Contact Sales",
+        "text": "Get Started",
         "url": "/contact/"
       }
     },
@@ -40,7 +40,7 @@ layout: "pricing"
       ],
       "button": {
         "text": "Book a Demo",
-        "url": "/contact/"
+        "url": "/demo/"
       }
     },
     {
@@ -56,8 +56,8 @@ layout: "pricing"
         "Dedicated support"
       ],
       "button": {
-        "text": "Talk to Us",
-        "url": "/contact"
+        "text": "Contact Sales",
+        "url": "/contact/"
       }
     }
   ]

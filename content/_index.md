@@ -36,6 +36,8 @@ testimonials:
     headline="Fair,<br/>Simple,<br/>Automated<br/>Enrollment."
     sub_headline="Our automated enrollment platform removes the stress from registration season for families and administrators alike."
     hero_image="/images/hero-image.png"
+    primary_button_text="Book a Demo"
+    primary_button_url="/demo/"
 >}}
 
 {{< client-logos animate="false" >}}

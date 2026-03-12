@@ -1,0 +1,38 @@
+{{- if and hugo.IsProduction .Site.Params.googleAnalytics }}
+<!-- Demo CTA Click Tracking -->
+<script>
+(function() {
+  function trackDemoCtaClicks() {
+    document.querySelectorAll('a[href="/demo/"]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        if (typeof gtag === 'function') {
+          // Determine CTA location from nearest landmark or data attribute
+          var location = 'unknown';
+          var section = el.closest('section, header, footer, nav, [data-cta-location]');
+          if (section) {
+            if (section.classList.contains('hero-section')) location = 'hero';
+            else if (section.classList.contains('cta-section')) location = 'cta_banner';
+            else if (section.tagName === 'NAV') location = 'nav';
+            else if (section.tagName === 'HEADER' || section.closest('header')) location = 'header';
+            else if (section.tagName === 'FOOTER' || section.closest('footer')) location = 'footer';
+            else if (section.getAttribute('data-cta-location')) location = section.getAttribute('data-cta-location');
+          }
+          gtag('event', 'demo_cta_click', {
+            cta_location: location,
+            cta_text: el.textContent.trim(),
+            page_path: window.location.pathname,
+            transport_type: 'beacon'
+          });
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', trackDemoCtaClicks);
+  } else {
+    trackDemoCtaClicks();
+  }
+})();
+</script>
+{{- end }}
