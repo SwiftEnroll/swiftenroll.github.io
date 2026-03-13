@@ -43,7 +43,7 @@ jobs:
         id: sass-cache
         uses: actions/cache@v4
         with:
-          path: ${{ env.HOME }}/.local/dart-sass
+          path: /home/runner/.local/dart-sass
           key: dart-sass-${{ env.DART_SASS_VERSION }}
       - name: Install Dart Sass
         if: steps.sass-cache.outputs.cache-hit != 'true'
@@ -58,7 +58,7 @@ jobs:
         id: hugo-cache
         uses: actions/cache@v4
         with:
-          path: ${{ env.HOME }}/.local/hugo
+          path: /home/runner/.local/hugo
           key: hugo-${{ env.HUGO_VERSION }}
       - name: Install Hugo
         if: steps.hugo-cache.outputs.cache-hit != 'true'

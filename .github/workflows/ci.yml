@@ -38,7 +38,7 @@ jobs:
         id: hugo-cache
         uses: actions/cache@v4
         with:
-          path: ${{ env.HOME }}/.local/hugo
+          path: /home/runner/.local/hugo
           key: hugo-${{ env.HUGO_VERSION }}
       - name: Install Hugo
         if: steps.hugo-cache.outputs.cache-hit != 'true'
