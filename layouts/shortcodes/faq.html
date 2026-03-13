@@ -21,12 +21,13 @@
         </div>
         
         <div class="space-y-6">
+            {{- $ordinal := .Ordinal -}}
             {{ range $i, $q := $data.questions }}
             <div class="border rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
                 <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset"
-                        id="faq-btn-{{ $i }}"
+                        id="faq-btn-{{ $ordinal }}-{{ $i }}"
                         aria-expanded="false"
-                        aria-controls="faq-answer-{{ $i }}"
+                        aria-controls="faq-answer-{{ $ordinal }}-{{ $i }}"
                         onclick="toggleFaq(this)">
                     <span class="text-lg font-medium text-gray-900">{{ $q.question }}</span>
                     <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -34,9 +35,9 @@
                     </svg>
                 </button>
                 <div class="faq-content hidden border-t"
-                     id="faq-answer-{{ $i }}"
+                     id="faq-answer-{{ $ordinal }}-{{ $i }}"
                      role="region"
-                     aria-labelledby="faq-btn-{{ $i }}">
+                     aria-labelledby="faq-btn-{{ $ordinal }}-{{ $i }}">
                     <div class="p-6 prose prose-sm sm:prose lg:prose-lg max-w-none">
                         {{ $q.answer | markdownify }}
                     </div>
@@ -47,10 +48,12 @@
     </div>
 </section>
 <script>
-function toggleFaq(btn) {
-    var expanded = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-    btn.parentElement.querySelector('.faq-content').classList.toggle('hidden');
-    btn.querySelector('svg').classList.toggle('rotate-180');
+if (typeof window.toggleFaq === 'undefined') {
+    window.toggleFaq = function(btn) {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        btn.parentElement.querySelector('.faq-content').classList.toggle('hidden');
+        btn.querySelector('svg').classList.toggle('rotate-180');
+    };
 }
 </script>
