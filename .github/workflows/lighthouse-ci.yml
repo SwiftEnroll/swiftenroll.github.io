@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   lighthouse:
-    runs-on: ubuntu-latest
+    runs-on: swiftenroll-lab
     env:
       DART_SASS_VERSION: 1.97.3
       GO_VERSION: 1.25.7
