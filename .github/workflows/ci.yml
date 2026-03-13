@@ -14,7 +14,7 @@ defaults:
     shell: bash
 jobs:
   build-and-check:
-    runs-on: swiftenroll-lab
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     env:
