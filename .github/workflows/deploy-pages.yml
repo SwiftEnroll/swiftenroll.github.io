@@ -33,30 +33,47 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: ${{ env.GO_VERSION }}
-          cache: false
+          cache: true
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: npm
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
       - name: Create directory for user-specific executable files
         run: |
           mkdir -p "${HOME}/.local"
+      - name: Cache Dart Sass
+        id: sass-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.HOME }}/.local/dart-sass
+          key: dart-sass-${{ env.DART_SASS_VERSION }}
       - name: Install Dart Sass
+        if: steps.sass-cache.outputs.cache-hit != 'true'
         run: |
           curl -sLJO "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
           tar -C "${HOME}/.local" -xf "dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
           rm "dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
-          echo "${HOME}/.local/dart-sass" >> "${GITHUB_PATH}"
+      - name: Add Dart Sass to PATH
+        run: echo "${HOME}/.local/dart-sass" >> "${GITHUB_PATH}"
+      - name: Cache Hugo binary
+        id: hugo-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.HOME }}/.local/hugo
+          key: hugo-${{ env.HUGO_VERSION }}
       - name: Install Hugo
+        if: steps.hugo-cache.outputs.cache-hit != 'true'
         run: |
           curl -sLJO "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
           mkdir "${HOME}/.local/hugo"
           tar -C "${HOME}/.local/hugo" -xf "hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
           rm "hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
-          echo "${HOME}/.local/hugo" >> "${GITHUB_PATH}"
+      - name: Add Hugo to PATH
+        run: echo "${HOME}/.local/hugo" >> "${GITHUB_PATH}"
       - name: Verify installations
         run: |
           echo "Dart Sass: $(sass --version)"
