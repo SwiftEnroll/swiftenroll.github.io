@@ -1,10 +1,10 @@
-{{ $json := .Inner | transform.Unmarshal }}
+{{ $data := site.Data.pricing }}
 <section class="py-16 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{ with $json.title }}
+        {{ with $data.title }}
         <div class="text-center">
             <h2 class="text-3xl font-bold text-gray-900">{{ . }}</h2>
-            {{ with $json.description | safeHTML }}
+            {{ with $data.description | safeHTML }}
             <p class="mt-4 text-xl text-gray-600">{{ . }}</p>
             {{ end }}
         </div>
@@ -12,7 +12,7 @@
 
         <div class="mt-16">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {{ range $json.plans }}
+                {{ range $data.plans }}
                 <div class="w-full">
                     <div class="h-full flex flex-col rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-shadow duration-300 relative">
                         <div class="p-8 flex flex-col flex-grow">
