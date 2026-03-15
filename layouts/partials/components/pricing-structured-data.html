@@ -1,0 +1,56 @@
+{{/* Pricing structured data — Product + Offer for each plan */}}
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "SwiftEnroll Non-Profit Plan",
+    "description": "Enrollment management platform for 501(c)(3) and public institutions. Includes unlimited programs, waitlists, placement, approvals, notifications, Stripe payments, basic reporting, and email support.",
+    "brand": {
+      "@type": "Organization",
+      "name": "SwiftEnroll"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "priceValidUntil": "{{ now.AddDate 1 0 0 | time.Format "2006-12-31" }}",
+      "availability": "https://schema.org/InStock",
+      "url": "{{ "pricing/" | absURL }}"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "SwiftEnroll For-Profit Plan",
+    "description": "Enrollment management platform for growing programs and camps. Includes everything in Non-Profit plus coupons, discounts, installments, invoicing, advanced reporting, admin roles, permissions, and priority support.",
+    "brand": {
+      "@type": "Organization",
+      "name": "SwiftEnroll"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "100",
+      "priceCurrency": "USD",
+      "priceValidUntil": "{{ now.AddDate 1 0 0 | time.Format "2006-12-31" }}",
+      "availability": "https://schema.org/InStock",
+      "url": "{{ "pricing/" | absURL }}"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "SwiftEnroll Enterprise Plan",
+    "description": "Enrollment management platform for districts and multi-site organizations. Includes all For-Profit features plus optional SAML/SSO, custom integrations, dedicated onboarding, uptime SLA, and dedicated support.",
+    "brand": {
+      "@type": "Organization",
+      "name": "SwiftEnroll"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "url": "{{ "pricing/" | absURL }}"
+    }
+  }
+]
+</script>
