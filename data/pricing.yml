@@ -1,16 +1,16 @@
 title: "Simple pricing for programs and schools"
-description: "Plans for non-profit programs, for-profit businesses, and larger enterprises.&lt;br/&gt;All plans include secure payments, waitlists, approvals, and parent-friendly enrollment."
+description: "Plans for non-profit programs, for-profit businesses, and larger enterprises.<br/>All plans include secure payments, waitlists, approvals, and parent-friendly enrollment."
 plans:
   - name: "Non-Profit"
     price: "0"
     description: "Discounted pricing for 501(c)(3) and public institutions."
     structured_description: "Enrollment management platform for 501(c)(3) and public institutions. Includes unlimited programs, waitlists, placement, approvals, notifications, Stripe payments, basic reporting, and email support."
     features:
-      - "Unlimited programs &amp; enrollments"
-      - "Waitlists &amp; placement"
-      - "Approvals &amp; notifications"
+      - "Unlimited programs & enrollments"
+      - "Waitlists & placement"
+      - "Approvals & notifications"
       - "Stripe payments (standard processing fees)"
-      - "Basic reporting &amp; exports"
+      - "Basic reporting & exports"
       - "Email support"
     button:
       text: "Get Started"
@@ -21,10 +21,10 @@ plans:
     structured_description: "Enrollment management platform for growing programs and camps. Includes everything in Non-Profit plus coupons, discounts, installments, invoicing, advanced reporting, admin roles, permissions, and priority support."
     features:
       - "Everything in Non-Profit"
-      - "Coupons &amp; discounts"
-      - "Installments &amp; invoicing"
+      - "Coupons & discounts"
+      - "Installments & invoicing"
       - "Advanced reporting"
-      - "Admin roles &amp; permissions"
+      - "Admin roles & permissions"
       - "Priority support"
     button:
       text: "Book a Demo"

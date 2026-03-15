@@ -4,7 +4,7 @@ description: "Clear, flexible pricing for programs of all sizes"
 layout: "pricing"
 ---
 
-{{< pricing-table-1 />}}
+{{< pricing-table-1 >}}{{< /pricing-table-1 >}}
 
 {{< faq >}}
 {
