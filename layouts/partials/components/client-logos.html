@@ -123,4 +123,28 @@
         animation: 15s slide infinite linear;
     }
 }
+
+/* WCAG 2.1 SC 2.2.2 — respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .logos-slide.animate {
+        animation: none;
+    }
+
+    .logo-scroll {
+        overflow: visible;
+        display: flex;
+        justify-content: center;
+    }
+
+    .logo-scroll .logos-slide.animate {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .logo-scroll .logos-slide.animate img {
+        margin: 0;
+    }
+}
 </style>
