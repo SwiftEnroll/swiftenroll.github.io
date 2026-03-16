@@ -53,10 +53,10 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ .Permalink }}">
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts (self-hosted Inter) -->
+    <link rel="preload" href="{{ "fonts/inter-400.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ "fonts/inter-700.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{{ "css/fonts.css" | relURL }}">
     
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
