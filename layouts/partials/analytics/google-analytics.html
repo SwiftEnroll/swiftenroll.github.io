@@ -1,10 +1,27 @@
 {{ if and hugo.IsProduction .Site.Params.googleAnalytics }}
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics }}"></script>
+<!-- Google Analytics with Consent Mode -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+
+  // Default consent to denied — must fire before GA loads
+  gtag('consent', 'default', {
+    analytics_storage: 'denied'
+  });
+
+  // If user previously granted consent, update immediately
+  try {
+    if (localStorage.getItem('ga_consent') === 'granted') {
+      gtag('consent', 'update', {
+        analytics_storage: 'granted'
+      });
+    }
+  } catch (e) {
+    // localStorage unavailable (private browsing, etc.) — stay denied
+  }
+
   gtag('js', new Date());
   gtag('config', '{{ .Site.Params.googleAnalytics }}');
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics }}"></script>
 {{ end }}

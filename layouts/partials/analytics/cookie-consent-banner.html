@@ -1,0 +1,47 @@
+{{ if and hugo.IsProduction .Site.Params.googleAnalytics }}
+<!-- Cookie Consent Banner -->
+<div id="cookie-consent-banner" class="hidden fixed bottom-0 left-0 right-0 z-[9999] bg-gray-800 text-gray-50 py-4 px-5 shadow-lg font-sans text-sm">
+  <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+    <p class="m-0 flex-1 basis-[300px] leading-normal">
+      We use cookies for analytics to understand how visitors use our site. You can accept or decline analytics cookies.
+      <a href="/privacy/" class="text-blue-300 underline">Privacy&nbsp;Policy</a>
+    </p>
+    <div class="flex gap-2 flex-shrink-0">
+      <button type="button" id="cookie-decline-btn" class="py-2 px-5 border border-gray-400 rounded-md bg-transparent text-gray-50 cursor-pointer text-sm font-medium transition-colors duration-150 hover:bg-gray-700">Decline</button>
+      <button type="button" id="cookie-accept-btn" class="py-2 px-5 border-none rounded-md bg-blue-600 text-white cursor-pointer text-sm font-medium transition-colors duration-150 hover:bg-blue-700">Accept</button>
+    </div>
+  </div>
+</div>
+<script>
+(function() {
+  try {
+    var consent = localStorage.getItem('ga_consent');
+    if (consent) return; // Already answered — banner stays hidden
+  } catch (e) {
+    // localStorage unavailable — show the banner so user can still interact
+  }
+
+  const banner = document.getElementById('cookie-consent-banner');
+  if (!banner) return;
+
+  banner.classList.remove('hidden');
+
+  const hideBanner = () => {
+    banner.classList.add('hidden');
+  };
+
+  document.getElementById('cookie-accept-btn').addEventListener('click', () => {
+    try { localStorage.setItem('ga_consent', 'granted'); } catch (e) {}
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+    hideBanner();
+  });
+
+  document.getElementById('cookie-decline-btn').addEventListener('click', () => {
+    try { localStorage.setItem('ga_consent', 'denied'); } catch (e) {}
+    hideBanner();
+  });
+})();
+</script>
+{{ end }}
