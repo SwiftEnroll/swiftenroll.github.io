@@ -1,0 +1,15 @@
+{{- /* Pricing structured data — Product + Offer for each plan */ -}}
+{{- with site.Data.pricing.plans }}
+{{- $products := slice -}}
+{{- range . -}}
+  {{- $offer := dict "@type" "Offer" "availability" "https://schema.org/InStock" "url" ("pricing/" | absURL) -}}
+  {{- if and .price (ne (lower .price) "custom") -}}
+    {{- $offer = merge $offer (dict "price" .price "priceCurrency" "USD" "priceValidUntil" (now.AddDate 1 0 0 | time.Format "2006-01-02")) -}}
+  {{- end -}}
+  {{- $product := dict "@type" "Product" "name" (printf "SwiftEnroll %s Plan" .name) "description" .structured_description "brand" (dict "@type" "Organization" "name" "SwiftEnroll") "offers" $offer -}}
+  {{- $products = $products | append $product -}}
+{{- end -}}
+<script type="application/ld+json">
+{{- dict "@context" "https://schema.org" "@graph" $products | jsonify | safeJS -}}
+</script>
+{{- end -}}
