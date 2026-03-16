@@ -20,6 +20,10 @@ layout: "pricing"
       "answer": "In addition to monthly fees, we charge a $3 fee per registration, plus standard Stripe payment fees (variable per payment method)."
     },
     {
+      "question": "How much does a typical season cost?",
+      "answer": "For a season with 100 registrations: Non-Profit plans pay $0/mo + $300 in per-registration fees ($3 × 100). For-Profit plans pay $100/mo + $300, totaling $400 (or less if your season is shorter than a month). Standard Stripe processing fees apply on top."
+    },
+    {
       "question": "Do you offer non-profit discounts?",
       "answer": "Yes. Eligible 501(c)(3) and public institutions receive discounted pricing. Contact us to learn more."
     },
