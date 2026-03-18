@@ -223,13 +223,17 @@ Every feature we build starts with a simple question: "Would this make life easi
     url = "/features/"
     weight = 2
   [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 3
+  [[menu.main]]
     name = "Pricing"
     url = "/pricing"
-    weight = 3
+    weight = 4
   [[menu.main]]
     name = "About Us"
     url = "/company/"
-    weight = 4
+    weight = 5
 
 
   # Footer Column 1 Menu
@@ -286,9 +290,13 @@ Every feature we build starts with a simple question: "Would this make life easi
     url = "/pricing"
     weight = 2
   [[menu.footer_column_3]]
+    name = "Blog"
+    url = "/blog"
+    weight = 3
+  [[menu.footer_column_3]]
     name = "About Us"
     url = "/company"
-    weight = 3
+    weight = 4
 
   # Footer Column 4 Menu - Legal
   [[menu.footer_column_4]]

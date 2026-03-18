@@ -9,7 +9,8 @@
         "http://localhost/demo/index.html",
         "http://localhost/contact/index.html",
         "http://localhost/industries/youth-sports-fitness/index.html",
-        "http://localhost/company/index.html"
+        "http://localhost/company/index.html",
+        "http://localhost/blog/index.html"
       ],
       "numberOfRuns": 3
     },
