@@ -16,16 +16,16 @@
                 {{ $paginator := .Paginate $pages 10 }}
                 {{ range $paginator.Pages }}
                     <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                        {{ with .Params.image }}
-                            <a href="{{ $.RelPermalink }}" class="block aspect-video overflow-hidden">
-                                <img
-                                    src="{{ . }}"
-                                    alt="{{ $.Title }}"
-                                    class="object-cover w-full h-full transform hover:scale-105 transition-transform duration-300"
-                                    loading="lazy"
-                                >
-                            </a>
-                        {{ end }}
+{{ $page := . }}{{ with $page.Params.image }}
+    <a href="{{ $page.RelPermalink }}" class="block aspect-video overflow-hidden">
+        <img
+            src="{{ . }}"
+            alt="{{ $page.Title }}"
+            class="object-cover w-full h-full transform hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+        >
+    </a>
+{{ end }}
 
                         <div class="p-6 flex flex-col flex-1">
                             <!-- Categories -->
