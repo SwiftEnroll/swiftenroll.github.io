@@ -57,5 +57,7 @@ hugo_stats.json
 hugo
 *.tar.gz
 
+
 # Claude
 .claude
+.worktrees/
