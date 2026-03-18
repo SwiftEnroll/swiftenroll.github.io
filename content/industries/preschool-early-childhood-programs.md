@@ -1,7 +1,7 @@
 ---
-title: "Preschool & Early Childhood Registration Software"
+title: "Preschool Enrollment Software for Early Childhood Programs"
 layout: "industry"
-description: "Manage preschool and early childhood program enrollments, waitlists, family communication, and payments with SwiftEnroll's easy-to-use software."
+description: "Preschool enrollment software built for early childhood programs. Manage waitlists, collect payments, communicate with families, and streamline registration."
 hero:
     headline: "Preschools & Early Childhood Programs"
     sub_headline: "Manage enrollments, waitlists, family communication, and payments - all in one place."
