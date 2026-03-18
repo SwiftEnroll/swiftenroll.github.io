@@ -10,17 +10,11 @@ Usage: {{< company-leadership >}}
     <h2 class="text-3xl font-bold text-center mb-12">{{ $title }}</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {{ $count := len $company.team }}
-      {{ if eq $count 1 }}
-        <div class="md:col-start-2 md:col-span-1">
-          {{ range $company.team }}
-          {{ partial "components/team-member.html" . }}
-          {{ end }}
-        </div>
-      {{ else }}
-        {{ range $company.team }}
+      {{ if eq $count 1 }}<div class="md:col-start-2 md:col-span-1">{{ end }}
+      {{ range $company.team }}
         {{ partial "components/team-member.html" . }}
-        {{ end }}
       {{ end }}
+      {{ if eq $count 1 }}</div>{{ end }}
     </div>
   </div>
 </section>
