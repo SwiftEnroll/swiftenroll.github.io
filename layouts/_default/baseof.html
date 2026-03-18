@@ -72,9 +72,7 @@
     {{ with .OutputFormats.Get "rss" }}
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end }}
-    {{ if .IsHome }}
-        <link rel="alternate" type="application/rss+xml" href="{{ "blog/index.xml" | absURL }}" title="{{ .Site.Title }} Blog">
-    {{ end }}
+    <link rel="alternate" type="application/rss+xml" href="{{ "blog/index.xml" | absURL }}" title="{{ .Site.Title }} Blog">
 
     <!-- Custom Head Content -->
     {{ partial "layout/custom-head" . }}

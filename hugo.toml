@@ -291,7 +291,7 @@ Every feature we build starts with a simple question: "Would this make life easi
     weight = 2
   [[menu.footer_column_3]]
     name = "Blog"
-    url = "/blog"
+    url = "/blog/"
     weight = 3
   [[menu.footer_column_3]]
     name = "About Us"
