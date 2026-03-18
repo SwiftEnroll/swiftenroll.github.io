@@ -1,6 +1,6 @@
 ---
 title: "After School Enrichment Software for PTOs and Schools"
-description: "After school enrichment registration software for PTOs and schools to manage enrollment, payments, rosters, waitlists, and lotteries in one platform."
+description: "After school enrichment software for PTOs and schools. Automate enrollment, payments, rosters, waitlists, and lotteries — save hours every season."
 layout: "industry"
 hero:
     headline: "After School Enrichment Software"
