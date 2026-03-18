@@ -54,3 +54,4 @@ resources/
 # Hugo binary
 hugo
 *.tar.gz
+.worktrees/
