@@ -14,11 +14,13 @@ plans:
       - "Email support"
     button:
       text: "Get Started"
-      url: "/contact/"
+      url: "/contact/?plan=nonprofit"
   - name: "For-Profit"
     price: "100"
     description: "Flexible pricing for growing programs and camps."
     structured_description: "Enrollment management platform for growing programs and camps. Includes everything in Non-Profit plus coupons, discounts, installments, invoicing, advanced reporting, admin roles, permissions, and priority support."
+    highlighted: true
+    badge: "Most Popular"
     features:
       - "Everything in Non-Profit"
       - "Coupons & discounts"
@@ -28,7 +30,7 @@ plans:
       - "Priority support"
     button:
       text: "Book a Demo"
-      url: "/demo/"
+      url: "/demo/?plan=forprofit"
   - name: "Enterprise"
     price: "Custom"
     description: "Districts and multi-site organizations with advanced needs."
@@ -42,4 +44,4 @@ plans:
       - "Dedicated support"
     button:
       text: "Contact Sales"
-      url: "/contact/"
+      url: "/contact/?plan=enterprise"
