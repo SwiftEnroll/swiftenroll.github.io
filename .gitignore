@@ -47,6 +47,8 @@ public/
 # Hugo generated resources
 resources/
 .hugo_build.lock
+# Hugo build stats (regenerated on build, not consumed by Tailwind)
+hugo_stats.json
 
 # Lighthouse CI
 .lighthouseci/
