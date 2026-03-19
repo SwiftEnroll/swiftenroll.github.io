@@ -28,7 +28,7 @@
                     {{ range .Site.Menus.main }}
                         {{ if .Params.has_submenu }}
                         <div class="relative group">
-                            <button class="flex items-center {{ with $headerConfig.menu.linkClass }}{{ . }}{{ else }}text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200{{ end }}">
+                            <button aria-haspopup="true" aria-expanded="false" aria-label="{{ .Name }} menu" class="nav-dropdown-trigger flex items-center {{ with $headerConfig.menu.linkClass }}{{ . }}{{ else }}text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200{{ end }}">
                                 {{ .Name }}
                                 <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -151,6 +151,31 @@
                     }
                 });
             }
+
+            // Toggle aria-expanded on dropdown hover
+            var dropdownGroups = document.querySelectorAll('.nav-dropdown-trigger');
+            dropdownGroups.forEach(function(trigger) {
+                var parent = trigger.closest('.group');
+                if (!parent) return;
+                parent.addEventListener('mouseenter', function() {
+                    trigger.setAttribute('aria-expanded', 'true');
+                });
+                parent.addEventListener('mouseleave', function() {
+                    trigger.setAttribute('aria-expanded', 'false');
+                });
+                // Also handle focus for keyboard navigation
+                trigger.addEventListener('focus', function() {
+                    trigger.setAttribute('aria-expanded', 'true');
+                });
+                trigger.addEventListener('blur', function() {
+                    // Delay to allow focus to move to dropdown items
+                    setTimeout(function() {
+                        if (!parent.contains(document.activeElement)) {
+                            trigger.setAttribute('aria-expanded', 'false');
+                        }
+                    }, 100);
+                });
+            });
         })();
     </script>
 </div>
