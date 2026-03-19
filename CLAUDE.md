@@ -55,7 +55,7 @@ just lighthouse build  # Lighthouse CI (perf >90, a11y >95, bp >90, seo >90)
 ### Template Conventions
 
 - **Reuse partials** — check `layouts/partials/components/` before writing inline markup. The shared CTA (`components/cta.html`), image optimizer (`components/optimized-image.html`), and other partials exist for a reason.
-- **Reuse shortcodes** — check `layouts/shortcodes/` before creating new content patterns. There are 24 shortcodes already.
+- **Reuse shortcodes** — check `layouts/shortcodes/` before creating new content patterns. Many shortcodes already exist.
 - **Config belongs in `hugo.toml`** — never hardcode URLs, colors, button text, or CTA copy in templates. Pull from `{{ .Site.Params }}`.
 - **Front matter fields**: blog posts use `image` (not `featured_image`) for the hero image.
 
@@ -74,4 +74,4 @@ just lighthouse build  # Lighthouse CI (perf >90, a11y >95, bp >90, seo >90)
 4. Responsive check: 375px mobile + 1280px desktop
 5. No console errors, no broken images, no horizontal scrollbars
 6. Documentation updated if needed (see `/docs/engineering/DOCUMENTATION.md`)
-7. Screenshots uploaded to GitHub release assets (never commit images to repo)
+7. PR screenshots uploaded to GitHub release assets (not committed to repo). Optimized web assets belong in `assets/images/` or `static/images/` per coding standards.
