@@ -56,3 +56,6 @@ hugo_stats.json
 # Hugo binary
 hugo
 *.tar.gz
+
+# Claude
+.claude
