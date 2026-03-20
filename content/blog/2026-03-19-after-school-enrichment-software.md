@@ -32,7 +32,7 @@ Not all enrollment software is built with youth programs in mind. Generic tools 
 
 Before you commit to a platform, use a structured vendor conversation to avoid surprises. Here's a practical checklist:
 
-**How is pricing structured?** Per-registration fees can add up fast during fall enrollment. Flat monthly pricing is more predictable. Make sure you understand what's included and what triggers additional costs.
+**How is pricing structured?** Per-registration fees can add up, especially during peak enrollment. Flat monthly pricing is more predictable. Make sure you understand what's included and what triggers additional costs.
 
 **What does onboarding look like?** Some platforms hand you a help center link and wish you luck. Others provide actual setup support. If you're mid-season or running a small team, the difference matters a lot.
 
@@ -46,7 +46,7 @@ Before you commit to a platform, use a structured vendor conversation to avoid s
 
 Even thoughtful program directors make these calls and regret them later.
 
-**Signing an annual contract before running a real trial.** Most reputable platforms will let you run a pilot — maybe a single session or a summer program — before locking into a year-long commitment. If a vendor pushes back on this, that's worth noting.
+**Signing an annual contract before running a real trial.** Many platforms offer some form of trial or pilot — maybe a single session or a summer program — before locking into a year-long commitment. If a vendor won't let you test before committing, that's worth noting.
 
 **Underestimating how parents will use it.** Your staff can learn a clunky interface because they're motivated. Parents won't. If the registration experience is frustrating, you'll get phone calls, emails, and families who just don't complete enrollment. Always test the parent-facing flow yourself.
 
@@ -60,12 +60,10 @@ Here's a simple scenario: fall enrollment opens on a Monday morning. Within the 
 
 No spreadsheet updates. No manual emails. No reconciling who paid what. Your team spends that saved time on the actual program.
 
-That's what well-designed [after-school enrichment software](https://www.swiftenroll.com/industries/after-school-enrichment-programs/) is supposed to do — remove the administrative friction so your staff can focus on kids, not logistics.
-
-It doesn't happen automatically just by adopting any platform. It happens when the platform is built around how enrichment programs actually operate: multiple sessions, varied pricing, family accounts with multiple kids, and parents who are busy and need things to just work.
+That's what well-designed [after-school enrichment software](/industries/after-school-enrichment-programs/) is supposed to do — remove the administrative friction so your staff can focus on kids, not logistics.
 
 ---
 
-If you're evaluating options right now, it's worth checking what [SwiftEnroll's feature set](https://www.swiftenroll.com/features/) covers — particularly around waitlists, multi-session enrollment, and the parent registration experience. [Pricing is transparent](https://www.swiftenroll.com/pricing/) and built for programs that want predictable costs as they grow.
+If you're evaluating options right now, it's worth checking what [SwiftEnroll's feature set](/features/) covers — particularly around waitlists, multi-session enrollment, and the parent registration experience. [Pricing is transparent](/pricing/) and built for programs that want predictable costs as they grow.
 
 Whatever you choose, make sure you've run it through a real enrollment scenario before fall. Your future self will thank you.
