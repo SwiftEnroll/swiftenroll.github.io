@@ -2,12 +2,7 @@
 <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
     {{ with $page.Params.image }}
         <a href="{{ $page.RelPermalink }}" class="block aspect-video overflow-hidden">
-            <img
-                src="{{ . }}"
-                alt="{{ $page.Title }}"
-                class="object-cover w-full h-full transform hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-            >
+            {{ partial "components/optimized-image" (dict "src" . "alt" $page.Title "class" "object-cover w-full h-full transform hover:scale-105 transition-transform duration-300" "loading" "lazy") }}
         </a>
     {{ else }}
         <a href="{{ $page.RelPermalink }}" class="block aspect-video overflow-hidden bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
