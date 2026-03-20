@@ -1,7 +1,7 @@
 ---
-title: "STEM & Academic Programs Registration Software"
+title: "STEM Programs Management Software for Schools & Academies"
 layout: "industry"
-description: "Manage course enrollments, tutoring sessions, waitlists, approvals, and payments for STEM and academic programs with SwiftEnroll."
+description: "STEM programs management software for schools and enrichment academies. Handle enrollment, waitlists, payments, and rosters — all in one place."
 hero:
     headline: "STEM & Academic Learning Programs"
     sub_headline: "Manage course enrollments, tutoring sessions, waitlists, approvals, and payments - all in one place."
