@@ -4,7 +4,65 @@ description: "Clear, flexible pricing for programs of all sizes"
 layout: "pricing"
 ---
 
-{{< pricing-table-1 >}}{{< /pricing-table-1 >}}
+{{< pricing-table-1 >}}
+{
+  "title": "Simple pricing for programs and schools",
+  "description": "Plans for non-profit programs, for-profit businesses, and larger enterprises.<br/>All plans include secure payments, waitlists, approvals, and parent-friendly enrollment.",
+  "plans": [
+    {
+      "name": "Non-Profit",
+      "price": "0",
+      "description": "Discounted pricing for 501(c)(3) and public institutions.",
+      "features": [
+        "Unlimited programs & enrollments",
+        "Waitlists & placement",
+        "Approvals & notifications",
+        "Stripe payments (standard processing fees)",
+        "Basic reporting & exports",
+        "Email support"
+      ],
+      "button": {
+        "text": "Get Started",
+        "url": "/demo/"
+      }
+    },
+    {
+      "name": "For-Profit",
+      "price": "100",
+      "description": "Flexible pricing for growing programs and camps.",
+      "features": [
+        "Everything in Non-Profit",
+        "Coupons & discounts",
+        "Installments & invoicing",
+        "Advanced reporting",
+        "Admin roles & permissions",
+        "Priority support"
+      ],
+      "button": {
+        "text": "Book a Demo",
+        "url": "/demo/"
+      }
+    },
+    {
+      "name": "Enterprise",
+      "price": "Custom",
+      "description": "Districts and multi-site organizations with advanced needs.",
+      "features": [
+        "All For-Profit features",
+        "SAML/SSO (optional)",
+        "Custom integrations",
+        "Dedicated onboarding",
+        "Uptime SLA",
+        "Dedicated support"
+      ],
+      "button": {
+        "text": "Contact Sales",
+        "url": "/contact/"
+      }
+    }
+  ]
+}
+{{< /pricing-table-1 >}}
 
 {{< faq >}}
 {
@@ -14,14 +72,10 @@ layout: "pricing"
     {
       "question": "How do payments work?",
       "answer": "SwiftEnroll uses Stripe Connect for secure payment processing. We charge a $3 fee per registration, in addition to the standard Stripe fees."
-    },
+    },    
     {
       "question": "What fees do you charge?",
       "answer": "In addition to monthly fees, we charge a $3 fee per registration, plus standard Stripe payment fees (variable per payment method)."
-    },
-    {
-      "question": "How much does a typical season cost?",
-      "answer": "For a season with 100 registrations: Non-Profit plans pay $0/mo + $300 in per-registration fees ($3 × 100). For-Profit plans pay $100/mo + $300, totaling $400 (or less if your season is shorter than a month). Standard Stripe processing fees apply on top."
     },
     {
       "question": "Do you offer non-profit discounts?",

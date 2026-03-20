@@ -36,7 +36,7 @@
                                 {{ range .features }}
                                 <li class="flex items-start">
                                     <svg class="h-6 w-6 flex-shrink-0 text-blue-500" fill="currentColor"
-                                         viewBox="0 0 24 24">
+                                         viewBox="0 0 24 24" aria-hidden="true">
                                         <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/>
                                     </svg>
                                     <span class="ml-3">{{ . }}</span>
@@ -54,8 +54,12 @@
                 {{ end }}
             </div>
         </div>
-    </div>
-    <div class="mt-8 text-center text-gray-500 text-sm">
-        *All prices are in USD. A $3 fee per registration applies to all plans, plus standard Stripe payment processing fees.
+        <p class="mt-6 text-center text-base text-gray-500">
+            Month-to-month &middot; No contracts &middot; Cancel anytime
+        </p>
+        <p class="mt-2 text-center text-sm text-gray-500">
+            All plans include a $3 per-registration fee plus standard
+            <a href="https://stripe.com/pricing" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-800 underline">Stripe processing fees</a>. All prices are in USD.
+        </p>
     </div>
 </section>
