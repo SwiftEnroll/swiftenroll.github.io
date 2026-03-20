@@ -14,13 +14,13 @@ Here are seven practical tips to help you fill spots faster and make registratio
 
 ## 1. Open Registration Early — Earlier Than You Think
 
-Most camp directors open registration too late. Families that plan ahead (and these are often your most reliable, returning families) are making decisions in January and February. If your registration isn't open until April, you've already missed them.
+It's common to open registration later than ideal. Families that plan ahead (and these are often your most reliable, returning families) are making decisions in January and February. If your registration isn't open until April, you've already missed them.
 
 Aim to open registration 3–4 months before your first session starts. Send a "Registration is now open" email to your past families first — they're your warmest leads and deserve first access. Even if spots don't fill immediately, you'll start capturing intent early.
 
 ## 2. Use a Waitlist to Create Urgency and Fill Cancellations
 
-A waitlist isn't just a backup list — it's a tool. When families see "Only 3 spots left" or "Join the waitlist," it signals demand and creates urgency. People move faster when they think they might miss out.
+A waitlist isn't just a backup list — it's a tool. When families see "Only 3 spots left" or "Join the waitlist," it signals demand and creates urgency. Visible demand helps families decide sooner.
 
 More importantly, a waitlist lets you fill cancellations automatically. Set it up so that when a spot opens, the next family on the list gets a notification (and ideally a time-limited link to complete registration). Without a waitlist, every cancellation means staff time spent chasing down replacements.
 
@@ -32,13 +32,13 @@ Think about your cash flow needs and set up payment plans accordingly — a depo
 
 ## 4. Make Registration Mobile-Friendly
 
-More than half of parents will start (and often finish) registration on their phone. If your registration form requires desktop, has tiny fields, or makes parents upload documents via a clunky file picker — you're losing registrations.
+Many parents will start — and often finish — registration on their phone. If your registration form requires desktop, has tiny fields, or makes parents upload documents via a clunky file picker — you're losing registrations.
 
-Test your own registration flow on a phone before you open it. Can you complete it in under 5 minutes? Can you pay without switching devices? If the answer is no, families will abandon mid-form and not come back. A smooth mobile experience isn't a nice-to-have anymore; it's expected.
+Test your own registration flow on a phone before you open it. Can you complete it in under 5 minutes? Can you pay without switching devices? If the answer is no, families will abandon mid-form and not come back. A smooth mobile experience is expected.
 
 ## 5. Communicate Proactively — Don't Make Families Chase You
 
-Registration confirmed. Now what? Most camps go silent until two weeks before the session, then scramble to send a "what to bring" email. That gap creates anxiety for families and a flood of "Did you get my registration?" calls for your staff.
+Registration confirmed. Now what? Many camps go quiet between confirmation and session start, then scramble to send a "what to bring" email. That gap creates anxiety for families and a flood of "Did you get my registration?" calls for your staff.
 
 Set up a simple communication sequence: confirmation email immediately after registration, a welcome/info packet a few weeks out, a "camp is almost here!" reminder 1–2 weeks before start, and a day-before logistics note. Each touchpoint reduces inbound questions and builds confidence that your program is well-run. Families who feel informed are also more likely to re-enroll.
 
@@ -58,4 +58,4 @@ Put the policy somewhere families actually see it — during registration, not b
 
 These aren't complicated changes, but they compound. A camp that opens registration early, runs a smooth mobile experience, communicates proactively, and handles siblings well is going to outperform one that doesn't — even if the programs themselves are similar.
 
-If you're rethinking how you manage registration this season, see how SwiftEnroll helps camps manage registration season — [Book a free demo](/demo/).
+If you're rethinking how you manage registration this season, [see how SwiftEnroll handles it](/demo/) — from online registration and waitlists to payments and family communication.
