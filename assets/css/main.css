@@ -192,19 +192,19 @@
     @apply bg-gray-100 text-gray-900 px-1.5 py-0.5 rounded text-sm font-mono;
   }
 
-  .table-of-contents {
-    @apply bg-gray-50 p-6 rounded-lg my-8;
+  .toc nav {
+    @apply space-y-1;
   }
 
-  .table-of-contents nav {
-    @apply space-y-2;
+  .toc nav ul {
+    @apply list-none pl-0 space-y-1;
   }
 
-  .table-of-contents a {
-    @apply text-gray-700 hover:text-primary-600 no-underline;
+  .toc nav ul ul {
+    @apply pl-4 mt-1;
   }
 
-  .table-of-contents ul {
-    @apply list-none ml-4 space-y-2;
+  .toc nav a {
+    @apply text-gray-600 hover:text-primary-600 no-underline transition-colors duration-150;
   }
 }

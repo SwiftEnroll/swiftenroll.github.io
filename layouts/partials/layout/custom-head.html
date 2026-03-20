@@ -1,5 +1,5 @@
 <!-- JSON-LD Schema Markup for SoftwareApplication -->
-{{- $schema := dict 
+{{- $schema := dict
   "@context" "https://schema.org"
   "@type" "SoftwareApplication"
   "name" .Site.Title
@@ -8,7 +8,7 @@
   "description" .Site.Params.description
   "applicationCategory" "BusinessApplication"
   "operatingSystem" "Web"
-  "offers" (dict 
+  "offers" (dict
     "@type" "Offer"
     "price" "0"
     "priceCurrency" "USD"
@@ -23,6 +23,73 @@
 <script type="application/ld+json">
 {{- $schema | jsonify | safeJS -}}
 </script>
+
+{{- if and .IsPage (eq .Section "blog") }}
+<!-- JSON-LD BlogPosting Schema -->
+{{- $postImage := .Params.image | default .Site.Params.image -}}
+{{- $blogPosting := dict
+  "@context" "https://schema.org"
+  "@type" "BlogPosting"
+  "headline" .Title
+  "description" .Description
+  "url" .Permalink
+  "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  "wordCount" .WordCount
+  "timeRequired" (printf "PT%dM" .ReadingTime)
+  "image" (absURL $postImage)
+  "author" (dict
+    "@type" "Organization"
+    "name" .Site.Title
+    "url" .Site.BaseURL
+  )
+  "publisher" (dict
+    "@type" "Organization"
+    "name" .Site.Title
+    "url" .Site.BaseURL
+    "logo" (dict
+      "@type" "ImageObject"
+      "url" (absURL .Site.Params.logo)
+    )
+  )
+  "mainEntityOfPage" (dict
+    "@type" "WebPage"
+    "@id" .Permalink
+  )
+-}}
+<script type="application/ld+json">
+{{- $blogPosting | jsonify | safeJS -}}
+</script>
+
+<!-- JSON-LD BreadcrumbList Schema -->
+{{- $breadcrumbs := dict
+  "@context" "https://schema.org"
+  "@type" "BreadcrumbList"
+  "itemListElement" (slice
+    (dict
+      "@type" "ListItem"
+      "position" 1
+      "name" "Home"
+      "item" (.Site.BaseURL | strings.TrimRight "/")
+    )
+    (dict
+      "@type" "ListItem"
+      "position" 2
+      "name" "Blog"
+      "item" (absURL "blog/")
+    )
+    (dict
+      "@type" "ListItem"
+      "position" 3
+      "name" .Title
+      "item" .Permalink
+    )
+  )
+-}}
+<script type="application/ld+json">
+{{- $breadcrumbs | jsonify | safeJS -}}
+</script>
+{{- end }}
 
 <style>
 /* Ensure the site title in the header uses brand font and color when logo + text are shown */
