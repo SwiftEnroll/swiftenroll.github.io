@@ -3,6 +3,7 @@ title: "ACTIVE Network Alternative - SwiftEnroll"
 subtitle: "A simpler, more affordable alternative to ACTIVE Network for camps, after-school programs, and youth organizations"
 description: "Looking for an ACTIVE Network alternative? SwiftEnroll offers simpler enrollment management with transparent pricing, responsive support, and features designed for modern programs."
 layout: "comparison"
+draft: true
 competitorName: "ACTIVE Network"
 
 comparison:
