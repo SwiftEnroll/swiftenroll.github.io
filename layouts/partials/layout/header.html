@@ -34,7 +34,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                 </svg>
                             </button>
-                            <div class="absolute left-0 mt-2 {{ $dropdownConfig.width | default "w-72" }} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out">
+                            <div class="absolute left-0 mt-2 {{ $dropdownConfig.width | default "w-72" }} opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 ease-in-out">
                                 <div class="{{ $dropdownConfig.container_padding | default "py-6" }} {{ $dropdownConfig.background | default "bg-white" }} {{ $dropdownConfig.border | default "border border-gray-100" }} {{ $dropdownConfig.shadow | default "shadow-xl" }} {{ $dropdownConfig.radius | default "rounded-lg" }}">
                                     {{ range .Params.submenu }}
                                     <a href="{{ .url }}" class="block {{ $dropdownConfig.item_padding | default "px-8 py-3" }} {{ $dropdownConfig.text_size | default "text-sm" }} {{ $dropdownConfig.text_color | default "text-gray-700" }} {{ $dropdownConfig.hover_background | default "hover:bg-gray-50" }}">{{ .name }}</a>
@@ -152,10 +152,10 @@
                 });
             }
 
-            // Toggle aria-expanded on dropdown hover
-            var dropdownGroups = document.querySelectorAll('.nav-dropdown-trigger');
-            dropdownGroups.forEach(function(trigger) {
-                var parent = trigger.closest('.group');
+            // Toggle aria-expanded on dropdown hover/focus
+            const dropdownTriggers = document.querySelectorAll('.nav-dropdown-trigger');
+            dropdownTriggers.forEach(function(trigger) {
+                const parent = trigger.closest('.group');
                 if (!parent) return;
                 parent.addEventListener('mouseenter', function() {
                     trigger.setAttribute('aria-expanded', 'true');
