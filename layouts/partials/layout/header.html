@@ -28,13 +28,13 @@
                     {{ range .Site.Menus.main }}
                         {{ if .Params.has_submenu }}
                         <div class="relative group">
-                            <button class="flex items-center {{ with $headerConfig.menu.linkClass }}{{ . }}{{ else }}text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200{{ end }}">
+                            <button type="button" aria-haspopup="true" aria-expanded="false" aria-label="{{ .Name }} menu" class="nav-dropdown-trigger flex items-center {{ with $headerConfig.menu.linkClass }}{{ . }}{{ else }}text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200{{ end }}">
                                 {{ .Name }}
                                 <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                 </svg>
                             </button>
-                            <div class="absolute left-0 mt-2 {{ $dropdownConfig.width | default "w-72" }} opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out">
+                            <div class="absolute left-0 mt-2 {{ $dropdownConfig.width | default "w-72" }} opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 ease-in-out">
                                 <div class="{{ $dropdownConfig.container_padding | default "py-6" }} {{ $dropdownConfig.background | default "bg-white" }} {{ $dropdownConfig.border | default "border border-gray-100" }} {{ $dropdownConfig.shadow | default "shadow-xl" }} {{ $dropdownConfig.radius | default "rounded-lg" }}">
                                     {{ range .Params.submenu }}
                                     <a href="{{ .url }}" class="block {{ $dropdownConfig.item_padding | default "px-8 py-3" }} {{ $dropdownConfig.text_size | default "text-sm" }} {{ $dropdownConfig.text_color | default "text-gray-700" }} {{ $dropdownConfig.hover_background | default "hover:bg-gray-50" }}">{{ .name }}</a>
@@ -151,6 +151,28 @@
                     }
                 });
             }
+
+            // Sync aria-expanded with CSS-driven dropdown visibility
+            document.querySelectorAll('.nav-dropdown-trigger').forEach(function(trigger) {
+                const group = trigger.closest('.group');
+                if (!group) return;
+                let hovered = false;
+                let focused = false;
+
+                function sync() {
+                    trigger.setAttribute('aria-expanded', hovered || focused ? 'true' : 'false');
+                }
+
+                group.addEventListener('mouseenter', function() { hovered = true; sync(); });
+                group.addEventListener('mouseleave', function() { hovered = false; sync(); });
+                group.addEventListener('focusin', function() { focused = true; sync(); });
+                group.addEventListener('focusout', function() {
+                    setTimeout(function() {
+                        focused = group.contains(document.activeElement);
+                        sync();
+                    }, 100);
+                });
+            });
         })();
     </script>
 </div>
