@@ -84,7 +84,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-nav" class="nav-content md:hidden w-full fixed left-0 right-0 top-20 bg-white border-t border-gray-100 shadow-lg max-h-[calc(100vh-5rem)] overflow-y-auto" aria-label="Mobile navigation">
+        <div id="mobile-nav" class="nav-content md:hidden w-full fixed left-0 right-0 top-20 bg-white border-t border-gray-100 shadow-lg max-h-[calc(100vh-5rem)] overflow-y-auto" aria-label="Mobile navigation" hidden>
             <div class="w-full px-6 py-4">
                 {{ range .Site.Menus.main }}
                     {{ if .Params.has_submenu }}
@@ -125,12 +125,11 @@
         .mobile-menu-wrapper {
             position: relative;
         }
-        .nav-content {
+        .nav-content[hidden] {
             display: none;
-            -webkit-overflow-scrolling: touch;
         }
-        .nav-content.is-open {
-            display: block;
+        .nav-content {
+            -webkit-overflow-scrolling: touch;
         }
     </style>
 
@@ -140,16 +139,14 @@
             var nav = document.getElementById('mobile-nav');
             if (btn && nav) {
                 btn.addEventListener('click', function() {
-                    var isOpen = nav.classList.contains('is-open');
-                    if (isOpen) {
-                        nav.classList.remove('is-open');
-                        btn.setAttribute('aria-expanded', 'false');
-                        btn.setAttribute('aria-label', 'Open navigation menu');
+                    var expanded = btn.getAttribute('aria-expanded') === 'true';
+                    btn.setAttribute('aria-expanded', !expanded);
+                    btn.setAttribute('aria-label', expanded ? 'Open navigation menu' : 'Close navigation menu');
+                    if (expanded) {
+                        nav.setAttribute('hidden', '');
                         document.body.style.overflow = '';
                     } else {
-                        nav.classList.add('is-open');
-                        btn.setAttribute('aria-expanded', 'true');
-                        btn.setAttribute('aria-label', 'Close navigation menu');
+                        nav.removeAttribute('hidden');
                         document.body.style.overflow = 'hidden';
                     }
                 });
