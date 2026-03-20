@@ -1,0 +1,98 @@
+{{ define "main" }}
+<section class="py-16 md:py-24">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+        <!-- Hero Section -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">{{ .Title }}</h1>
+            {{ with .Params.subtitle }}
+                <p class="text-xl text-gray-600">{{ . }}</p>
+            {{ end }}
+        </div>
+
+        <!-- Comparison Table -->
+        {{ with .Params.comparison }}
+        <div class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Side-by-Side Comparison</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+                    <thead>
+                        <tr class="bg-primary-600">
+                            <th scope="col" class="px-6 py-4 text-left text-white font-semibold text-lg">Feature</th>
+                            <th scope="col" class="px-6 py-4 text-center text-white font-semibold text-lg">SwiftEnroll</th>
+                            <th scope="col" class="px-6 py-4 text-center text-white font-semibold text-lg">{{ $.Params.competitorName }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ range $index, $item := . }}
+                        <tr class="{{ if modBool $index 2 }}bg-gray-50{{ end }}">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 border-b border-gray-200 text-left">{{ $item.feature }}</th>
+                            <td class="px-6 py-4 text-center border-b border-l border-gray-200">
+                                {{ if eq $item.swiftenroll "yes" }}
+                                <span class="inline-flex items-center justify-center w-8 h-8 bg-green-100 text-green-600 rounded-full" title="Yes">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="sr-only">Yes</span>
+                                </span>
+                                {{ else if eq $item.swiftenroll "no" }}
+                                <span class="inline-flex items-center justify-center w-8 h-8 bg-red-100 text-red-600 rounded-full" title="No">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="sr-only">No</span>
+                                </span>
+                                {{ else }}
+                                <span class="text-gray-700 font-medium">{{ $item.swiftenroll }}</span>
+                                {{ end }}
+                            </td>
+                            <td class="px-6 py-4 text-center border-b border-l border-gray-200">
+                                {{ if eq $item.competitor "yes" }}
+                                <span class="inline-flex items-center justify-center w-8 h-8 bg-green-100 text-green-600 rounded-full" title="Yes">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="sr-only">Yes</span>
+                                </span>
+                                {{ else if eq $item.competitor "no" }}
+                                <span class="inline-flex items-center justify-center w-8 h-8 bg-red-100 text-red-600 rounded-full" title="No">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="sr-only">No</span>
+                                </span>
+                                {{ else }}
+                                <span class="text-gray-700 font-medium">{{ $item.competitor }}</span>
+                                {{ end }}
+                            </td>
+                        </tr>
+                        {{ end }}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{ end }}
+
+        <!-- Why Switch Section -->
+        {{ with .Params.whySwitch }}
+        <div class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Why Switch to SwiftEnroll?</h2>
+            {{ range . }}
+            <div class="bg-white p-8 rounded-lg shadow-md mb-6">
+                <h3 class="text-xl font-semibold mb-3 text-gray-900">{{ .title }}</h3>
+                <p class="text-gray-700">{{ .description }}</p>
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+
+        <!-- Main Content -->
+        {{ if .Content }}
+        <div class="prose prose-lg max-w-none mb-16">
+            {{ .Content }}
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+{{ partial "components/cta" . }}
+{{ end }}
