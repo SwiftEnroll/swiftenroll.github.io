@@ -76,11 +76,11 @@ Migrating from ACTIVE Network to SwiftEnroll is straightforward. We'll help you:
 
 ## Common Questions
 
-**Will I lose my historical data?**
+### Will I lose my historical data?
 No. We can help you export data from ACTIVE Network and import it into SwiftEnroll, preserving your enrollment history.
 
-**What about ongoing enrollments?**
+### What about ongoing enrollments?
 You can run both systems in parallel during transition, or time your switch between enrollment periods for a clean cutover.
 
-**How long does migration take?**
+### How long does migration take?
 Most organizations are fully operational on SwiftEnroll within 1-2 weeks, depending on program complexity.
