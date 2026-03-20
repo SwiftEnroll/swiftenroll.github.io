@@ -2,7 +2,7 @@
   "name": "hugo-saasify-demo",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npx tailwindcss -i assets/css/main.css -o static/css/style.css --watch\" \"dotenv -- hugo server -D\"",
+    "start": "concurrently \"npx tailwindcss -i assets/css/main.css -o static/css/style.css --watch\" \"dotenv -- hugo server -D --bind ${HUGO_BIND:-127.0.0.1} --baseURL ${HUGO_BASEURL:-http://localhost:1313}\"",
     "build": "tailwindcss -i assets/css/main.css -o static/css/style.css --minify && hugo --minify"
   },
   "devDependencies": {

@@ -52,12 +52,7 @@
         <!-- Featured Image -->
         {{ with .Params.image }}
             <figure class="mb-12">
-                <img
-                    src="{{ . }}"
-                    alt="{{ $.Title }}"
-                    class="w-full rounded-lg shadow-md"
-                    loading="eager"
-                >
+                {{ partial "components/optimized-image" (dict "src" . "alt" $.Title "class" "w-full rounded-lg shadow-md" "loading" "eager" "fetchpriority" "high") }}
             </figure>
         {{ end }}
 
