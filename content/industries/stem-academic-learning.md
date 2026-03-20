@@ -4,7 +4,7 @@ layout: "industry"
 description: "STEM programs management software for schools and enrichment academies. Handle enrollment, waitlists, payments, and rosters — all in one place."
 hero:
     headline: "STEM & Academic Learning Programs"
-    sub_headline: "Manage enrollment, waitlists, payments, and rosters for STEM and academic programs - all in one place."
+    sub_headline: "Manage enrollment, waitlists, payments, and rosters for STEM and academic programs — all in one place."
     primary_button_text: "Book a Demo"
     primary_button_url: "/demo/"
     hero_image: "/images/industry/stem.png"
