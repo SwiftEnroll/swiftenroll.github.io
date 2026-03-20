@@ -1,6 +1,6 @@
 ---
 title: "How to Choose After-School Enrichment Software"
-date: 2026-03-19
+date: 2026-03-13
 description: "Choosing after-school enrichment software? Learn what features matter most for program directors managing registrations, payments, and rosters."
 tags: ["after-school", "enrollment software", "program management"]
 categories: ["guides"]
