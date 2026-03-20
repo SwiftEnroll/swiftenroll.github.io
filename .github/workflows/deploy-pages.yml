@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: "0 13 * * 5"   # Every Friday at 9am ET (1pm UTC)
   workflow_dispatch:
 permissions:
   contents: read
