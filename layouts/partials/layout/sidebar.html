@@ -25,14 +25,18 @@
                 {{ range first $recentCount (where .Site.RegularPages "Type" "blog") }}
                     <div class="group">
                         <a href="{{ .RelPermalink }}" class="block">
-                            {{ with .Params.featured_image }}
+                            {{ $img := .Params.featured_image | default .Params.image }}
+                            {{ with $img }}
                                 <div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg">
-                                    <img 
-                                        src="{{ . }}" 
-                                        alt="{{ $.Title }}" 
-                                        class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
-                                        loading="lazy"
-                                    >
+                                    {{ partial "components/optimized-image.html" (dict
+                                        "src" .
+                                        "alt" $.Title
+                                        "class" "object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
+                                        "loading" "lazy"
+                                        "width" 400
+                                        "height" 225
+                                        "sizes" "(max-width: 768px) 100vw, 300px"
+                                    ) }}
                                 </div>
                             {{ end }}
                             <h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">
