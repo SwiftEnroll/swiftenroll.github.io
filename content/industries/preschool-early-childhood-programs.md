@@ -1,7 +1,7 @@
 ---
-title: "Preschool Enrollment Software for Early Childhood Programs"
+title: "Preschool Enrollment Software — Waitlists, Payments & Registration"
 layout: "industry"
-description: "Preschool enrollment software built for early childhood programs. Manage waitlists, collect payments, communicate with families, and streamline registration."
+description: "Preschool enrollment software for early childhood programs. Automate waitlists, collect tuition via Stripe, and give families a smooth registration experience."
 hero:
     headline: "Preschools & Early Childhood Programs"
     sub_headline: "Manage enrollments, waitlists, family communication, and payments - all in one place."
