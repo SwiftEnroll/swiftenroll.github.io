@@ -22,7 +22,7 @@ enableGitInfo = true
   author = "SwiftEnroll"
   logo = "/images/logo.png"
   # Default social preview image for OpenGraph and Twitter cards
-  image = "/images/hero-image.png"
+  image = "/images/og-image.jpg"
   # Twitter handle (without @)
   twitter = "SwiftEnroll"
   # Google Analytics ID (GA4)
