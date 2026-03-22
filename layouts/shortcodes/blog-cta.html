@@ -1,0 +1,17 @@
+{{- $title := .Get "title" | default "Ready to simplify your enrollment?" -}}
+{{- $description := .Get "description" | default "See how SwiftEnroll handles registration, waitlists, and payments — so you can focus on your program." -}}
+{{- $button_text := .Get "button_text" | default "Book a Demo" -}}
+{{- $button_url := .Get "button_url" | default "/demo/" -}}
+
+<div class="not-prose my-12 relative bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl p-8 overflow-hidden">
+    <div class="relative">
+        <p class="text-xl font-bold text-gray-900 mb-2">{{ $title }}</p>
+        <p class="text-gray-700 mb-6">{{ $description }}</p>
+        <a href="{{ $button_url }}" class="btn-primary">
+            {{ $button_text }}
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+        </a>
+    </div>
+</div>

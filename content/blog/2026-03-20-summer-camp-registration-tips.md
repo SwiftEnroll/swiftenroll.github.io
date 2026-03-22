@@ -34,6 +34,8 @@ Most parents will start registration on their phone. Many will finish it there t
 
 Test your own registration flow on a phone before you open it. Can you complete it in under 5 minutes? Can you pay without switching devices? If not, families will abandon mid-form and not come back.
 
+{{< blog-cta title="Need a better camp registration system?" description="SwiftEnroll makes it easy to manage online registration, waitlists, payments, and family communication — all in one place." >}}
+
 ## 5. Don't Go Quiet After Confirmation
 
 Registration confirmed. Now what? Many camps go silent between confirmation and session start, then scramble to send a "what to bring" email the week before. That gap creates anxiety for families and a flood of "Did you get my registration?" calls for your staff.
