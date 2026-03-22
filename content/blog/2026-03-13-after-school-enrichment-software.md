@@ -28,6 +28,8 @@ Not all enrollment software is built with youth programs in mind. Generic tools 
 
 **Parent communication tools.** Schedule changes, weather cancellations, field trip permission slips - being able to reach families quickly without switching to a separate email tool saves real time.
 
+{{< blog-cta title="Looking for after-school enrollment software?" description="SwiftEnroll handles registration, waitlists, payments, and parent communication — built for youth programs." button_text="See How It Works" button_url="/features/" >}}
+
 ## The Questions You Should Ask Any Vendor
 
 Before you commit to a platform, use a structured vendor conversation to avoid surprises.
