@@ -38,6 +38,8 @@ testimonials:
     hero_image="/images/hero-image.png"
     primary_button_text="Book a Demo"
     primary_button_url="/demo/"
+    secondary_button_text="See How It Works"
+    secondary_button_url="/features/"
 >}}
 
 {{< client-logos animate="false" >}}
