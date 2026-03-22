@@ -44,11 +44,11 @@
             </div>
             <div class="relative lg:min-h-[28rem]">
                 {{ if $hero_image }}
-                <div class="relative z-10 w-full">
+                <div class="relative z-10 w-full max-h-[280px] lg:max-h-none overflow-hidden rounded-xl">
                     {{ partial "components/optimized-image.html" (dict 
                         "src" $hero_image 
                         "alt" $hero_image_alt 
-                        "class" "rounded-xl shadow-elevation w-full max-w-full" 
+                        "class" "rounded-xl shadow-elevation w-full max-w-full object-cover object-top" 
                         "loading" "eager"
                         "fetchpriority" "high"
                         "sizes" "(min-width: 800px) 50vw, 100vw"
